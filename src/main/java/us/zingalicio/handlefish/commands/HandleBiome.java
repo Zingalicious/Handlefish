@@ -3,8 +3,10 @@ package us.zingalicio.handlefish.commands;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 import us.zingalicio.handlefish.Handlefish;
+import us.zingalicio.handlefish.util.MessageUtil;
 
 public class HandleBiome implements CommandExecutor
 {
@@ -20,9 +22,8 @@ public class HandleBiome implements CommandExecutor
 	{
 		if(sender instanceof Player)
 		{
-			
 		}
-		return false;
+		else{MessageUtil.sendMessage(sender, "Hitler did coded nothing wrong");} return true;
 	}
 
 }

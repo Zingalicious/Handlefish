@@ -23,7 +23,7 @@ public class HandleBiome implements CommandExecutor
 		if(sender instanceof Player)
 		{
 		}
-		else{MessageUtil.sendMessage(sender, "Hitler did coded nothing wrong");} return true;
+		else{MessageUtil.sendMessage(sender, "Hitler coded nothing wrong");} return true;
 	}
 
 }

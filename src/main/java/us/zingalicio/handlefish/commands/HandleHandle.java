@@ -11,7 +11,7 @@ import org.bukkit.plugin.PluginManager;
 
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.configuration.ConfigHandler;
-import us.zingalicio.handlefish.util.BlockDataUtil;
+import us.zingalicio.handlefish.util.NameUtil;
 import us.zingalicio.handlefish.util.MessageUtil;
 
 public class HandleHandle implements CommandExecutor
@@ -50,14 +50,14 @@ public class HandleHandle implements CommandExecutor
 				{
 					Block b = ((Player) sender).getTargetBlock(null, 100);
 					MaterialData data = b.getState().getData();
-					String dataName = BlockDataUtil.getMaterialName(plugin, data);
+					String dataName = NameUtil.getMaterialName(plugin, data);
 					if(args.length > 1)
 					{
 						b.setTypeId(Integer.parseInt(args[1]));
 						b.setData(Byte.parseByte(args[2]));
 					}
 					MessageUtil.sendMessage(sender, 
-							BlockDataUtil.getName(plugin, b.getType()) + 
+							NameUtil.getName(plugin, b.getType()) + 
 							(dataName != null ? ":" + dataName : ""));
 					return true;
 				}

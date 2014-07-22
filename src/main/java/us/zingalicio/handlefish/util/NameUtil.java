@@ -6,7 +6,7 @@ import org.bukkit.material.MaterialData;
 
 import us.zingalicio.handlefish.Handlefish;
 
-public class BlockDataUtil
+public class NameUtil
 {	
 	@SuppressWarnings("deprecation")
 	public static MaterialData getMaterialData(Handlefish plugin, Material material, String name)

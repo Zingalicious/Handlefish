@@ -172,14 +172,15 @@ public class HandlePlayer implements CommandExecutor
 						{
 							if(args[1].equalsIgnoreCase("default") || args[1].equalsIgnoreCase("normal") || args[1].equalsIgnoreCase("reset") || args[1].equalsIgnoreCase("clear"))
 							{
-								user.setOption("walkspeed", ((Player) sender).getWorld().getName(), Float.toString(DEFAULT_WALK_SPEED));
+								user.setOption("walkspeed", Float.toString(DEFAULT_WALK_SPEED), ((Player) sender).getWorld().getName());
+								((Player) sender).setWalkSpeed(DEFAULT_WALK_SPEED);
 								MessageUtil.sendMessage(sender, "Walk speed reset.");
 								return true;
 							}
 							Float speed = NumberUtil.getFloat(args[1]);
 							if(speed != null && -1 <= speed && speed <= 1)
 							{
-								user.setOption("walkspeed", ((Player) sender).getWorld().getName(), args[1]);
+								user.setOption("walkspeed", args[1], ((Player) sender).getWorld().getName());
 								((Player) sender).setWalkSpeed(NumberUtil.getFloat(args[1]));
 								MessageUtil.sendMessage(sender, "Walk speed set to " + speed + ".");
 							}
@@ -204,14 +205,15 @@ public class HandlePlayer implements CommandExecutor
 						{
 							if(args[1].equalsIgnoreCase("default") || args[1].equalsIgnoreCase("normal") || args[1].equalsIgnoreCase("reset") || args[1].equalsIgnoreCase("clear"))
 							{
-								user.setOption("flyspeed", ((Player) sender).getWorld().getName(), Float.toString(DEFAULT_FLY_SPEED));
+								user.setOption("flyspeed", Float.toString(DEFAULT_FLY_SPEED), ((Player) sender).getWorld().getName());
+								((Player) sender).setFlySpeed(DEFAULT_FLY_SPEED);
 								MessageUtil.sendMessage(sender, "Flight speed reset.");
 								return true;
 							}
 							Float speed = NumberUtil.getFloat(args[1]);
 							if(speed != null && -1 <= speed && speed <= 1)
 							{
-								user.setOption("flyspeed", ((Player) sender).getWorld().getName(), args[1]);
+								user.setOption("flyspeed", args[1], ((Player) sender).getWorld().getName());
 								((Player) sender).setFlySpeed(NumberUtil.getFloat(args[1]));
 								MessageUtil.sendMessage(sender, "Flight speed set to " + speed + ".");
 							}

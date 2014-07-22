@@ -16,13 +16,10 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.util.MessageUtil;
 import us.zingalicio.handlefish.util.NumberUtil;
-import us.zingalicio.handlefish.util.PermissionsUtil;
 
 public class HandlePlayer implements CommandExecutor
 {
 	Handlefish plugin;
-	private static float DEFAULT_FLY_SPEED = 0.1F;
-	private static float DEFAULT_WALK_SPEED = 0.2F;
 	
 	public HandlePlayer(Handlefish plugin)
 	{
@@ -164,75 +161,52 @@ public class HandlePlayer implements CommandExecutor
 					MessageUtil.sendMessage(sender, "Display name cleared.");
 					return true;
 				}
-				else if(args[0].equalsIgnoreCase("walkspeed") || args[0].equalsIgnoreCase("walkingspeed"))
+				else if(args[0].equalsIgnoreCase("flyspeed"))
 				{
 					if(args.length > 1)
 					{
-						if(PermissionsUtil.checkPermission(sender, "movement.walkspeed"))
+						if(args[1].equalsIgnoreCase("reset") || args[1].equalsIgnoreCase("clear") || args[1].equalsIgnoreCase("default"))
 						{
-							if(args[1].equalsIgnoreCase("default") || args[1].equalsIgnoreCase("normal") || args[1].equalsIgnoreCase("reset") || args[1].equalsIgnoreCase("clear"))
-							{
-								user.setOption("walkspeed", Float.toString(DEFAULT_WALK_SPEED), ((Player) sender).getWorld().getName());
-								((Player) sender).setWalkSpeed(DEFAULT_WALK_SPEED);
-								MessageUtil.sendMessage(sender, "Walk speed reset.");
-								return true;
-							}
-							Float speed = NumberUtil.getFloat(args[1]);
-							if(speed != null && -1 <= speed && speed <= 1)
-							{
-								user.setOption("walkspeed", args[1], ((Player) sender).getWorld().getName());
-								((Player) sender).setWalkSpeed(NumberUtil.getFloat(args[1]));
-								MessageUtil.sendMessage(sender, "Walk speed set to " + speed + ".");
-							}
-							else
-							{
-								MessageUtil.sendError(sender, "Invalid value.  Valid values are -1 to 1.");
-							}
+							HandleFlight.resetFlySpeed(sender, ((Player) sender));
+							return true;
 						}
-						return true;
+						Float speed = NumberUtil.getFloat(args[1]);
+						if(speed != null)
+						{
+							HandleFlight.setFlySpeed(sender, ((Player) sender), speed);
+							return true;
+						}
 					}
-					else
-					{
-						MessageUtil.sendMessage(sender, "Your walking speed is " + user.getOption("walkspeed", ((Player) sender).getWorld().getName()));
-						return true;
-					}
+					MessageUtil.sendMessage(sender, "Your flight speed is " + Float.toString(((Player) sender).getFlySpeed()) + ".");
 				}
-				else if(args[0].equalsIgnoreCase("flyspeed") || args[0].equalsIgnoreCase("flightspeed") || args[0].equalsIgnoreCase("flyingspeed"))
+				else if(args[0].equalsIgnoreCase("walkspeed"))
 				{
 					if(args.length > 1)
 					{
-						if(PermissionsUtil.checkPermission(sender, "movement.flyspeed"))
+						if(args[1].equalsIgnoreCase("reset") || args[1].equalsIgnoreCase("clear") || args[1].equalsIgnoreCase("default"))
 						{
-							if(args[1].equalsIgnoreCase("default") || args[1].equalsIgnoreCase("normal") || args[1].equalsIgnoreCase("reset") || args[1].equalsIgnoreCase("clear"))
-							{
-								user.setOption("flyspeed", Float.toString(DEFAULT_FLY_SPEED), ((Player) sender).getWorld().getName());
-								((Player) sender).setFlySpeed(DEFAULT_FLY_SPEED);
-								MessageUtil.sendMessage(sender, "Flight speed reset.");
-								return true;
-							}
-							Float speed = NumberUtil.getFloat(args[1]);
-							if(speed != null && -1 <= speed && speed <= 1)
-							{
-								user.setOption("flyspeed", args[1], ((Player) sender).getWorld().getName());
-								((Player) sender).setFlySpeed(NumberUtil.getFloat(args[1]));
-								MessageUtil.sendMessage(sender, "Flight speed set to " + speed + ".");
-							}
-							else
-							{
-								MessageUtil.sendError(sender, "Invalid value.  Valid values are -1 to 1.");
-							}
+							HandleFlight.resetWalkSpeed(sender, ((Player) sender));
+							return true;
 						}
-						return true;
+						Float speed = NumberUtil.getFloat(args[1]);
+						if(speed != null)
+						{
+							HandleFlight.setWalkSpeed(sender, ((Player) sender), speed);
+							return true;
+						}
+					}
+					MessageUtil.sendMessage(sender, "Your walk speed is " + Float.toString(((Player) sender).getWalkSpeed()) + ".");
+				}
+				else if(args[0].equalsIgnoreCase("flight"))
+				{
+					if(((Player) sender).getAllowFlight())
+					{
+						HandleFlight.setFlight(sender, ((Player) sender), false);
 					}
 					else
 					{
-						MessageUtil.sendMessage(sender, "Your flight speed is " + user.getOption("flyspeed", ((Player) sender).getWorld().getName()));
-						return true;
+						HandleFlight.setFlight(sender, ((Player) sender), true);
 					}
-				}
-				else
-				{
-					sender.sendMessage(ChatColor.RED + "no");
 				}
 			}
 		}

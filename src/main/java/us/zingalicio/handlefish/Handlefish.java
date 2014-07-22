@@ -75,9 +75,7 @@ public class Handlefish extends JavaPlugin implements Listener
 	
 	@Override
 	public void onEnable()
-	{
-		saveDefaultConfig();
-		
+	{		
 		helpFile = new File(getDataFolder(), "help.yml");
 		configFile = new File(getDataFolder(), "config.yml");
 		namesFile = new File("plugins/common", "names.yml");

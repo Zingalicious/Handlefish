@@ -1,0 +1,88 @@
+main: us.zingalicio.handlefish.Handlefish
+name: Handlefish
+version: ${project.version}
+description: ${project.description}
+author: zingten11
+database: true
+depend: [PermissionsEx]
+commands:
+  ban:
+  unban:
+  ipban:
+  ipunban:
+  biome:
+  message:
+    aliases: msg
+  reply:
+    aliases: r
+  broadcast:
+  say:
+  sayas:
+  fly:
+    aliases: flight
+  speed:
+  item:
+    aliases: i
+  give:
+  more:
+  handlefish:
+    aliases: hf
+  ping:
+  head:
+  help:
+  home:
+  sethome:
+  kit:
+  spawnmob:
+  butcher:
+  god:
+  ungod:
+  heal:
+  list:
+  clear:
+  self:
+    aliases: [settings, options, setting, option]
+  other:
+  kick:
+  rocket:
+  freeze:
+  unfreeze:
+  slap:
+  unslap:
+  blind:
+  unblind:
+  mute:
+  unmute:
+  peffect:
+  cleareffects:
+    aliases: [ceffect, ceffects, cleareffect]
+  kill:
+    aliases: slay
+  shock:
+  drunk:
+  undrunk:
+    aliases: sober
+  spawn:
+  setspawn:
+  teleport:
+    aliases: tp
+  tpa:
+  bring:
+    aliases: tphere
+  call:
+  return:
+    aliases: back
+  teleprivacy:
+    aliases: tpr
+  put:
+  time:
+    aliases: settime
+  ptime:
+    aliases: setptime
+  warp:
+  setwarp:
+  removewarp:
+    aliases: [rmwarp, remwarp]
+  weather:
+    aliases: setweather
+

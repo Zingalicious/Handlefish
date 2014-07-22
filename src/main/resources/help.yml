@@ -1,0 +1,39 @@
+listed:
+  guest:
+    info: General server info.
+    self: Commands and features that affect YOU!
+    inventory: Commands and features that alter inventories.
+    tools: Information about our powerful creative tools.
+    teleportation: Information about moving about real quick.
+    communication: Information about chit-chatting.
+    blocks: Info and lists pretaining to extra blocks.
+    items: Info and lists pretaining to extra or repurposed items.
+    ranks: Information about server ranks and permissions.
+    worlds: Information and descriptions of the server's worlds.
+    help: Help with help.  Meta-help, as it were.
+  builder:
+    builder:
+  sniper:
+    sniper:
+  overseer:
+    multiverse:
+    prism:
+  admin:
+    secretsauce:
+
+topics:
+  info: [Yeehaw]
+  self: [Woohoo]
+  inventory: [Nope]
+  tools: [kyes]
+  teleportation: [keeyes]
+  blocks: [neeyoo]
+  items: [yo]
+  ranks: [yo]
+  worlds: [ma]
+  help: [wot m8]
+  builder: [ill have you no i was top of my class]
+  sniper: [shrek]
+  multiverse: [m8]
+  prism: [ism]
+  secretsauce: [ketchup]

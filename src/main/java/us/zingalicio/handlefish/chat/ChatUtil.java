@@ -172,7 +172,7 @@ public class ChatUtil
 		}
 		else
 		{
-			message = message.replace("&o", ChatColor.ITALIC.toString());
+			message = message.replace("&o", "");
 		}
 		message = message.replace("&r", ChatColor.RESET.toString());
 		message = message.replace("%player", getFormattedName(player));

@@ -1,5 +1,6 @@
 package us.zingalicio.handlefish.events;
 
+import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -21,6 +22,7 @@ public class JoinListener implements Listener
 	public void onJoin(PlayerJoinEvent e)
 	{
 		PermissionUser user = PermissionsEx.getUser(e.getPlayer());
+		World world = e.getPlayer().getWorld();
 		if(user.getOption("displayname") != null)
 		{
 			e.getPlayer().setDisplayName(user.getOption("displayname"));
@@ -29,11 +31,15 @@ public class JoinListener implements Listener
 		{
 			e.setJoinMessage(ChatUtil.formatMessage(plugin, e.getPlayer(), user.getOption("displayname")));
 		}
-		if(user.getOption("flight") != null)
+		else
+		{
+			user.setOption("joinmessage", "&6%player &6has entered the fringe.");
+		}
+		if(user.getOptionBoolean("flight", world.getName(), false))
 		{
 			e.getPlayer().setAllowFlight(true);
 		}
-		if(user.getOption("god") != null)
+		if(user.getOptionBoolean("god", world.getName(), false))
 		{
 			//TODO Implement godmode
 		}

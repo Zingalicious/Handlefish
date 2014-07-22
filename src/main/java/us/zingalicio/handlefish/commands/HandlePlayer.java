@@ -16,6 +16,7 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.util.MessageUtil;
 import us.zingalicio.handlefish.util.NumberUtil;
+import us.zingalicio.handlefish.util.PermissionsUtil;
 
 public class HandlePlayer implements CommandExecutor
 {
@@ -160,6 +161,56 @@ public class HandlePlayer implements CommandExecutor
 					user.setOption("displayname", null);
 					MessageUtil.sendMessage(sender, "Display name cleared.");
 					return true;
+				}
+				else if(args[0].equalsIgnoreCase("walkspeed") || args[0].equalsIgnoreCase("walkingspeed"))
+				{
+					if(args.length > 1)
+					{
+						if(PermissionsUtil.checkPermission(sender, "movement.walkspeed"))
+						{
+							Float speed = NumberUtil.getFloat(args[1]);
+							if(speed != null && -1 <= speed && speed <= 1)
+							{
+								user.setOption("walkspeed", ((Player) sender).getWorld().getName(), args[1]);
+								((Player) sender).setWalkSpeed(NumberUtil.getFloat(args[1]));
+							}
+							else
+							{
+								MessageUtil.sendError(sender, "Invalid value.  Valid values are -1 to 1.");
+							}
+						}
+						return true;
+					}
+					else
+					{
+						MessageUtil.sendMessage(sender, "Your walking speed is " + user.getOption("walkspeed", ((Player) sender).getWorld().getName()));
+						return true;
+					}
+				}
+				else if(args[0].equalsIgnoreCase("flyspeed") || args[0].equalsIgnoreCase("flightspeed") || args[0].equalsIgnoreCase("flyingspeed"))
+				{
+					if(args.length > 1)
+					{
+						if(PermissionsUtil.checkPermission(sender, "movement.flyspeed"))
+						{
+							Float speed = NumberUtil.getFloat(args[1]);
+							if(speed != null && -1 <= speed && speed <= 1)
+							{
+								user.setOption("flyspeed", ((Player) sender).getWorld().getName(), args[1]);
+								((Player) sender).setFlySpeed(NumberUtil.getFloat(args[1]));
+							}
+							else
+							{
+								MessageUtil.sendError(sender, "Invalid value.  Valid values are -1 to 1.");
+							}
+						}
+						return true;
+					}
+					else
+					{
+						MessageUtil.sendMessage(sender, "Your flight speed is " + user.getOption("flyspeed", ((Player) sender).getWorld().getName()));
+						return true;
+					}
 				}
 				else
 				{

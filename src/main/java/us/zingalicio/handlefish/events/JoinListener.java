@@ -29,5 +29,13 @@ public class JoinListener implements Listener
 		{
 			e.setJoinMessage(ChatUtil.formatMessage(plugin, e.getPlayer(), user.getOption("displayname")));
 		}
+		if(user.getOption("flight") != null)
+		{
+			e.getPlayer().setAllowFlight(true);
+		}
+		if(user.getOption("god") != null)
+		{
+			//TODO Implement godmode
+		}
 	}
 }

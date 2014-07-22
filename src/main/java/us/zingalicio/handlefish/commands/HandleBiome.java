@@ -32,7 +32,7 @@ public class HandleBiome implements CommandExecutor
 		}
 		else
 		{
-			MessageUtil.sendMessage(sender, "Hitler coded nothing wrong!");
+			MessageUtil.sendMessage(sender, "Hitler coded nothing wrong!"); //Hitler also coded nothing right.  Hitler didn't code.
 		} 
 		return true;
 	}

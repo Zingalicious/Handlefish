@@ -1,6 +1,6 @@
 Handlefish
 ==========
 
-Zingalicious' General Command Plugin (plus some extra)
+Zingalicious' General Command, Chat, etc. Plugin
 
 "Handle this can Handlefish!"

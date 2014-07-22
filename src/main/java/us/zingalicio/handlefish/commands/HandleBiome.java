@@ -16,8 +16,12 @@ public class HandleBiome implements CommandExecutor
 	}
 	
 	public boolean onCommand(CommandSender sender, Command command, String arg2,
-			String[] args) {
-		// TODO Auto-generated method stub
+			String[] args) 
+	{
+		if(sender instanceof Player)
+		{
+			
+		}
 		return false;
 	}
 

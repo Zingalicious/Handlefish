@@ -28,6 +28,7 @@ public class HandleBiome implements CommandExecutor
 			Location loc = ((Player) sender).getLocation();
 			World w = ((Player) sender).getWorld();
 			w.getBiome(loc.getBlockX(), loc.getBlockZ());
+			MessageUtil.sendMessage(sender, "You are in a + b.name()");
 		}
 		else
 		{

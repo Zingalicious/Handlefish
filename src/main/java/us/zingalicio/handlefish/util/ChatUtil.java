@@ -1,4 +1,4 @@
-package us.zingalicio.handlefish.chat;
+package us.zingalicio.handlefish.util;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -7,7 +7,6 @@ import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import us.zingalicio.handlefish.Handlefish;
-import us.zingalicio.handlefish.util.PermissionsUtil;
 
 public class ChatUtil 
 {

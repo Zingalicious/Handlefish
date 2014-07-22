@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.ChatColor;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,7 +14,6 @@ import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import us.zingalicio.handlefish.Handlefish;
-import us.zingalicio.handlefish.persistence.PlayerData;
 import us.zingalicio.handlefish.util.MessageUtil;
 import us.zingalicio.handlefish.util.NumberUtil;
 
@@ -34,14 +34,14 @@ public class HandlePlayer implements CommandExecutor
 			if(sender instanceof Player)
 			{
 				PermissionUser user = PermissionsEx.getUser((Player) sender);
+				World world = ((Player) sender).getWorld();
 				if(args.length == 0 || NumberUtil.getInt(args[0]) != null)
 				{
-					PlayerData data = plugin.getDatabase().find(PlayerData.class).where().ieq("player", sender.getName()).findUnique();
 					sender.sendMessage(ChatColor.GOLD + "-------{ " + ChatColor.WHITE + "All About You!" + ChatColor.GOLD + " }-------");
 					List<String> options = new ArrayList<>();
-					options.add(ChatColor.YELLOW + "Godmode: " + ChatColor.WHITE + (data.getGod() == 1 ? "true" : "false"));
-					options.add(ChatColor.YELLOW + "Time Format: " + ChatColor.WHITE + (data.getTime() == 1 ? "24 Hour" : "12 Hour"));
-					options.add(ChatColor.YELLOW + "Display Name: " + ChatColor.WHITE + data.getDisplayName());
+					options.add(ChatColor.YELLOW + "Godmode: " + ChatColor.WHITE + (user.getOptionBoolean("god", world.getName(), false) ? "true" : "false"));
+					options.add(ChatColor.YELLOW + "Time Format: " + ChatColor.WHITE + (user.getOptionBoolean("time", null, false) ? "24 Hour" : "12 Hour"));
+					options.add(ChatColor.YELLOW + "Display Name: " + ChatColor.WHITE + user.getOption("displayname"));
 					options.add(ChatColor.YELLOW + "Prefix: " + ChatColor.WHITE + user.getPrefix());
 					options.add(ChatColor.YELLOW + "Suffix: " + ChatColor.WHITE + user.getSuffix());
 					if(args.length > 0)

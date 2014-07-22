@@ -12,19 +12,12 @@ import javax.persistence.PersistenceException;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import ru.tehkode.permissions.PermissionUser;
-import ru.tehkode.permissions.bukkit.PermissionsEx;
-
-import us.zingalicio.handlefish.chat.ChatUtil;
-import us.zingalicio.handlefish.chat.HandleChat;
 import us.zingalicio.handlefish.commands.HandleBan;
 import us.zingalicio.handlefish.commands.HandleBiome;
+import us.zingalicio.handlefish.commands.HandleChat;
 import us.zingalicio.handlefish.commands.HandleFlight;
 import us.zingalicio.handlefish.commands.HandleGive;
 import us.zingalicio.handlefish.commands.HandleHandle;
@@ -41,10 +34,11 @@ import us.zingalicio.handlefish.commands.HandleTime;
 import us.zingalicio.handlefish.commands.HandleWarp;
 import us.zingalicio.handlefish.commands.HandleWeather;
 import us.zingalicio.handlefish.configuration.ConfigHandler;
+import us.zingalicio.handlefish.events.ChatListener;
+import us.zingalicio.handlefish.events.JoinListener;
 import us.zingalicio.handlefish.persistence.HomeData;
 import us.zingalicio.handlefish.persistence.ItemData;
 import us.zingalicio.handlefish.persistence.KitData;
-import us.zingalicio.handlefish.persistence.PlayerData;
 import us.zingalicio.handlefish.persistence.WarpData;
 import us.zingalicio.handlefish.util.ItemUtil;
 
@@ -75,6 +69,8 @@ public class Handlefish extends JavaPlugin implements Listener
 	public YamlConfiguration help;
 	public File namesFile;
 	public YamlConfiguration names;
+	private ChatListener chatListener;
+	private JoinListener joinListener;
 	
 	@Override
 	public void onEnable()
@@ -95,8 +91,8 @@ public class Handlefish extends JavaPlugin implements Listener
 		
 		registerModules();
 		
-		getServer().getPluginManager().registerEvents(this, this);
 		registerCommands();
+		registerListeners();
 		
 		setupDatabase();
 	}
@@ -105,49 +101,6 @@ public class Handlefish extends JavaPlugin implements Listener
 	public void onDisable()
 	{
 		ConfigHandler.saveYaml(help, helpFile);
-	}
-	
-	@EventHandler
-	public void onChat(AsyncPlayerChatEvent e)
-	{
-		String message = ChatUtil.permFormatMessage(this, e.getPlayer(), e.getMessage());
-		e.setMessage(message);
-		String format = ChatUtil.formatMessage(this, e.getPlayer(), config.getString("chat.format"));
-		String[] splitFormat = format.split("%message");
-		message = message.replace("%", "%%");
-		if(splitFormat.length > 1)
-		{
-			splitFormat[0] = splitFormat[0].replace("%", "%%");
-			splitFormat[1] = splitFormat[1].replace("%", "%%");
-			e.setFormat(splitFormat[0] + message + splitFormat[1]);
-		}
-		else
-		{
-			splitFormat[0] = splitFormat[0].replace("%", "%%");
-			e.setFormat(splitFormat[0] + message);
-		}
-	}
-	
-	@EventHandler
-	public void onJoin(PlayerJoinEvent e)
-	{
-		PlayerData data = getDatabase().find(PlayerData.class).where().ieq("player", e.getPlayer().getName()).findUnique();
-		PermissionUser user = PermissionsEx.getUser(e.getPlayer());
-		if(data == null)
-		{
-			data = new PlayerData();
-			data.setPlayer(e.getPlayer().getName());
-			
-			getDatabase().save(data);
-		}
-		if(user.getOption("displayname") != null)
-		{
-			e.getPlayer().setDisplayName(data.getDisplayName());
-		}
-		if(user.getOption("joinmessage") != null)
-		{
-			e.setJoinMessage(ChatUtil.formatMessage(this, e.getPlayer(), data.getJoinMessage()));
-		}
 	}
 	
 	private void registerModules()
@@ -238,6 +191,14 @@ public class Handlefish extends JavaPlugin implements Listener
 		getCommand("weather").setExecutor(handleWeather);
 	}
 	
+	private void registerListeners()
+	{
+		chatListener = new ChatListener(this);
+		joinListener = new JoinListener(this);
+		getServer().getPluginManager().registerEvents(chatListener, this);
+		getServer().getPluginManager().registerEvents(joinListener, this);
+	}
+	
 	private void setupDatabase()
 	{
 		try
@@ -246,7 +207,6 @@ public class Handlefish extends JavaPlugin implements Listener
 			getDatabase().find(KitData.class).findRowCount();
 			getDatabase().find(HomeData.class).findRowCount();
 			getDatabase().find(WarpData.class).findRowCount();
-			getDatabase().find(PlayerData.class).findRowCount();
 		}
 		catch (PersistenceException ex)
 		{
@@ -263,7 +223,6 @@ public class Handlefish extends JavaPlugin implements Listener
 		classes.add(KitData.class);
 		classes.add(HomeData.class);
 		classes.add(WarpData.class);
-		classes.add(PlayerData.class);
 		
 		return classes;
 		

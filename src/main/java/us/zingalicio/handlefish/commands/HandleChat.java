@@ -1,4 +1,4 @@
-package us.zingalicio.handlefish.chat;
+package us.zingalicio.handlefish.commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

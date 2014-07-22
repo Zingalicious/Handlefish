@@ -143,9 +143,7 @@ public class HandlePlayer implements CommandExecutor
 							}
 						}
 						displayName = displayName.trim();
-						PlayerData data = plugin.getDatabase().find(PlayerData.class).where().ieq("player", sender.getName()).findUnique();
-						data.setDisplayName(displayName);
-						plugin.getDatabase().save(data);
+						user.setOption("displayname", displayName);
 						((Player) sender).setDisplayName(displayName);
 						MessageUtil.sendMessage(sender, "Display name successully set to '" + ChatColor.RESET + displayName + ChatColor.YELLOW + "'.");
 						return true;
@@ -159,7 +157,7 @@ public class HandlePlayer implements CommandExecutor
 				}
 				else if(args[0].equalsIgnoreCase("cleardisplayname"))
 				{
-					plugin.getDatabase().find(PlayerData.class).where().ieq("player", sender.getName()).findUnique().setDisplayName(null);
+					user.setOption("displayname", null);
 					MessageUtil.sendMessage(sender, "Display name cleared.");
 					return true;
 				}

@@ -18,6 +18,9 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import ru.tehkode.permissions.PermissionUser;
+import ru.tehkode.permissions.bukkit.PermissionsEx;
+
 import us.zingalicio.handlefish.chat.ChatUtil;
 import us.zingalicio.handlefish.chat.HandleChat;
 import us.zingalicio.handlefish.commands.HandleBan;
@@ -129,6 +132,7 @@ public class Handlefish extends JavaPlugin implements Listener
 	public void onJoin(PlayerJoinEvent e)
 	{
 		PlayerData data = getDatabase().find(PlayerData.class).where().ieq("player", e.getPlayer().getName()).findUnique();
+		PermissionUser user = PermissionsEx.getUser(e.getPlayer());
 		if(data == null)
 		{
 			data = new PlayerData();
@@ -136,11 +140,11 @@ public class Handlefish extends JavaPlugin implements Listener
 			
 			getDatabase().save(data);
 		}
-		if(data.getDisplayName() != null)
+		if(user.getOption("displayname") != null)
 		{
 			e.getPlayer().setDisplayName(data.getDisplayName());
 		}
-		if(data.getJoinMessage() != null)
+		if(user.getOption("joinmessage") != null)
 		{
 			e.setJoinMessage(ChatUtil.formatMessage(this, e.getPlayer(), data.getJoinMessage()));
 		}

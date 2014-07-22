@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Material;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
@@ -22,6 +23,7 @@ public class ItemUtil
 	public ItemStack getItem(String name)
 	{
 		ItemStack item;
+		YamlConfiguration names = plugin.names;
 		Material mat = null;
 		String dataString = "0";
 		Short data = 0;
@@ -58,9 +60,9 @@ public class ItemUtil
 		{
 			mat = Material.getMaterial(Integer.parseInt(name));
 		}
-		else if(this.plugin.config.contains("names." + name.toLowerCase()))
+		else if(names.contains("lookup." + name.toLowerCase()))
 		{
-			mat = Material.getMaterial(this.plugin.config.getInt("names." + name.toLowerCase()));
+			mat = Material.getMaterial(names.getInt("names." + name.toLowerCase()));
 		}
 		else
 		{
@@ -71,9 +73,9 @@ public class ItemUtil
 		{
 			data = Short.parseShort(dataString);
 		}
-		else if(this.plugin.config.contains("data." + mat.getId() + "." + dataString.toLowerCase()))
+		else if(names.contains("data." + mat.getId() + "." + dataString.toLowerCase()))
 		{
-			data = (short) this.plugin.config.getInt("data." + mat.getId() + "." + dataString.toLowerCase());
+			data = (short) names.getInt("data." + mat.getId() + "." + dataString.toLowerCase());
 		}
 		else
 		{
@@ -101,9 +103,9 @@ public class ItemUtil
 				{
 					enchantment = Enchantment.getById(Integer.parseInt(enchantParts[0]));
 				}
-				else if(this.plugin.config.contains("enchantments." + enchantParts[0].toLowerCase()))
+				else if(names.contains("enchantments." + enchantParts[0].toLowerCase()))
 				{
-					enchantment = Enchantment.getById(this.plugin.config.getInt("enchantments." + enchantParts[0].toLowerCase()));
+					enchantment = Enchantment.getById(names.getInt("enchantments." + enchantParts[0].toLowerCase()));
 				}
 				else
 				{
@@ -122,9 +124,9 @@ public class ItemUtil
 			{
 			enchantment = Enchantment.getById(Integer.parseInt(e));
 			}
-			else if(this.plugin.config.contains("enchantments." + e.toLowerCase()))
+			else if(names.contains("enchantments." + e.toLowerCase()))
 			{
-				enchantment = Enchantment.getById(this.plugin.config.getInt("enchantments." + e.toLowerCase()));
+				enchantment = Enchantment.getById(names.getInt("enchantments." + e.toLowerCase()));
 			}
 			else
 			{

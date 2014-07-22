@@ -37,8 +37,6 @@ import us.zingalicio.handlefish.configuration.ConfigHandler;
 import us.zingalicio.handlefish.events.ChatListener;
 import us.zingalicio.handlefish.events.JoinListener;
 import us.zingalicio.handlefish.persistence.HomeData;
-import us.zingalicio.handlefish.persistence.ItemData;
-import us.zingalicio.handlefish.persistence.KitData;
 import us.zingalicio.handlefish.persistence.WarpData;
 import us.zingalicio.handlefish.util.ItemUtil;
 
@@ -203,8 +201,6 @@ public class Handlefish extends JavaPlugin implements Listener
 	{
 		try
 		{
-			getDatabase().find(ItemData.class).findRowCount();
-			getDatabase().find(KitData.class).findRowCount();
 			getDatabase().find(HomeData.class).findRowCount();
 			getDatabase().find(WarpData.class).findRowCount();
 		}
@@ -219,8 +215,6 @@ public class Handlefish extends JavaPlugin implements Listener
 	{
 		List<Class<?>> classes = new LinkedList<Class<?>>();
 		
-		classes.add(ItemData.class);
-		classes.add(KitData.class);
 		classes.add(HomeData.class);
 		classes.add(WarpData.class);
 		

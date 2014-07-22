@@ -92,7 +92,7 @@ public class NameUtil
 	      name = name + f.replace(f.substring(1), f.substring(1).toLowerCase());
 	      name = name + " ";
 	    }
-	    name.trim();
+	    name = name.trim();
 	    return name;
 	}
 }

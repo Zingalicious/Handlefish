@@ -1,5 +1,8 @@
 package us.zingalicio.handlefish.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.material.MaterialData;
@@ -70,5 +73,26 @@ public class NameUtil
 		{
 			return material.name();
 		}
+	}
+	
+	public static String format(String s)
+	{
+	    String[] fullNameSplit = s.split("_| ");
+	    List<String> fullNameList = new ArrayList<String>();
+
+	    for (String f : fullNameSplit)
+	    {
+	      fullNameList.add(f);
+	    }
+
+	    String name = "";
+
+	    for (String f : fullNameList)
+	    {
+	      name = name + f.replace(f.substring(1), f.substring(1).toLowerCase());
+	      name = name + " ";
+	    }
+	    name.trim();
+	    return name;
 	}
 }

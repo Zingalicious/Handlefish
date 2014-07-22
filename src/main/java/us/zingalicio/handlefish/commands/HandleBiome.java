@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.util.MessageUtil;
+import us.zingalicio.handlefish.util.NameUtil;
 
 public class HandleBiome implements CommandExecutor
 {
@@ -28,7 +29,7 @@ public class HandleBiome implements CommandExecutor
 			Location loc = ((Player) sender).getLocation();
 			World w = ((Player) sender).getWorld();
 			Biome b = w.getBiome(loc.getBlockX(), loc.getBlockZ());
-			MessageUtil.sendMessage(sender, "You are in a " + b.name() + " biome.");
+			MessageUtil.sendMessage(sender, "You are in a " + NameUtil.format(b.name()) + " biome.");
 		}
 		else
 		{

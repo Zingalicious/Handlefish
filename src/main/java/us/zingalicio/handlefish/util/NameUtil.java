@@ -71,7 +71,7 @@ public class NameUtil
 		}
 		else
 		{
-			return material.name();
+			return format(material.name());
 		}
 	}
 	

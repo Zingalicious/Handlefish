@@ -21,6 +21,8 @@ import us.zingalicio.handlefish.util.PermissionsUtil;
 public class HandlePlayer implements CommandExecutor
 {
 	Handlefish plugin;
+	private static float DEFAULT_FLY_SPEED = 0.1F;
+	private static float DEFAULT_WALK_SPEED = 0.2F;
 	
 	public HandlePlayer(Handlefish plugin)
 	{
@@ -168,11 +170,18 @@ public class HandlePlayer implements CommandExecutor
 					{
 						if(PermissionsUtil.checkPermission(sender, "movement.walkspeed"))
 						{
+							if(args[1].equalsIgnoreCase("default") || args[1].equalsIgnoreCase("normal") || args[1].equalsIgnoreCase("reset") || args[1].equalsIgnoreCase("clear"))
+							{
+								user.setOption("walkspeed", ((Player) sender).getWorld().getName(), Float.toString(DEFAULT_WALK_SPEED));
+								MessageUtil.sendMessage(sender, "Walk speed reset.");
+								return true;
+							}
 							Float speed = NumberUtil.getFloat(args[1]);
 							if(speed != null && -1 <= speed && speed <= 1)
 							{
 								user.setOption("walkspeed", ((Player) sender).getWorld().getName(), args[1]);
 								((Player) sender).setWalkSpeed(NumberUtil.getFloat(args[1]));
+								MessageUtil.sendMessage(sender, "Walk speed set to " + speed + ".");
 							}
 							else
 							{
@@ -193,11 +202,18 @@ public class HandlePlayer implements CommandExecutor
 					{
 						if(PermissionsUtil.checkPermission(sender, "movement.flyspeed"))
 						{
+							if(args[1].equalsIgnoreCase("default") || args[1].equalsIgnoreCase("normal") || args[1].equalsIgnoreCase("reset") || args[1].equalsIgnoreCase("clear"))
+							{
+								user.setOption("flyspeed", ((Player) sender).getWorld().getName(), Float.toString(DEFAULT_FLY_SPEED));
+								MessageUtil.sendMessage(sender, "Flight speed reset.");
+								return true;
+							}
 							Float speed = NumberUtil.getFloat(args[1]);
 							if(speed != null && -1 <= speed && speed <= 1)
 							{
 								user.setOption("flyspeed", ((Player) sender).getWorld().getName(), args[1]);
 								((Player) sender).setFlySpeed(NumberUtil.getFloat(args[1]));
+								MessageUtil.sendMessage(sender, "Flight speed set to " + speed + ".");
 							}
 							else
 							{

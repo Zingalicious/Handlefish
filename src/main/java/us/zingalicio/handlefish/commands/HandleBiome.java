@@ -13,7 +13,7 @@ public class HandleBiome implements CommandExecutor
 	public HandleBiome(Handlefish plugin)
 	{
 		this.plugin = plugin;
-	} I dont like the people who are not me.
+	} I dont like thing
 	
 	public boolean onCommand(CommandSender sender, Command command, String arg2,
 			String[] args) {

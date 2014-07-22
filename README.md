@@ -3,4 +3,4 @@ Handlefish
 
 Zingalicious' General Command Plugin
 
-"Handle this can Handlefish"
+"Handle this can Handlefish!"

@@ -2,6 +2,7 @@ package us.zingalicio.handlefish.commands;
 
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.block.Biome;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,12 +27,12 @@ public class HandleBiome implements CommandExecutor
 		{
 			Location loc = ((Player) sender).getLocation();
 			World w = ((Player) sender).getWorld();
-			w.getBiome(loc.getBlockX(), loc.getBlockZ());
-			MessageUtil.sendMessage(sender, "You are in a + b.name()");
+			Biome b = w.getBiome(loc.getBlockX(), loc.getBlockZ());
+			MessageUtil.sendMessage(sender, "You are in a " + b.name() + " biome.");
 		}
 		else
 		{
-			MessageUtil.sendMessage(sender, "Hitler coded nothing wrong");
+			MessageUtil.sendMessage(sender, "Hitler coded nothing wrong!");
 		} 
 		return true;
 	}

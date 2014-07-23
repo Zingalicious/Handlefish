@@ -19,9 +19,9 @@ public final class ChatListener implements Listener
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e)
 	{
-		String message = ChatUtil.permFormatMessage(plugin, e.getPlayer(), e.getMessage());
+		String message = ChatUtil.permFormatMessage(e.getPlayer(), e.getMessage());
 		e.setMessage(message);
-		String format = ChatUtil.formatMessage(plugin, e.getPlayer(), plugin.config.getString("chat.format"));
+		String format = ChatUtil.formatMessage(e.getPlayer(), plugin.getConfig().getString("chat.format"));
 		String[] splitFormat = format.split("%message");
 		message = message.replace("%", "%%");
 		if(splitFormat.length > 1)

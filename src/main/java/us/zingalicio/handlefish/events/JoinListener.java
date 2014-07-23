@@ -35,7 +35,7 @@ public final class JoinListener implements Listener
 		}
 		if(!user.getOption("joinmessage").equals(""))
 		{
-			e.setJoinMessage(ChatUtil.formatMessage(plugin, e.getPlayer(), user.getOption("displayname")));
+			e.setJoinMessage(ChatUtil.formatMessage(e.getPlayer(), user.getOption("displayname")));
 		}
 		else
 		{

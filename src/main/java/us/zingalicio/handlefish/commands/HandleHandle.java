@@ -30,9 +30,9 @@ public final class HandleHandle implements CommandExecutor
 		{
 			if(args[0].equalsIgnoreCase("reload"))
 			{
-				ConfigHandler.loadYaml(plugin.help, plugin.helpFile);
-				ConfigHandler.loadYaml(plugin.config, plugin.configFile);
-				ConfigHandler.loadYaml(plugin.materials, plugin.materialFile);
+				ConfigHandler.loadYaml(plugin.getHelp(), plugin.getHelpFile());
+				ConfigHandler.loadYaml(plugin.getConfig(), plugin.getConfigFile());
+				ConfigHandler.loadYaml(plugin.getMaterials(), plugin.getMaterialFile());
 				PluginManager pluginManager = Bukkit.getPluginManager();
 				pluginManager.disablePlugin(plugin);
 				pluginManager.enablePlugin(plugin);

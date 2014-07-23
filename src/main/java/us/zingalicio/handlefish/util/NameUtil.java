@@ -14,10 +14,15 @@ public class NameUtil
 	@SuppressWarnings("deprecation")
 	public static MaterialData getMaterialData(ZingPlugin plugin, Material material, String name)
 	{
-		YamlConfiguration file = plugin.materials;
-		if(file.contains("blocks." + material.name() + ".names." + name))
+		YamlConfiguration materials = plugin.getMaterials();
+		if(materials.contains("blocks." + material.name() + ".names." + name))
 		{
-			MaterialData data = new MaterialData(material, Byte.parseByte(file.getString("blocks." + material.name() + ".names." + name)));
+			MaterialData data = new MaterialData(material, Byte.parseByte(materials.getString("blocks." + material.name() + ".names." + name)));
+			return data;
+		}
+		else if(materials.contains("items." + material.name() + ".names." + name))
+		{
+			MaterialData data = new MaterialData(material, Byte.parseByte(materials.getString("items." + material.name() + ".names." + name)));
 			return data;
 		}
 		else
@@ -30,10 +35,15 @@ public class NameUtil
 	public static String getMaterialName(ZingPlugin plugin, MaterialData data)
 	{
 		Material material = data.getItemType();
-		YamlConfiguration file = plugin.materials;
-		if(file.contains("blocks." + material.name() + ".data." + data.getData()))
+		YamlConfiguration materials = plugin.getMaterials();
+		if(materials.contains("blocks." + material.name() + ".data." + data.getData()))
 		{
-			String name = file.getString("blocks." + material.name() + ".data." + data.getData());
+			String name = materials.getString("blocks." + material.name() + ".data." + data.getData());
+			return name;
+		}
+		else if(materials.contains("items." + material.name() + ".data." + data.getData()))
+		{
+			String name = materials.getString("items." + material.name() + ".data." + data.getData());
 			return name;
 		}
 		else
@@ -44,10 +54,10 @@ public class NameUtil
 	
 	public static Material getMaterial(ZingPlugin plugin, String name)
 	{
-		YamlConfiguration file = plugin.materials;
-		if(file.contains("lookup." + name))
+		YamlConfiguration materials = plugin.getMaterials();
+		if(materials.contains("lookup." + name))
 		{
-			return Material.getMaterial(file.getString("blocknames." + name));
+			return Material.getMaterial(materials.getString("lookup." + name));
 		}
 		else
 		{
@@ -64,15 +74,29 @@ public class NameUtil
 
 	public static String getName(ZingPlugin plugin, Material material)
 	{
-		YamlConfiguration file = plugin.materials;
-		if(file.contains("blocks." + material.name() + ".name"))
+		YamlConfiguration materials = plugin.getMaterials();
+		if(materials.contains("blocks." + material.name() + ".name"))
 		{
-			return file.getString("blocks." + material.name() + ".name");
+			return materials.getString("blocks." + material.name() + ".name");
+		}
+		else if(materials.contains("items." + material.name() + ".name"))
+		{
+			return materials.getString("items." + material.name() + ".name");
 		}
 		else
 		{
 			return format(material.name());
 		}
+	}
+	
+	public static String getFullName(ZingPlugin plugin, Material material, MaterialData data)
+	{
+		String dataName;
+		if((dataName = getMaterialName(plugin, data)) != null)
+		{
+			return getName(plugin, material) + ":" + dataName;
+		}
+		return getName(plugin, material);
 	}
 	
 	public static String format(String s)

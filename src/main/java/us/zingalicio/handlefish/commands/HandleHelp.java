@@ -22,7 +22,7 @@ public final class HandleHelp implements CommandExecutor
 	public HandleHelp(Handlefish plugin)
 	{
 		this.plugin = plugin;
-		this.help = plugin.help;
+		this.help = plugin.getHelp();
 	}
 	
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) 

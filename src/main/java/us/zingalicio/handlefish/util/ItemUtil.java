@@ -1,29 +1,24 @@
 package us.zingalicio.handlefish.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import us.zingalicio.handlefish.Handlefish;
+import us.zingalicio.handlefish.ZingPlugin;
 
 public class ItemUtil 
-{
-	Handlefish plugin;
-	
-	public ItemUtil(Handlefish plugin)
-	{
-		this.plugin = plugin;
-	}
-	
+{	
 	@SuppressWarnings("deprecation")
-	public ItemStack getItem(String name)
+	public static ItemStack getItem(ZingPlugin plugin, String name)
 	{
 		ItemStack item;
-		YamlConfiguration materials = plugin.materials;
+		YamlConfiguration materials = plugin.getMaterials();
 		Material mat = null;
 		String dataString = "0";
 		Short data = 0;
@@ -34,8 +29,7 @@ public class ItemUtil
 			String[] parts = name.split("\\|");
 			name = parts[0];
 						
-			boolean i;
-			i = false;
+			boolean i = false;
 			for(String e : parts)
 			{
 				if(i)
@@ -60,9 +54,9 @@ public class ItemUtil
 		{
 			mat = Material.getMaterial(Integer.parseInt(name));
 		}
-		else if(materials.contains("lookup." + name.toLowerCase()))
+		else if(materials.contains("lookup." + name.toLowerCase().replace("_", "")))
 		{
-			mat = Material.getMaterial(materials.getInt("lookup." + name.toLowerCase()));
+			mat = Material.valueOf(materials.getString("lookup." + name.toLowerCase().replace("_", "")));
 		}
 		else
 		{
@@ -73,24 +67,30 @@ public class ItemUtil
 		{
 			data = Short.parseShort(dataString);
 		}
-		else if(materials.contains("data." + mat.getId() + "." + dataString.toLowerCase()))
+		else if(mat.getId() < 256)
 		{
-			data = (short) materials.getInt("data." + mat.getId() + "." + dataString.toLowerCase());
+			if(materials.contains("blocks." + mat.name() + ".names." + dataString.toLowerCase().replace("_", "")))
+			{
+				data = (short) materials.getInt("blocks." + mat.name() + ".names." + dataString.toLowerCase().replace("_", ""));
+			}
+			else
+			{
+				return null;
+			}
 		}
 		else
 		{
-			return null;
+			if(materials.contains("items." + mat.name() + ".names." + dataString.toLowerCase().replace("_", "")))
+			{
+				data = (short) materials.getInt("items." + mat.name() + ".names." + dataString.toLowerCase().replace("_", ""));
+			}
+			else 
+			{
+				return null;
+			}
 		}
 		
-		if(mat != null)
-		{
-			item = new ItemStack(mat, 1, data);
-		}
-		else
-		{
-			item = null;
-			return null;
-		}
+		item = new ItemStack(mat, 1, data);
 		
 		for(String e : enchantments)
 		{
@@ -122,7 +122,7 @@ public class ItemUtil
 			}
 			else if(NumberUtil.getInt(e) != null)
 			{
-			enchantment = Enchantment.getById(Integer.parseInt(e));
+				enchantment = Enchantment.getById(NumberUtil.getInt(e));
 			}
 			else if(materials.contains("enchantments." + e.toLowerCase()))
 			{
@@ -140,5 +140,30 @@ public class ItemUtil
 		}
 		
 		return item;
+	}
+	
+	public static int giveMany(ItemStack item, Player player, int amount)
+	{
+		int stackSize = item.getMaxStackSize();
+		item.setAmount(stackSize);
+		int extra = 0;
+		while(amount > stackSize)
+		{
+			HashMap<Integer, ItemStack> i = player.getInventory().addItem(item);
+			if(i.containsKey(0))
+			{
+				extra = extra + i.get(0).getAmount();
+			}
+			amount -= stackSize;
+		}
+		item.setAmount(amount);
+		
+		HashMap<Integer, ItemStack> i = player.getInventory().addItem(item);
+		if(i.containsKey(0))
+		{
+			extra = extra + i.get(0).getAmount();
+		}
+		
+		return extra;
 	}
 }

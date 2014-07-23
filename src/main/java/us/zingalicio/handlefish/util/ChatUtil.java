@@ -6,8 +6,6 @@ import org.bukkit.entity.Player;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
-import us.zingalicio.handlefish.Handlefish;
-
 public class ChatUtil 
 {
 	public static String getFormattedName(Player player)
@@ -38,7 +36,7 @@ public class ChatUtil
 		return name;
 	}
 	
-	public static String getPrefix(Handlefish plugin, Player player)
+	public static String getPrefix(Player player)
 	{
 		PermissionUser user = PermissionsEx.getUser(player);
 		if(user.getPrefix() != null)
@@ -51,7 +49,7 @@ public class ChatUtil
 		}
 	}
 	
-	public static String getSuffix(Handlefish plugin, Player player)
+	public static String getSuffix(Player player)
 	{
 		PermissionUser user = PermissionsEx.getUser(player);
 		if(user.getSuffix() != null)
@@ -64,7 +62,7 @@ public class ChatUtil
 		}
 	}
 	
-	public static String formatMessage(Handlefish plugin, Player player, String message)
+	public static String formatMessage(Player player, String message)
 	{
 		PermissionUser user = PermissionsEx.getUser(player);
 		message = message.replace("%prefix", user.getPrefix());
@@ -96,7 +94,7 @@ public class ChatUtil
 		return message;
 	}
 	
-	public static String permFormatMessage(Handlefish plugin, Player player, String message)
+	public static String permFormatMessage(Player player, String message)
 	{
 		PermissionUser user = PermissionsEx.getUser(player);
 		message = message.replace("%prefix", user.getPrefix());

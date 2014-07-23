@@ -8,7 +8,6 @@ import java.util.logging.Level;
 import javax.persistence.PersistenceException;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import us.zingalicio.handlefish.commands.HandleBan;
@@ -35,7 +34,6 @@ import us.zingalicio.handlefish.events.ChatListener;
 import us.zingalicio.handlefish.events.JoinListener;
 import us.zingalicio.handlefish.persistence.HomeData;
 import us.zingalicio.handlefish.persistence.WarpData;
-import us.zingalicio.handlefish.util.ItemUtil;
 
 public final class Handlefish extends ZingPlugin
 {	
@@ -57,7 +55,6 @@ public final class Handlefish extends ZingPlugin
 	private HandleTime handleTime;
 	private HandleWarp handleWarp;
 	private HandleWeather handleWeather;
-	public ItemUtil itemUtil;
 	public File configFile;
 	public YamlConfiguration config;
 	public File helpFile;
@@ -68,7 +65,6 @@ public final class Handlefish extends ZingPlugin
 	private JoinListener joinListener;
 	private BuildModeListener buildModeListener;
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onEnable()
 	{		
@@ -92,17 +88,6 @@ public final class Handlefish extends ZingPlugin
 		registerListeners();
 		
 		setupDatabase();
-		
-		int i = 256;
-		while(i < 512)
-		{
-			try
-			{
-				Bukkit.getLogger().log(Level.INFO, Material.getMaterial(i).name());
-			}
-			catch(NullPointerException ex) {}
-			i += 1;
-		}
 	}
 	
 	@Override
@@ -132,7 +117,6 @@ public final class Handlefish extends ZingPlugin
 		this.handleTeleport = new HandleTeleport(this);
 		this.handleTime = new HandleTime(this);
 		this.handleWarp = new HandleWarp(this);
-		this.itemUtil = new ItemUtil(this);
 	}
 	
 	private void registerCommands()

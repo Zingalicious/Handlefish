@@ -36,7 +36,7 @@ import us.zingalicio.handlefish.persistence.HomeData;
 import us.zingalicio.handlefish.persistence.WarpData;
 import us.zingalicio.handlefish.util.ItemUtil;
 
-public class Handlefish extends ZingPlugin
+public final class Handlefish extends ZingPlugin
 {	
 	private HandleBan handleBan;
 	private HandleBiome handleBiome;

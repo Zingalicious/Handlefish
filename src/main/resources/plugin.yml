@@ -19,7 +19,7 @@ commands:
   say:
   sayas:
   buildmode:
-    aliases: build
+    aliases: [build, bm]
   fly:
     aliases: flight
   speed:

@@ -32,7 +32,7 @@ public final class HandleHandle implements CommandExecutor
 			{
 				ConfigHandler.loadYaml(plugin.help, plugin.helpFile);
 				ConfigHandler.loadYaml(plugin.config, plugin.configFile);
-				ConfigHandler.loadYaml(plugin.names, plugin.namesFile);
+				ConfigHandler.loadYaml(plugin.materials, plugin.materialFile);
 				PluginManager pluginManager = Bukkit.getPluginManager();
 				pluginManager.disablePlugin(plugin);
 				pluginManager.enablePlugin(plugin);

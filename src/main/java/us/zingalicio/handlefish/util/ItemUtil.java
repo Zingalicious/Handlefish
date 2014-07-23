@@ -23,7 +23,7 @@ public class ItemUtil
 	public ItemStack getItem(String name)
 	{
 		ItemStack item;
-		YamlConfiguration names = plugin.names;
+		YamlConfiguration materials = plugin.materials;
 		Material mat = null;
 		String dataString = "0";
 		Short data = 0;
@@ -60,9 +60,9 @@ public class ItemUtil
 		{
 			mat = Material.getMaterial(Integer.parseInt(name));
 		}
-		else if(names.contains("lookup." + name.toLowerCase()))
+		else if(materials.contains("lookup." + name.toLowerCase()))
 		{
-			mat = Material.getMaterial(names.getInt("names." + name.toLowerCase()));
+			mat = Material.getMaterial(materials.getInt("lookup." + name.toLowerCase()));
 		}
 		else
 		{
@@ -73,9 +73,9 @@ public class ItemUtil
 		{
 			data = Short.parseShort(dataString);
 		}
-		else if(names.contains("data." + mat.getId() + "." + dataString.toLowerCase()))
+		else if(materials.contains("data." + mat.getId() + "." + dataString.toLowerCase()))
 		{
-			data = (short) names.getInt("data." + mat.getId() + "." + dataString.toLowerCase());
+			data = (short) materials.getInt("data." + mat.getId() + "." + dataString.toLowerCase());
 		}
 		else
 		{
@@ -103,9 +103,9 @@ public class ItemUtil
 				{
 					enchantment = Enchantment.getById(Integer.parseInt(enchantParts[0]));
 				}
-				else if(names.contains("enchantments." + enchantParts[0].toLowerCase()))
+				else if(materials.contains("enchantments." + enchantParts[0].toLowerCase()))
 				{
-					enchantment = Enchantment.getById(names.getInt("enchantments." + enchantParts[0].toLowerCase()));
+					enchantment = Enchantment.getById(materials.getInt("enchantments." + enchantParts[0].toLowerCase()));
 				}
 				else
 				{
@@ -124,9 +124,9 @@ public class ItemUtil
 			{
 			enchantment = Enchantment.getById(Integer.parseInt(e));
 			}
-			else if(names.contains("enchantments." + e.toLowerCase()))
+			else if(materials.contains("enchantments." + e.toLowerCase()))
 			{
-				enchantment = Enchantment.getById(names.getInt("enchantments." + e.toLowerCase()));
+				enchantment = Enchantment.getById(materials.getInt("enchantments." + e.toLowerCase()));
 			}
 			else
 			{

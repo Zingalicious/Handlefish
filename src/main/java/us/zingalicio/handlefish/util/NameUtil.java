@@ -7,14 +7,14 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.material.MaterialData;
 
-import us.zingalicio.handlefish.Handlefish;
+import us.zingalicio.handlefish.ZingPlugin;
 
 public class NameUtil
 {	
 	@SuppressWarnings("deprecation")
-	public static MaterialData getMaterialData(Handlefish plugin, Material material, String name)
+	public static MaterialData getMaterialData(ZingPlugin plugin, Material material, String name)
 	{
-		YamlConfiguration file = plugin.names;
+		YamlConfiguration file = plugin.materials;
 		if(file.contains("blocks." + material.name() + ".names." + name))
 		{
 			MaterialData data = new MaterialData(material, Byte.parseByte(file.getString("blocks." + material.name() + ".names." + name)));
@@ -27,10 +27,10 @@ public class NameUtil
 	}
 	
 	@SuppressWarnings("deprecation")
-	public static String getMaterialName(Handlefish plugin, MaterialData data)
+	public static String getMaterialName(ZingPlugin plugin, MaterialData data)
 	{
 		Material material = data.getItemType();
-		YamlConfiguration file = plugin.names;
+		YamlConfiguration file = plugin.materials;
 		if(file.contains("blocks." + material.name() + ".data." + data.getData()))
 		{
 			String name = file.getString("blocks." + material.name() + ".data." + data.getData());
@@ -42,9 +42,9 @@ public class NameUtil
 		}
 	}
 	
-	public static Material getMaterial(Handlefish plugin, String name)
+	public static Material getMaterial(ZingPlugin plugin, String name)
 	{
-		YamlConfiguration file = plugin.names;
+		YamlConfiguration file = plugin.materials;
 		if(file.contains("lookup." + name))
 		{
 			return Material.getMaterial(file.getString("blocknames." + name));
@@ -62,9 +62,9 @@ public class NameUtil
 		}
 	}
 
-	public static String getName(Handlefish plugin, Material material)
+	public static String getName(ZingPlugin plugin, Material material)
 	{
-		YamlConfiguration file = plugin.names;
+		YamlConfiguration file = plugin.materials;
 		if(file.contains("blocks." + material.name() + ".name"))
 		{
 			return file.getString("blocks." + material.name() + ".name");

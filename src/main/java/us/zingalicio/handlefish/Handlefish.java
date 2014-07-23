@@ -1,9 +1,6 @@
 package us.zingalicio.handlefish;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -12,8 +9,6 @@ import javax.persistence.PersistenceException;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.event.Listener;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import us.zingalicio.handlefish.commands.HandleBan;
 import us.zingalicio.handlefish.commands.HandleBiome;
@@ -34,13 +29,14 @@ import us.zingalicio.handlefish.commands.HandleTime;
 import us.zingalicio.handlefish.commands.HandleWarp;
 import us.zingalicio.handlefish.commands.HandleWeather;
 import us.zingalicio.handlefish.configuration.ConfigHandler;
+import us.zingalicio.handlefish.events.BuildModeListener;
 import us.zingalicio.handlefish.events.ChatListener;
 import us.zingalicio.handlefish.events.JoinListener;
 import us.zingalicio.handlefish.persistence.HomeData;
 import us.zingalicio.handlefish.persistence.WarpData;
 import us.zingalicio.handlefish.util.ItemUtil;
 
-public class Handlefish extends JavaPlugin implements Listener
+public class Handlefish extends ZingPlugin
 {	
 	private HandleBan handleBan;
 	private HandleBiome handleBiome;
@@ -65,27 +61,28 @@ public class Handlefish extends JavaPlugin implements Listener
 	public YamlConfiguration config;
 	public File helpFile;
 	public YamlConfiguration help;
-	public File namesFile;
-	public YamlConfiguration names;
+	public File materialFile;
+	public YamlConfiguration materials;
 	private ChatListener chatListener;
 	private JoinListener joinListener;
+	private BuildModeListener buildModeListener;
 	
 	@Override
 	public void onEnable()
 	{		
 		helpFile = new File(getDataFolder(), "help.yml");
 		configFile = new File(getDataFolder(), "config.yml");
-		namesFile = new File("plugins/common", "names.yml");
-		saveDefault(helpFile);
-		saveDefault(configFile);
-		saveDefault(namesFile);
+		materialFile = new File("plugins/common", "materials.yml");
+		ConfigHandler.saveDefault(this, helpFile);
+		ConfigHandler.saveDefault(this, configFile);
+		ConfigHandler.saveDefault(this, materialFile);
 		
 		help = new YamlConfiguration();
 		config = new YamlConfiguration();
-		names = new YamlConfiguration();
+		materials = new YamlConfiguration();
 		ConfigHandler.loadYaml(help, helpFile);
 		ConfigHandler.loadYaml(config, configFile);
-		ConfigHandler.loadYaml(names, namesFile);
+		ConfigHandler.loadYaml(materials, materialFile);
 		
 		registerModules();
 		
@@ -99,6 +96,8 @@ public class Handlefish extends JavaPlugin implements Listener
 	public void onDisable()
 	{
 		ConfigHandler.saveYaml(help, helpFile);
+		ConfigHandler.saveYaml(config, configFile);
+		ConfigHandler.saveYaml(materials, materialFile);
 	}
 	
 	private void registerModules()
@@ -194,8 +193,10 @@ public class Handlefish extends JavaPlugin implements Listener
 	{
 		chatListener = new ChatListener(this);
 		joinListener = new JoinListener(this);
+		buildModeListener = new BuildModeListener(this);
 		getServer().getPluginManager().registerEvents(chatListener, this);
 		getServer().getPluginManager().registerEvents(joinListener, this);
+		getServer().getPluginManager().registerEvents(buildModeListener, this);
 	}
 	
 	private void setupDatabase()
@@ -221,35 +222,5 @@ public class Handlefish extends JavaPlugin implements Listener
 		
 		return classes;
 		
-	}
-	
-	private void saveDefault(File file)
-	{
-		if(!file.exists())
-		{
-			file.getParentFile().mkdirs();
-			copy(getResource(file.getName()), file);
-		}
-	}
-	
-	private void copy(InputStream in, File file)
-	{
-		try
-		{
-			OutputStream out = new FileOutputStream(file);
-			byte[] buffer = new byte[1024];
-			int length;
-			while((length = in.read(buffer))>0)
-			{
-				out.write(buffer, 0, length);
-			}
-			out.close();
-			in.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-	
+	}	
 }

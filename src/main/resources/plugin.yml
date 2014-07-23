@@ -18,6 +18,8 @@ commands:
   broadcast:
   say:
   sayas:
+  buildmode:
+    aliases: build
   fly:
     aliases: flight
   speed:

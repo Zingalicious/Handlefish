@@ -1,32 +1,59 @@
 package us.zingalicio.handlefish.commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import us.zingalicio.handlefish.Handlefish;
+import us.zingalicio.handlefish.flight.BuildMode;
 import us.zingalicio.handlefish.util.MessageUtil;
 import us.zingalicio.handlefish.util.PermissionsUtil;
 
-public class HandleFlight implements CommandExecutor
+public final class HandleMovement implements CommandExecutor
 {
 	Handlefish plugin;
 	private static float DEFAULT_FLY_SPEED = 0.1F;
 	private static float DEFAULT_WALK_SPEED = 0.2F;
 	
-	public HandleFlight(Handlefish plugin)
+	public HandleMovement(Handlefish plugin)
 	{
 		this.plugin = plugin;
 	}
 	
-	public boolean onCommand(CommandSender arg0, Command arg1, String arg2,
-			String[] arg3) 
+	public boolean onCommand(CommandSender sender, Command command, String label,
+			String[] args) 
 	{
-		
+		if(command.getName().equalsIgnoreCase("buildmode"))
+		{
+			if(args.length == 0)
+			{
+				if(sender instanceof Player)
+				{
+					PermissionUser user = PermissionsEx.getUser((Player) sender);
+					if(user.getOptionBoolean("buildmode", ((Player) sender).getWorld().getName(), false))
+					{
+						user.setOption("buildmode", "true", ((Player) sender).getWorld().getName());
+						BuildMode build = new BuildMode((Player) sender, plugin);
+						BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+						scheduler.scheduleSyncRepeatingTask(plugin, build, 0, 1L);
+					}
+					else
+					{
+						user.setOption("buildmode", "false", ((Player) sender).getWorld().getName());
+					}
+				}
+				else
+				{
+					return false;
+				}
+			}
+		}
 		return false;
 	}
 

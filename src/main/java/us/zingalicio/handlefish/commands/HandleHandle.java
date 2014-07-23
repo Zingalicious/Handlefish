@@ -14,7 +14,7 @@ import us.zingalicio.handlefish.configuration.ConfigHandler;
 import us.zingalicio.handlefish.util.NameUtil;
 import us.zingalicio.handlefish.util.MessageUtil;
 
-public class HandleHandle implements CommandExecutor
+public final class HandleHandle implements CommandExecutor
 {
 	Handlefish plugin;
 	

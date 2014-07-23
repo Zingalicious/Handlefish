@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 
 import us.zingalicio.handlefish.Handlefish;
 
-public class HandleTeleport implements CommandExecutor
+public final class HandleTeleport implements CommandExecutor
 {
 	Handlefish plugin;
 	

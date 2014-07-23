@@ -9,10 +9,10 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 import us.zingalicio.handlefish.Handlefish;
-import us.zingalicio.handlefish.commands.HandleFlight;
+import us.zingalicio.handlefish.commands.HandleMovement;
 import us.zingalicio.handlefish.util.ChatUtil;
 
-public class JoinListener implements Listener
+public final class JoinListener implements Listener
 {
 	Handlefish plugin;
 	
@@ -40,7 +40,7 @@ public class JoinListener implements Listener
 		}
 		if(user.getOptionBoolean("flight", world.getName(), false))
 		{
-			HandleFlight.setFlight(null, player, true);
+			HandleMovement.setFlight(null, player, true);
 		}
 		if(user.getOptionBoolean("god", world.getName(), false))
 		{
@@ -57,7 +57,7 @@ public class JoinListener implements Listener
 		}
 		else
 		{
-			HandleFlight.resetWalkSpeed(null, player);
+			HandleMovement.resetWalkSpeed(null, player);
 		}
 		if(!user.getOption("flyspeed", world.getName()).equals(""))
 		{
@@ -71,7 +71,7 @@ public class JoinListener implements Listener
 		}
 		else
 		{
-			HandleFlight.resetFlySpeed(null, player);
+			HandleMovement.resetFlySpeed(null, player);
 		}
 	}
 }

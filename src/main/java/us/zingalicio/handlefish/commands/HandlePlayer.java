@@ -41,9 +41,13 @@ public class HandlePlayer implements CommandExecutor
 					List<String> options = new ArrayList<>();
 					options.add(ChatColor.YELLOW + "Godmode: " + ChatColor.WHITE + (user.getOptionBoolean("god", world.getName(), false) ? "true" : "false"));
 					options.add(ChatColor.YELLOW + "Time Format: " + ChatColor.WHITE + (user.getOptionBoolean("time", null, false) ? "24 Hour" : "12 Hour"));
+					options.add(ChatColor.YELLOW + "Flight: " + ChatColor.WHITE + user.getOption("flight", world.getName()));
 					options.add(ChatColor.YELLOW + "Display Name: " + ChatColor.WHITE + user.getOption("displayname"));
 					options.add(ChatColor.YELLOW + "Prefix: " + ChatColor.WHITE + user.getPrefix());
 					options.add(ChatColor.YELLOW + "Suffix: " + ChatColor.WHITE + user.getSuffix());
+					options.add(ChatColor.YELLOW + "Join Message: " + ChatColor.WHITE + user.getOption("joinmessage"));
+					options.add(ChatColor.YELLOW + "Flight Speed: " + ChatColor.WHITE + user.getOption("flyspeed", world.getName()));
+					options.add(ChatColor.YELLOW + "Walk Speed: " + ChatColor.WHITE + user.getOption("walkspeed", world.getName()));
 					if(args.length > 0)
 					{
 						MessageUtil.paginate(sender, options, Integer.parseInt(args[0]));
@@ -167,13 +171,13 @@ public class HandlePlayer implements CommandExecutor
 					{
 						if(args[1].equalsIgnoreCase("reset") || args[1].equalsIgnoreCase("clear") || args[1].equalsIgnoreCase("default"))
 						{
-							HandleFlight.resetFlySpeed(sender, ((Player) sender));
+							HandleMovement.resetFlySpeed(sender, ((Player) sender));
 							return true;
 						}
 						Float speed = NumberUtil.getFloat(args[1]);
 						if(speed != null)
 						{
-							HandleFlight.setFlySpeed(sender, ((Player) sender), speed);
+							HandleMovement.setFlySpeed(sender, ((Player) sender), speed);
 							return true;
 						}
 					}
@@ -185,13 +189,13 @@ public class HandlePlayer implements CommandExecutor
 					{
 						if(args[1].equalsIgnoreCase("reset") || args[1].equalsIgnoreCase("clear") || args[1].equalsIgnoreCase("default"))
 						{
-							HandleFlight.resetWalkSpeed(sender, ((Player) sender));
+							HandleMovement.resetWalkSpeed(sender, ((Player) sender));
 							return true;
 						}
 						Float speed = NumberUtil.getFloat(args[1]);
 						if(speed != null)
 						{
-							HandleFlight.setWalkSpeed(sender, ((Player) sender), speed);
+							HandleMovement.setWalkSpeed(sender, ((Player) sender), speed);
 							return true;
 						}
 					}
@@ -201,11 +205,11 @@ public class HandlePlayer implements CommandExecutor
 				{
 					if(((Player) sender).getAllowFlight())
 					{
-						HandleFlight.setFlight(sender, ((Player) sender), false);
+						HandleMovement.setFlight(sender, ((Player) sender), false);
 					}
 					else
 					{
-						HandleFlight.setFlight(sender, ((Player) sender), true);
+						HandleMovement.setFlight(sender, ((Player) sender), true);
 					}
 				}
 			}

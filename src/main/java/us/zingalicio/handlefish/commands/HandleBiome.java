@@ -12,7 +12,7 @@ import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.util.MessageUtil;
 import us.zingalicio.handlefish.util.NameUtil;
 
-public class HandleBiome implements CommandExecutor
+public final class HandleBiome implements CommandExecutor
 {
 	Handlefish plugin;
 	

@@ -14,7 +14,7 @@ import us.zingalicio.handlefish.util.MessageUtil;
 import us.zingalicio.handlefish.util.NumberUtil;
 import us.zingalicio.handlefish.util.PermissionsUtil;
 
-public class HandleHelp implements CommandExecutor
+public final class HandleHelp implements CommandExecutor
 {
 	Handlefish plugin;
 	YamlConfiguration help;

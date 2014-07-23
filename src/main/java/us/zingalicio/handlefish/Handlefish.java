@@ -18,7 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import us.zingalicio.handlefish.commands.HandleBan;
 import us.zingalicio.handlefish.commands.HandleBiome;
 import us.zingalicio.handlefish.commands.HandleChat;
-import us.zingalicio.handlefish.commands.HandleFlight;
+import us.zingalicio.handlefish.commands.HandleMovement;
 import us.zingalicio.handlefish.commands.HandleGive;
 import us.zingalicio.handlefish.commands.HandleHandle;
 import us.zingalicio.handlefish.commands.HandleHead;
@@ -45,7 +45,6 @@ public class Handlefish extends JavaPlugin implements Listener
 	private HandleBan handleBan;
 	private HandleBiome handleBiome;
 	private HandleChat handleChat;
-	private HandleFlight handleFlight;
 	private HandleGive handleGive;
 	private HandleHandle handleHandle;
 	private HandleHead handleHead;
@@ -53,6 +52,7 @@ public class Handlefish extends JavaPlugin implements Listener
 	private HandleHome handleHome;
 	private HandleKit handleKit;
 	private HandleMob handleMob;
+	private HandleMovement handleMovement;
 	private HandlePlayer handlePlayer;
 	private HandlePunish handlePunish;
 	private HandleSpawn handleSpawn;
@@ -106,7 +106,7 @@ public class Handlefish extends JavaPlugin implements Listener
 		this.handleBan = new HandleBan(this);
 		this.handleBiome = new HandleBiome(this);
 		this.handleChat = new HandleChat(this);
-		this.handleFlight = new HandleFlight(this);
+		this.handleMovement = new HandleMovement(this);
 		this.handleGive = new HandleGive(this);
 		this.handleHandle = new HandleHandle(this);
 		this.handleHead = new HandleHead(this);
@@ -135,8 +135,6 @@ public class Handlefish extends JavaPlugin implements Listener
 		getCommand("broadcast").setExecutor(handleChat);
 		getCommand("say").setExecutor(handleChat);
 		getCommand("sayas").setExecutor(handleChat);
-		getCommand("fly").setExecutor(handleFlight);
-		getCommand("speed").setExecutor(handleFlight);
 		getCommand("item").setExecutor(handleGive);
 		getCommand("give").setExecutor(handleGive);
 		getCommand("more").setExecutor(handleGive);
@@ -149,6 +147,9 @@ public class Handlefish extends JavaPlugin implements Listener
 		getCommand("kit").setExecutor(handleKit);
 		getCommand("spawnmob").setExecutor(handleMob);
 		getCommand("butcher").setExecutor(handleMob);
+		getCommand("buildmode").setExecutor(handleMovement);
+		getCommand("fly").setExecutor(handleMovement);
+		getCommand("speed").setExecutor(handleMovement);
 		getCommand("god").setExecutor(handlePlayer);
 		getCommand("ungod").setExecutor(handlePlayer);
 		getCommand("heal").setExecutor(handlePlayer);

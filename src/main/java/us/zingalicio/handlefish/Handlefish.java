@@ -55,15 +55,22 @@ public final class Handlefish extends ZingPlugin
 	private HandleTime handleTime;
 	private HandleWarp handleWarp;
 	private HandleWeather handleWeather;
-	public File configFile;
-	public YamlConfiguration config;
-	public File helpFile;
-	public YamlConfiguration help;
-	public File materialFile;
-	public YamlConfiguration materials;
+	private File configFile;
+	private final YamlConfiguration config;
+	private File helpFile;
+	private final YamlConfiguration help;
+	private File materialFile;
+	private final YamlConfiguration materials;
 	private ChatListener chatListener;
 	private JoinListener joinListener;
 	private BuildModeListener buildModeListener;
+	
+	public Handlefish()
+	{
+		help = new YamlConfiguration();
+		config = new YamlConfiguration();
+		materials = new YamlConfiguration();
+	}
 	
 	@Override
 	public void onEnable()
@@ -75,9 +82,6 @@ public final class Handlefish extends ZingPlugin
 		ConfigHandler.saveDefault(this, configFile);
 		ConfigHandler.saveDefault(this, materialFile);
 		
-		help = new YamlConfiguration();
-		config = new YamlConfiguration();
-		materials = new YamlConfiguration();
 		ConfigHandler.loadYaml(help, helpFile);
 		ConfigHandler.loadYaml(config, configFile);
 		ConfigHandler.loadYaml(materials, materialFile);
@@ -220,4 +224,34 @@ public final class Handlefish extends ZingPlugin
 		return classes;
 		
 	}	
+	
+	public YamlConfiguration getHelp()
+	{
+		return help;
+	}
+	
+	public File getHelpFile()
+	{
+		return helpFile;
+	}
+	
+	public YamlConfiguration getConfig()
+	{
+		return config;
+	}
+	
+	public File getConfigFile()
+	{
+		return configFile;
+	}
+	
+	public YamlConfiguration getMaterials()
+	{
+		return materials;
+	}
+	
+	public File getMaterialFile()
+	{
+		return materialFile;
+	}
 }

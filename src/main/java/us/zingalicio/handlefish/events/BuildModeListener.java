@@ -16,11 +16,12 @@ import org.bukkit.inventory.ItemStack;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import us.zingalicio.handlefish.Handlefish;
+import us.zingalicio.handlefish.util.SoundUtil;
 
 public final class BuildModeListener implements Listener
 {
 	Handlefish plugin;
-	private final static int REACH = 6;
+	private final static int REACH = 7;
 	public BuildModeListener(Handlefish plugin)
 	{
 		this.plugin = plugin;
@@ -31,7 +32,7 @@ public final class BuildModeListener implements Listener
 	public void onPlayerInteractEvent(PlayerInteractEvent e)
 	{
 		Player player = e.getPlayer();
-		if(PermissionsEx.getUser(player).getOptionBoolean("buildmode", player.getWorld().getName(), false))
+		if(PermissionsEx.getUser(player).getOptionBoolean("buildmode.enabled", player.getWorld().getName(), false))
 		{
 			if(e.getAction() == Action.RIGHT_CLICK_AIR)
 			{
@@ -39,29 +40,44 @@ public final class BuildModeListener implements Listener
 				if(b.getType() != Material.AIR)
 				{
 					BlockFace bF = getBlockFace(b, player);
-					ItemStack item = player.getItemInHand();
+					ItemStack item = e.getItem();
 					if(item.getTypeId() < 256)
 					{
 						b.getRelative(bF).setType(item.getType());
 						b.getRelative(bF).setData(item.getData().getData());
+						item.setAmount(item.getAmount() - 1);
+						player.playSound(b.getLocation(), SoundUtil.getSound(item.getType(), plugin), 1F, 1F);
 					}
-					item.setAmount(item.getAmount() - 1);
-					PlayerInteractEvent newEvent = new PlayerInteractEvent(player, Action.RIGHT_CLICK_BLOCK, e.getItem(), b, bF);
+					PlayerInteractEvent newEvent = new PlayerInteractEvent(player, Action.RIGHT_CLICK_BLOCK, item, b, bF);
 					Bukkit.getServer().getPluginManager().callEvent(newEvent);
+					return;
 				}
 				else if(player.isSneaking())
 				{
 					BlockFace bF = getBlockFace(b, player);
-					ItemStack item = player.getItemInHand();
+					ItemStack item = e.getItem();
 					if(item.getTypeId() < 256)
 					{
 						b.getRelative(bF).setType(item.getType());
 						b.getRelative(bF).setData(item.getData().getData());
+						item.setAmount(item.getAmount() - 1);
+						player.playSound(b.getLocation(), SoundUtil.getSound(item.getType(), plugin), 1F, 1F);
+						PlayerInteractEvent newEvent = new PlayerInteractEvent(player, Action.RIGHT_CLICK_BLOCK, item, b, bF);
+						Bukkit.getServer().getPluginManager().callEvent(newEvent);
 					}
-					item.setAmount(item.getAmount() - 1);
-					PlayerInteractEvent newEvent = new PlayerInteractEvent(player, Action.RIGHT_CLICK_BLOCK, e.getItem(), b, bF);
+					return;
+				}
+			}
+			else if(e.getAction() == Action.LEFT_CLICK_AIR)
+			{
+				Block b = player.getTargetBlock(null, REACH);
+				if(b.getType() != Material.AIR)
+				{
+					BlockFace bF = getBlockFace(b, player);
+					PlayerInteractEvent newEvent = new PlayerInteractEvent(player, Action.LEFT_CLICK_BLOCK, e.getItem(), b, bF);
 					Bukkit.getServer().getPluginManager().callEvent(newEvent);
 				}
+				return;
 			}
 		}
 	}

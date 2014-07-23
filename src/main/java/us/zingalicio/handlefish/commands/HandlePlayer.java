@@ -217,13 +217,13 @@ public class HandlePlayer implements CommandExecutor
 				}
 				else if(args[0].equalsIgnoreCase("buildmode"))
 				{
-					if(user.getOptionBoolean("buildmode", world.getName(), false))
+					if(user.getOptionBoolean("buildmode.enabled", world.getName(), false))
 					{
-						user.setOption("buildmode", "false", ((Player) sender).getWorld().getName());
+						user.setOption("buildmode.enabled", "false", ((Player) sender).getWorld().getName());
 					}
 					else
 					{
-						user.setOption("buildmode", "true", ((Player) sender).getWorld().getName());
+						user.setOption("buildmode.enabled", "true", ((Player) sender).getWorld().getName());
 						BuildMode build = new BuildMode((Player) sender, plugin);
 						BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
 						int task = scheduler.scheduleSyncRepeatingTask(plugin, build, 0, 1L);

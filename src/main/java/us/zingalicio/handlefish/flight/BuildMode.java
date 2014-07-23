@@ -19,7 +19,8 @@ public class BuildMode extends BukkitRunnable
 	BukkitScheduler scheduler;
 	Location oldPos;
 	Boolean oldDirection = null;
-	byte oldSneaking;
+	int downDelay;
+	short sneakTicks;
 	Boolean startup = true;
 	int id;
 	public BuildMode(Player player, Handlefish plugin)
@@ -30,7 +31,7 @@ public class BuildMode extends BukkitRunnable
 		if(startup)
 		{
 			this.oldPos = player.getLocation();
-			this.oldSneaking = 0;
+			this.sneakTicks = 0;
 		}
 	}
 	
@@ -45,23 +46,24 @@ public class BuildMode extends BukkitRunnable
 		PermissionUser user = PermissionsEx.getUser(player);
 		World world = player.getWorld();
 		Location newPos = player.getLocation();
-		if(user.getOptionBoolean("buildmode", world.getName(), false))
+		if(user.getOptionBoolean("buildmode.enabled", world.getName(), false))
 		{
+			this.downDelay = user.getOptionInteger("buildmode.descentdelay", world.getName(), 10);
 			if(player.isFlying())
 			{
 				Vector v = player.getVelocity();
 				if(player.isSneaking())
 				{
-					if(oldSneaking < 5)
+					if(sneakTicks < downDelay)
 					{
 						v = v.setY(.153F);
 						player.setVelocity(v);
-						oldSneaking += 1;
+						sneakTicks += 1;
 					}
 				}
 				else
 				{
-					oldSneaking = 0;
+					sneakTicks = 0;
 				}
 			}
 		}

@@ -76,7 +76,7 @@ public final class JoinListener implements Listener
 		{
 			HandleMovement.resetFlySpeed(null, player);
 		}
-		if(user.getOptionBoolean("buildmode", world.getName(), false))
+		if(user.getOptionBoolean("buildmode.enabled", world.getName(), false))
 		{
 			BuildMode build = new BuildMode(player, plugin);
 			BukkitScheduler scheduler = Bukkit.getServer().getScheduler();

@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import javax.persistence.PersistenceException;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import us.zingalicio.handlefish.commands.HandleBan;
@@ -67,6 +68,7 @@ public final class Handlefish extends ZingPlugin
 	private JoinListener joinListener;
 	private BuildModeListener buildModeListener;
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onEnable()
 	{		
@@ -90,6 +92,17 @@ public final class Handlefish extends ZingPlugin
 		registerListeners();
 		
 		setupDatabase();
+		
+		int i = 256;
+		while(i < 512)
+		{
+			try
+			{
+				Bukkit.getLogger().log(Level.INFO, Material.getMaterial(i).name());
+			}
+			catch(NullPointerException ex) {}
+			i += 1;
+		}
 	}
 	
 	@Override

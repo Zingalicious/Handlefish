@@ -15,9 +15,11 @@ public final class HandleGive implements CommandExecutor
 		this.plugin = plugin;
 	}
 	
-	public boolean onCommand(CommandSender arg0, Command arg1, String arg2,
-			String[] arg3) {
-		// TODO Auto-generated method stub
+	public boolean onCommand(CommandSender sender, Command command, String label,
+			String[] args) {
+		if(command.getName().equalsIgnoreCase("item"))
+		{
+		}
 		return false;
 	}
 

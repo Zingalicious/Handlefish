@@ -1,10 +1,13 @@
-test: "Yeesss"
 blocks:
   AIR: 
+    scroll:
+    sound:
     names:
     data:
     name: Air
   STONE: 
+    scroll: [0,1,2,3,4,5,6]
+    sound: DIG_STONE
     names:
 #      smooth: 0
 #      stone: 0
@@ -23,10 +26,14 @@ blocks:
 #      6: Polished Andesite
     name: Stone
   GRASS: 
+    scroll:
+    sound: DIG_GRASS
     names:
     data:
     name: Grass
   DIRT: 
+    scroll: [0,1,2]
+    sound: DIG_GRAVEL
     names:
       coarse: 1
       dead: 1
@@ -38,10 +45,14 @@ blocks:
       2: Podzol
     name: Dirt
   COBBLESTONE:
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Cobblestone
   WOOD: 
+    scroll: [0,1,2,3,4,5,6,7,8]
+    sound: DIG_WOOD
     names:
       oak: 0
       generic: 0
@@ -75,6 +86,8 @@ blocks:
       15: Oak
     name: Planks
   SAPLING: 
+    scroll: [0,1,2,3,4,5,8,9,10,11,12,13,14,15]
+    sound: DIG_GRASS
     names:
       oak: 0
       generic: 0
@@ -103,26 +116,38 @@ blocks:
       15: Dark Oak
     name: Sapling
   BEDROCK: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Bedrock
   WATER:  
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: SPLASH
     names:
     data:
     name: Flowing Water
   STATIONARY_WATER:  
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: SPLASH
     names:
     data:
     name: Water Source
   LAVA:  
+    scroll: [0,1,2,3]
+    sound: FIZZ
     names:
     data:
     name: Flowing Lava
   STATIONARY_LAVA:  
+    scroll: [0,1,2,3]
+    sound: FIZZ
     names:
     data:
     name: Lava Source
   SAND: 
+    scroll: [0,1]
+    sound: DIG_SAND
     names:
       normal: 0
       red: 1
@@ -131,22 +156,32 @@ blocks:
       1: Red
     name: Sand
   GRAVEL:  
+    scroll:
+    sound: DIG_GRAVEL
     names:
     data:
     name: Gravel
-  GOLD_ORE:  
+  GOLD_ORE: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Gold Ore
   IRON_ORE:  
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Iron Ore
   COAL_ORE:  
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Coal Ore
   LOG:  
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_WOOD
     names:
       oak: 0
       generic: 0
@@ -173,6 +208,8 @@ blocks:
       15: Jungle (Bark)
     name: Log
   LEAVES: 
+    scroll: [4,5,6,7,14,15]
+    sound: DIG_GRASS
     names:
       oak: 0
       generic: 0
@@ -202,6 +239,8 @@ blocks:
       15: Cherry Blossom (Undying)
     name: Leaves
   SPONGE: 
+    scroll: [0,1]
+    sound: DIG_GRAVEL
     names:
 #      dry: 0
 #      wet: 1
@@ -209,20 +248,28 @@ blocks:
 #      1: Wet
     name: Sponge
   GLASS: 
+    scroll: [0,1,2]
+    sound: GLASS
     names:
     data:
       1: Connected
       2: Invisible #
     name: Glass
   LAPIS_ORE: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Lapis Lazuli Ore
   LAPIS_BLOCK: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Lapis Lazuli Block
   DISPENSER: 
+    scroll: [0,1,2,3,4,5]
+    sound: DIG_STONE
     names:
     data: 
       0: Facing Down
@@ -243,6 +290,8 @@ blocks:
       15: DO NOT ACTIVATE
     name: Dispenser
   SANDSTONE: 
+    scroll: [0,1,2,3,4,5,6]
+    sound: DIG_STONE
     names:
       normal: 0
       cobblestone: 0
@@ -268,10 +317,14 @@ blocks:
       6: Orange
     name: Sandstone
   NOTE_BLOCK: 
+    scroll:
+    sound: DIG_WOOD
     names:
     data:
     name: Note Block
   BED_BLOCK: 
+    scroll: [0,1,2,3,8,9,10,11]
+    sound: DIG_WOOD
     names:
     data:
       0: Foot facing North
@@ -292,6 +345,8 @@ blocks:
       15: Head facing West
     name: Bed
   POWERED_RAIL: 
+    scroll: [0,1,2,3,4,5,8,9,10,11,12,13]
+    sound: DIG_WOOD
     names:
     data:
       0: N-S
@@ -312,6 +367,8 @@ blocks:
       15: Powered E-W
     name: Powered Rails
   DETECTOR_RAIL: 
+    scroll: [0,1,2,3,4,5,8,9,10,11,12,13]
+    sound: DIG_WOOD
     names:
     data:
       0: N-S
@@ -332,6 +389,8 @@ blocks:
       15: Powered E-W
     name: Detector Rails
   PISTON_STICKY_BASE: 
+    scroll: [0,1,2,3,4,5,6,8,9,10,11,12,13]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing Down
@@ -352,12 +411,16 @@ blocks:
       15: Facing All
     name: Sticky Piston Base
   WEB: 
+    scroll: [0,1,2]
+    sound: DIG_WOOL
     names:
     data:
       1: Swirly
       2: Spotty
     name: Web
   LONG_GRASS: 
+    scroll: [0,1,2,3]
+    sound: DIG_GRASS
     names:
       dead: 0
       deadbush: 0
@@ -366,28 +429,35 @@ blocks:
       fern: 2
       cattail: 2
       cattails: 2
+      biomedead: 3
+      coloreddead: 3
+      coloureddead: 3
     data:
       0: Dead
       2: Cattails
-      3: Dead (Colored)
-      4: Dead (Colored)
-      5: Dead (Colored)
-      6: Dead (Colored)
-      7: Dead (Colored)
-      8: Dead (Colored)
-      9: Dead (Colored)
-      10: Dead (Colored)
-      11: Dead (Colored)
-      12: Dead (Colored)
-      13: Dead (Colored)
-      14: Dead (Colored)
-      15: Dead (Colored)
+      3: Dead (Coloured)
+      4: Dead (Coloured)
+      5: Dead (Coloured)
+      6: Dead (Coloured)
+      7: Dead (Coloured)
+      8: Dead (Coloured)
+      9: Dead (Coloured)
+      10: Dead (Coloured)
+      11: Dead (Coloured)
+      12: Dead (Coloured)
+      13: Dead (Coloured)
+      14: Dead (Coloured)
+      15: Dead (Coloured)
     name: Long Grass
   DEAD_BUSH: 
+    scroll:
+    sound: DIG_GRASS
     names:
     data:
     name: Dead Bush
   PISTON_BASE: 
+    scroll:[0,1,2,3,4,5,6,8,9,10,11,12,13]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing Down
@@ -408,6 +478,8 @@ blocks:
       15: Facing All
     name: Piston Base
   PISTON_EXTENSION: 
+    scroll: [0,1,2,3,4,5,6]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing Down
@@ -428,6 +500,8 @@ blocks:
       15: Invisible
     name: Piston Extension
   WOOL: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_WOOL
     names:
       white: 0
       orange: 1
@@ -466,14 +540,20 @@ blocks:
       15: Black
     name: Wool
   PISTON_MOVING_PIECE: 
+    scroll:
+    sound: DIG_WOOD
     names:
     data:
     name: Piston Moving Piece
   YELLOW_FLOWER: 
+    scroll:
+    sound: DIG_GRASS
     names:
     data:
     name: Dandelion
   RED_ROSE: 
+    scroll: [0,1,2,3,4,5,6,7,8]
+    sound: DIG_GRASS
     names:
       rose: 0
       poppy: 0
@@ -516,22 +596,32 @@ blocks:
       15: Rose
     name: Flower
   BROWN_MUSHROOM: 
+    scroll:
+    sound: DIG_GRASS
     names:
     data:
     name: Brown Mushroom
   RED_MUSHROOM: 
+    scroll:
+    sound: DIG_GRASS
     names:
     data:
     name: Red Mushroom
   GOLD_BLOCK: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Gold Block
   IRON_BLOCK: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Iron Block
   DOUBLE_STEP: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13]
+    sound: DIG_STONE
     names:
       stone: 0
       sandstone: 1
@@ -541,12 +631,29 @@ blocks:
       cobblestone: 3
       cobble: 3
       brick: 4
-      stonebrick: 4
-      stonebricks: 4
-      netherbrick: 5
-      netherbricks: 5
-      quartz: 6
-      netherquartz: 6
+      stonebrick: 5
+      stonebricks: 5
+      netherbrick: 6
+      netherbricks: 6
+      quartz: 7
+      netherquartz: 7
+      fullstone: 8
+      smoothstone: 8
+      smooth: 8
+      goldpanel: 9
+      goldetchedpanel: 9
+      goldetched: 9
+      ironpanel: 10
+      ironetchedpanel: 10
+      copper: 11
+      oxidizedcopper: 11
+      copperpanel: 11
+      rustedcopperpanel: 11
+      rustedcopper: 11
+      bronze: 12
+      bronzepanel: 13
+      gong: 13
+      etchedbronze: 13
     data:
       0: Stone
       1: Sandstone
@@ -566,6 +673,8 @@ blocks:
       15: Quartz
     name: Double Step
   STEP: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_STONE
     names:
       stone: 0
       sandstone: 1
@@ -598,26 +707,39 @@ blocks:
       15: Inverted Quartz
     name: Double Step
   BRICK: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Brick
   TNT: 
+    scroll:
+    sound: DIG_WOOD
     names: 
     data:
     name: Explosive Barrel
   BOOKSHELF: 
+    scroll:
+    sound: DIG_WOOD
     names:
     data:
     name: Bookshelf
   MOSSY_COBBLESTONE: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Mossy Cobblestone
   OBSIDIAN: 
+    scroll: [0,1]
+    sound: DIG_STONE
     names:
     data:
+      1: Pure Darkness
     name: Obsidian
   TORCH: 
+    scroll: [0,1,2,3,4]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing Up
@@ -638,14 +760,20 @@ blocks:
       15: Facing Up
     name: Torch
   FIRE: 
+    scroll:
+    sound: FIZZ
     names:
     data:
     name: Fire
   MOB_SPAWNER: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Mob Cage
-  WOOD_STAIRS: 
+  WOOD_STAIRS:
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing East
@@ -666,6 +794,8 @@ blocks:
       15: Inverted Facing North
     name: Oak Stairs
   CHEST: 
+    scroll: [2,3,4,5]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing South
@@ -686,22 +816,32 @@ blocks:
       15: Facing South
     name: Chest
   REDSTONE_WIRE: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Redstone Wire
   DIAMOND_ORE: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Diamond Ore
   DIAMOND_BLOCK: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Diamond Block
   WORKBENCH: 
+    scroll:
+    sound: DIG_WOOD
     names:
     data:
     name: Workbench
   CROPS: 
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: DIG_GRASS
     names:
     data:
       0: Seeded
@@ -722,11 +862,15 @@ blocks:
       15: Ripe
     name: Wheat
   SOIL: 
+    scroll: [0,1]
+    sound: DIG_GRAVEL
     names:
     data:
       0: Dry
     name: Soil
   FURNACE: 
+    scroll: [1,2,3,4,5]
+    sound: DIG_STONE
     names:
     data:
       0: Faceless
@@ -747,6 +891,8 @@ blocks:
       15: Faceless
     name: Furnace
   BURNING_FURNACE: 
+    scroll: [1,2,3,4,5]
+    sound: DIG_STONE
     names:
     data:
       0: Faceless
@@ -767,6 +913,8 @@ blocks:
       15: Faceless
     name: Burning Furnace
   SIGN_POST: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing South
@@ -787,6 +935,8 @@ blocks:
       15: Facing S-S-E
     name: Sign Post
   WOODEN_DOOR: 
+    scroll: [0,1,2,3,8,9,10,11,12,13,14,15]
+    sound: DIG_WOOD
     names:
     data:
       0: Bottom Facing West
@@ -807,6 +957,8 @@ blocks:
       15: Reverse Top
     name: Wood Door
   LADDER: 
+    scroll: [1,2,3,4,5]
+    sound: DIG_WOOD
     names:
     data:
       0: Faceless
@@ -827,6 +979,8 @@ blocks:
       15: Faceless
     name: Ladder
   RAILS: 
+    scroll: [0,1,2,3,4,5,6,7,8,9]
+    sound: DIG_WOOD
     names:
     data:
       0: N-S
@@ -847,6 +1001,8 @@ blocks:
       15: Curved Southeast
     name: Rails
   COBBLESTONE_STAIRS: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_STONE
     names:
     data:
       0: Facing East
@@ -867,6 +1023,8 @@ blocks:
       15: Smooth Inverted Facing North
     name: Cobblestone Stairs
   WALL_SIGN: 
+    scroll: [2,3,4,5]
+    sound: DIG_WOOD
     names:
     data:
       0: Faceless
@@ -887,6 +1045,8 @@ blocks:
       15: Faceless
     name: Wall Sign
   LEVER: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing Down (E-W)
@@ -907,11 +1067,15 @@ blocks:
       15: Powered Facing Down (N-S)
     name: Lever
   STONE_PLATE: 
+    scroll: [0,1]
+    sound: DIG_STONE
     names:
     data:
       1: Pressed
     name: Stone Pressure Plate
   IRON_DOOR_BLOCK: 
+    scroll: [0,1,2,3,8,9,10,11,12,13,14,15]
+    sound: DIG_STONE
     names:
     data:
       0: Bottom Facing West
@@ -932,19 +1096,27 @@ blocks:
       15: Reverse Top
     name: Iron Door
   WOOD_PLATE: 
+    scroll: [0,1]
+    sound: DIG_WOOD
     names:
     data:
       1: Pressed
     name: Wood Pressure Plate
   REDSTONE_ORE: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Redstone Ore
   GLOWING_REDSTONE_ORE: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Glowing Redstone Ore
   REDSTONE_TORCH_OFF: 
+    scroll: [0,1,2,3,4]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing Up
@@ -965,6 +1137,8 @@ blocks:
       15: Facing Up
     name: Redstone Torch
   REDSTONE_TORCH_ON: 
+    scroll: [0,1,2,3,4]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing Up
@@ -985,6 +1159,8 @@ blocks:
       15: Facing Up
     name: Lit Redstone Torch
   STONE_BUTTON: 
+    scroll: [2,3,4,5]
+    sound: DIG_STONE
     names:
     data:
       0: Facing South
@@ -1005,6 +1181,8 @@ blocks:
       15: Facing South
     name: Stone Button
   SNOW: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_SNOW
     names:
       1/8: 0
       1/4: 1
@@ -1049,6 +1227,8 @@ blocks:
       15: Full
     name: Snow
   ICE: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: GLASS
     names:
     data:
       1: Red
@@ -1068,26 +1248,38 @@ blocks:
       15: White
     name: Ice
   SNOW_BLOCK: 
+    scroll:
+    sound: DIG_SNOW
     names:
     data:
     name: Snow Block
-  CACTUS: 
+  CACTUS:
+    scroll:
+    sound: DIG_WOOL
     names:
     data:
     name: Cactus
   CLAY: 
+    scroll:
+    sound: DIG_GRAVEL
     names:
     data:
     name: Clay
   SUGAR_CANE_BLOCK: 
+    scroll:
+    sound: DIG_GRASS
     names:
     data:
     name: Sugar Cane
   JUKEBOX: 
+    scroll:
+    sound: DIG_WOOD
     names:
     data:
     name: Jukebox
   FENCE: 
+    scroll: [0,1,2,3]
+    sound: DIG_WOOD
     names:
     data:
       1: Spruce
@@ -1095,6 +1287,8 @@ blocks:
       3: Jungle
     name: Fence
   PUMPKIN: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing South
@@ -1115,22 +1309,47 @@ blocks:
       15: Faceless
     name: Pumpkin
   NETHERRACK: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Netherrack
   SOUL_SAND: 
+    scroll:
+    sound: DIG_GRAVEL
     names:
     data:
     name: Soul Sand
   GLOWSTONE: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: GLASS
     names:
     data:
+      1: Red
+      2: Orange
+      3: Peach
+      4: White
+      5: Green
+      6: Emerald
+      7: Jade
+      8: Cyan
+      9: Blue
+      10: Lavender
+      11: Purple
+      12: Violet
+      13: Magenta
+      14: Black
+      15: Invisible
     name: Glowstone
   PORTAL: 
+    scroll:
+    sound: GHAST_SCREAM
     names:
     data:
     name: Portal
   JACK_O_LANTERN: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing South
@@ -1151,6 +1370,8 @@ blocks:
       15: Faceless
     name: Lit Pumpkin
   CAKE_BLOCK: 
+    scroll: [0,1,2,3,4,5,6]
+    sound: DIG_WOOL
     names:
     data:
       1: 6/7
@@ -1170,6 +1391,8 @@ blocks:
       15: Negative Quantum
     name: Cake
   DIODE_BLOCK_OFF: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing North (1 Tick)
@@ -1190,6 +1413,8 @@ blocks:
       15: Facing West (4 Tick)
     name: Redstone Repeater
   DIODE_BLOCK_ON: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing North (1 Tick)
@@ -1210,6 +1435,8 @@ blocks:
       15: Facing West (4 Tick)
     name: Powered Repeater
   STAINED_GLASS: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: GLASS
     names:
       white: 0
       orange: 1
@@ -1248,6 +1475,8 @@ blocks:
       15: Black
     name: Stained Glass
   TRAP_DOOR: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_WOOD
     names:
     data:
       0: Closed Facing North
@@ -1268,6 +1497,8 @@ blocks:
       15: Inverted Open Facing East
     name: Hatch
   MONSTER_EGGS: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10]
+    sound: DIG_STONE
     names:
       stone: 0
       smooth: 0
@@ -1320,6 +1551,8 @@ blocks:
       15: Stone
     name: Silverfish
   SMOOTH_BRICK: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12]
+    sound: DIG_STONE
     names:
       smooth: 0
       stone: 0
@@ -1372,6 +1605,8 @@ blocks:
       12: Colourful
     name: Stone Brick
   HUGE_MUSHROOM_1: 
+    scroll:[0,1,2,3,4,5,6,7,8,9,10,14,15]
+    sound: DIG_WOOD
     names:
       flesh: 0
       none: 0
@@ -1437,6 +1672,8 @@ blocks:
       15: All Stalk
     name: Brown Mushroom Block
   HUGE_MUSHROOM_2: 
+    scroll:[0,1,2,3,4,5,6,7,8,9,10,14,15]
+    sound: DIG_WOOD
     names:
       flesh: 0
       none: 0
@@ -1501,19 +1738,27 @@ blocks:
       15: All Stalk
     name: Red Mushroom Block
   IRON_FENCE: 
+    scroll: [0,1]
+    sound: DIG_STONE
     names:
     data:
       1: Copper
     name: Metal Bars
   THIN_GLASS: 
+    scroll:
+    sound: GLASS
     names:
     data:
     name: Glass Pane
   MELON_BLOCK: 
+    scroll:
+    sound: DIG_WOOD
     names:
     data:
     name: Melon
   PUMPKIN_STEM: 
+    scroll: [1,2,3,4,5,6,7]
+    sound: DIG_GRASS
     names:
     data:
       0: Under Soil
@@ -1534,6 +1779,8 @@ blocks:
       15: ogre
     name: Pumpkin Stem
   MELON_STEM: 
+    scroll: [1,2,3,4,5,6,7]
+    sound: DIG_GRASS
     names:
     data:
       0: Under Soil
@@ -1554,6 +1801,8 @@ blocks:
       15: ogre
     name: Melon Stem
   VINE: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_GRASS
     names:
     data:
       1: South
@@ -1573,6 +1822,8 @@ blocks:
       15: All Sides
     name: Vines
   FENCE_GATE: 
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: DIG_WOOD
     names:
     data:
       0: Closed N-S
@@ -1593,6 +1844,8 @@ blocks:
       15: Opened South
     name: Fence Gate
   BRICK_STAIRS: 
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: DIG_STONE
     names:
     data:
       0: Facing East
@@ -1613,6 +1866,8 @@ blocks:
       15: Inverted Facing North
     name: Brick Stairs
   SMOOTH_STAIRS: 
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: DIG_STONE
     names:
     data:
       0: Facing East
@@ -1633,24 +1888,34 @@ blocks:
       15: Inverted Facing North
     name: Stone Brick Stairs
   MYCEL: 
+    scroll:
+    sound: DIG_GRAVEL
     names:
     data:
     name: Gravel Dirt
   WATER_LILY: 
+    scroll:
+    sound: DIG_GRASS
     names:
     data:
     name: Water Lily
   NETHER_BRICK: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Nether Brick 
   NETHER_FENCE: 
+    scroll: [0,1,2]
+    sound: DIG_STONE
     names:
     data:
       1: Metal
       2: Dark Metal
     name: Nether Fence
   NETHER_BRICK_STAIRS: 
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: DIG_STONE
     names:
     data:
       0: Facing East
@@ -1671,17 +1936,24 @@ blocks:
       15: Inverted Facing North
     name: Nether Brick Stairs
   NETHER_WARTS: 
+    scroll: [0,1,2,3]
+    sound: DIG_GRASS
     names:
     data: 
       0: Seeded
       1: Germinated
       2: Growing
-    name: Netherwart
+      3: Ripe
+    name: Netherberries
   ENCHANTMENT_TABLE: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Enchantment Table
   BREWING_STAND: 
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: DIG_STONE
     names:
     data:
       0: Empty
@@ -1702,6 +1974,8 @@ blocks:
       15: 1, 2, and 3
     name: Brewing Stand
   CAULDRON: 
+    scroll: [0,1,2,3]
+    sound: DIG_STONE
     names:
     data:
       0: Empty
@@ -1722,10 +1996,14 @@ blocks:
       15: Full
     name: Cauldron
   ENDER_PORTAL: 
+    scroll:
+    sound: ENDERMAN_SCREAM
     names:
     data:
     name: End Portal
   ENDER_PORTAL_FRAME: 
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: DIG_STONE
     names:
     data:
       0: Facing South
@@ -1746,24 +2024,34 @@ blocks:
       15: Set Facing East
     name: End Portal Frame
   ENDER_STONE: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: End Stone
   DRAGON_EGG: 
+    scroll: [0,1,2]
+    sound: DIG_STONE
     names:
     data: 
       1: Metal
       2: Crystal
     name: Dragon Egg
-  REDSTONE_LAMP_OFF: 
+  REDSTONE_LAMP_OFF:
+    scroll:
+    sound: GLASS
     names:
     data:
     name: Redstone Lamp
   REDSTONE_LAMP_ON: 
+    scroll:
+    sound: GLASS
     names:
     data:
     name: Powered Redstone Lamp
   WOOD_DOUBLE_STEP: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11]
+    sound: DIG_WOOD
     names:
       oak: 0
       generic: 0
@@ -1775,19 +2063,19 @@ blocks:
       darkoak: 5
       horizontallightmetal: 6
       horizontallightmetalbeam: 6
-      verticallightmetal: 6
-      verticallightmetalbeam: 6
-      lightmetalbeam: 6
-      horizontalmetal: 7
-      horizontalmetalbeam: 7
-      verticalmetal: 7
-      verticalmetalbeam: 7
-      metalbeam: 7
-      horizontaldarkmetal: 8
-      horizontaldarkmetalbeam: 8
-      verticaldarkmetal: 8
-      verticaldarkmetalbeam: 8
-      darkmetalbeam: 8
+      verticallightmetal: 7
+      verticallightmetalbeam: 7
+      lightmetalbeam: 7
+      horizontalmetal: 8
+      horizontalmetalbeam: 8
+      verticalmetal: 9
+      verticalmetalbeam: 9
+      metalbeam: 9
+      horizontaldarkmetal: 10
+      horizontaldarkmetalbeam: 10
+      verticaldarkmetal: 11
+      verticaldarkmetalbeam: 11
+      darkmetalbeam: 11
     data:
       0: Oak
       1: Spruce
@@ -1803,6 +2091,8 @@ blocks:
       11: Dark Metal Beam
     name: Wood Double Step 
   WOOD_STEP: 
+    scroll: [0,1,2,3,4,5,8,9,10,11,12,13]
+    sound: DIG_WOOD
     names:
       oak: 0
       generic: 0
@@ -1831,6 +2121,8 @@ blocks:
       15: Inverted Oak
     name: Wood Step
   COCOA: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11]
+    sound: DIG_WOOD
     names:
     data:
       0: Small Facing North
@@ -1850,7 +2142,9 @@ blocks:
       14: stahp Facing South
       15: stahp Facing West
     name: Cocoa Pod
-  SANDSTONE_STAIRS: 
+  SANDSTONE_STAIRS:
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_STONE
     names:
     data:
       0: Facing East
@@ -1871,10 +2165,14 @@ blocks:
       15: Invisible Inverted Facing North
     name: Sandstone Stairs
   EMERALD_ORE: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Emerald Ore
   ENDER_CHEST: 
+    scroll: [2,3,4,5]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing South
@@ -1895,6 +2193,8 @@ blocks:
       15: Facing South
     name: Ender chest
   TRIPWIRE_HOOK: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing South
@@ -1915,6 +2215,8 @@ blocks:
       15: Activated Connected East
     name: Tripwire Hook
   TRIPWIRE: 
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: DIG_WOOL
     names:
     data:
       1: Activated
@@ -1933,10 +2235,14 @@ blocks:
       15: Invisible Floating Activated
     name: Tripwire
   EMERALD_BLOCK: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Emerald Block
   SPRUCE_WOOD_STAIRS: 
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing East
@@ -1957,6 +2263,8 @@ blocks:
       15: Inverted Facing North
     name: Spruce Stairs
   BIRCH_WOOD_STAIRS: 
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing East
@@ -1977,6 +2285,8 @@ blocks:
       15: Inverted Facing North
     name: Birch Stairs
   JUNGLE_WOOD_STAIRS: 
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing East
@@ -1997,14 +2307,20 @@ blocks:
       15: Inverted Facing North
     name: Jungle Stairs
   COMMAND: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Command Block
   BEACON: 
+    scroll:
+    sound: GLASS
     names:
     data:
     name: Beacon
   COBBLE_WALL: 
+    scroll: [0,1,2,3,4,5,6]
+    sound: DIG_STONE
     names:
       cobblestone: 0 
       cobble: 0
@@ -2033,10 +2349,14 @@ blocks:
       6: Light Cobblestone
     name: Wall
   FLOWER_POT: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Flower Pot
   CARROT: 
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: DIG_GRASS
     names:
     data:
       0: Seeded
@@ -2057,6 +2377,8 @@ blocks:
       15: Ripe
     name: Carrots
   POTATO: 
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: DIG_GRASS
     names:
     data:
       0: Seeded
@@ -2077,6 +2399,8 @@ blocks:
       15: Ripe
     name: Potatoes
   WOOD_BUTTON: 
+    scroll: [2,3,4,5]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing South
@@ -2097,6 +2421,8 @@ blocks:
       15: Facing South
     name: Wood Button
   SKULL: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_STONE
     names:
     data:
       0: Facing South
@@ -2117,6 +2443,8 @@ blocks:
       15: Facing S-S-E
     name: Skull
   ANVIL: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11]
+    sound: ANVIL_BREAK
     names:
       undamaged: 0
       slightlydamaged: 4
@@ -2142,6 +2470,8 @@ blocks:
       15: Facing West
     name: Anvil
   TRAPPED_CHEST: 
+    scroll: [2,3,4,5]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing South
@@ -2162,16 +2492,22 @@ blocks:
       15: Facing South
     name: Trapped Chest
   GOLD_PLATE: 
+    scroll: [0,1]
+    sound: DIG_STONE
     names:
     data:
       1: Pressed
     name: Gold Pressure Plate
   IRON_PLATE: 
+    scroll: [0,1]
+    sound: DIG_STONE
     names:
     data:
       1: Pressed
     name: Iron Pressure Plate
   REDSTONE_COMPARATOR_OFF: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_WOOD
     names:
     data:
       0: Compare Facing North
@@ -2192,6 +2528,8 @@ blocks:
       15: Activated Subtract Facing West
     name: Redstone Comparator
   REDSTONE_COMPARATOR_ON: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_WOOD
     names:
     data:
       0: Compare Facing North
@@ -2212,18 +2550,26 @@ blocks:
       15: Activated Subtract Facing West
     name: Powered Comparator
   DAYLIGHT_DETECTOR: 
+    scroll:
+    sound: DIG_WOOD
     names:
     data:
     name: Daylight Detector 
   REDSTONE_BLOCK: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Redstone Block
   QUARTZ_ORE: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Nether Quartz Ore
   HOPPER: 
+    scroll: [0,1,2,3,4,5]
+    sound: DIG_STONE
     names:
     data:
       0: Output Down
@@ -2244,6 +2590,8 @@ blocks:
       15: No Output
     name: Hopper
   QUARTZ_BLOCK: 
+    scroll: [0,1,2,3,4,5,6,7,8,9]
+    sound: DIG_STONE
     names:
       smooth: 0
       chiseled: 1
@@ -2274,6 +2622,8 @@ blocks:
       9: Accent
     name: Marble
   QUARTZ_STAIRS: 
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: DIG_STONE
     names:
     data:
       0: Facing East
@@ -2294,6 +2644,8 @@ blocks:
       15: Inverted Facing North
     name: Quartz Stairs
   ACTIVATOR_RAIL: 
+    scroll: [0,1,2,3,4,5,8,9,10,11,12,13]
+    sound: DIG_WOOD
     names:
     data:
       0: N-S
@@ -2314,6 +2666,8 @@ blocks:
       15: Powered E-W
     name: Activator Rails
   DROPPER: 
+    scroll: [0,1,2,3,4,5]
+    sound: DIG_STONE
     names:
     data:
       0: Facing Down
@@ -2334,6 +2688,8 @@ blocks:
       15: DO NOT ACTIVATE
     name: Dropper
   STAINED_CLAY: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_STONE
     names:
       white: 0
       orange: 1
@@ -2372,6 +2728,8 @@ blocks:
       15: Black
     name: Stained Clay
   STAINED_GLASS_PANE:
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: GLASS
     names:
       white: 0
       orange: 1
@@ -2410,6 +2768,8 @@ blocks:
       15: Black
     name: Stained Glass Pane
   LEAVES_2: 
+    scroll: [4,5]
+    sound: DIG_GRASS
     names:
       acacia: 0
       darkoak: 1
@@ -2432,6 +2792,8 @@ blocks:
       15: Acacia  (Undying)
     name: Leaves 2
   LOG_2: 
+    scroll: [0,1,4,5,8,9,12,13]
+    sound: DIG_WOOD
     names:
       acacia: 0
       darkoak: 1
@@ -2454,6 +2816,8 @@ blocks:
       15: Dark Oak (Bark)
     name: Log 2
   ACACIA_STAIRS: 
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing East
@@ -2474,6 +2838,8 @@ blocks:
       15: Inverted Facing North
     name: Acacia Stairs
   DARK_OAK_STAIRS: 
+    scroll: [0,1,2,3,4,5,6,7]
+    sound: DIG_WOOD
     names:
     data:
       0: Facing East
@@ -2494,14 +2860,20 @@ blocks:
       15: Inverted Facing North
     name: Dark Oak Stairs
 #  SLIME_BLOCK:
+#    scroll:
+#    sound: DIG_GRAVEL
 #    names:
 #    data:
 #    name: Slime Block
 #  BARRIER:
+#    scroll:
+#    sound: DIG_STONE
 #    names:
 #    data:
 #    name: Barrier
 #  IRON_TRAPDOOR:
+#    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+#    sound: DIG_STONE
 #    names:
 #    data:
 #      0: Closed Facing North
@@ -2522,6 +2894,8 @@ blocks:
 #      15: Inverted Open Facing East
 #    name: Iron Trapdoor
 #  PRISMARINE:
+#    scroll: [0,1,2]
+#    sound: DIG_STONE
 #    names:
 #      plain: 0
 #      bricks: 1
@@ -2532,10 +2906,14 @@ blocks:
 #      2: Dark
 #    name: Prismarine
 #  SEA_LANTERN:
+#    scroll:
+#    sound: GLASS
 #    names:
 #    data:
 #    name: Sea Lantern
   HAY_BLOCK: 
+    scroll: [0,4,8,12]
+    sound: DIG_GRASS
     names:
     data:
       0: Up-Down
@@ -2556,6 +2934,8 @@ blocks:
       15: Directionless
     name: Hay Bale
   CARPET: 
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    sound: DIG_WOOL
     names:
       white: 0
       orange: 1
@@ -2594,18 +2974,26 @@ blocks:
       15: Black
     name: Carpet
   HARD_CLAY: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Hardened Clay
   COAL_BLOCK: 
+    scroll:
+    sound: DIG_STONE
     names:
     data:
     name: Coal Block
   PACKED_ICE: 
+    scroll:
+    sound: GLASS
     names:
     data:
     name: Packed Ice
   DOUBLE_PLANT:
+    scroll: [0,1,2,3,4,5]
+    sound: DIG_GRASS
     names:
       sunflower: 0
       lilac: 1
@@ -2625,446 +3013,1705 @@ blocks:
       4: Rose Bush
       5: Peony
     name: Double Tall Plant
+items:
+  IRON_SPADE: 
+    names: 
+    data: 
+    name: Iron Shovel
+  IRON_PICKAXE: 
+    names: 
+    data: 
+    name: Iron Pickaxe
+  IRON_AXE: 
+    names: 
+    data: 
+    name: Iron Axe
+  FLINT_AND_STEEL: 
+    names: 
+    data: 
+    name: Flint and Steel
+  APPLE: 
+    names: 
+    data: 
+    name: Apple
+  BOW: 
+    names: 
+    data: 
+    name: Bow
+  ARROW: 
+    names: 
+    data: 
+    name: Arrow
+  COAL: 
+    names: 
+      charcoal: 1
+    data: 
+      1: Charcoal
+    name: Coal
+  DIAMOND: 
+    names: 
+    data: 
+    name: Diamond
+  IRON_INGOT: 
+    names: 
+    data: 
+    name: Iron Ingot
+  GOLD_INGOT: 
+    names: 
+    data: 
+    name: Gold Ingot
+  IRON_SWORD: 
+    names: 
+    data: 
+    name: Iron Sword
+  WOOD_SWORD: 
+    names: 
+    data: 
+    name: Wooden Sword
+  WOOD_SPADE: 
+    names: 
+    data: 
+    name: Wooden Shovel
+  WOOD_PICKAXE: 
+    names: 
+    data: 
+    name: Wooden Pickaxe
+  WOOD_AXE: 
+    names: 
+    data: 
+    name: Wooden Axe
+  STONE_SWORD: 
+    names: 
+    data: 
+    name: Stone Sword
+  STONE_SPADE: 
+    names: 
+    data: 
+    name: Stone Shovel
+  STONE_PICKAXE: 
+    names: 
+    data: 
+    name: Stone Pickaxe
+  STONE_AXE: 
+    names: 
+    data: 
+    name: Stone Axe
+  DIAMOND_SWORD: 
+    names: 
+    data: 
+    name: Diamond Sword
+  DIAMOND_SPADE: 
+    names: 
+    data: 
+    name: Diamond Shovel
+  DIAMOND_PICKAXE: 
+    names: 
+    data: 
+    name: Diamond Pickaxe
+  DIAMOND_AXE: 
+    names: 
+    data: 
+    name: Diamond Axe
+  STICK: 
+    names: 
+    data: 
+    name: Stick
+  BOWL: 
+    names: 
+    data: 
+    name: Bowl
+  MUSHROOM_SOUP: 
+    names: 
+    data: 
+    name: Mushroom Soup
+  GOLD_SWORD: 
+    names: 
+    data: 
+    name: Golden Sword
+  GOLD_SPADE: 
+    names: 
+    data: 
+    name: Golden Shovel
+  GOLD_PICKAXE: 
+    names: 
+    data: 
+    name: Golden Pickaxe
+  GOLD_AXE: 
+    names: 
+    data: 
+    name: Golden Axe
+  STRING: 
+    names: 
+    data: 
+    name: String
+  FEATHER: 
+    names: 
+    data: 
+    name: Feather
+  SULPHUR: 
+    names: 
+    data: 
+    name: Gunpowder
+  WOOD_HOE: 
+    names: 
+    data: 
+    name: Wooden Hoe
+  STONE_HOE: 
+    names: 
+    data: 
+    name: Stone Hoe
+  IRON_HOE: 
+    names: 
+    data: 
+    name: Iron Hoe
+  DIAMOND_HOE: 
+    names: 
+    data: 
+    name: Diamond Hoe
+  GOLD_HOE: 
+    names: 
+    data: 
+    name: Golden Hoe
+  SEEDS: 
+    names: 
+    data: 
+    name: Seeds
+  WHEAT: 
+    names: 
+    data: 
+    name: Wheat
+  BREAD: 
+    names: 
+    data: 
+    name: Bread
+  LEATHER_HELMET: 
+    names: 
+    data: 
+    name: Leather Helmet
+  LEATHER_CHESTPLATE: 
+    names: 
+    data: 
+    name: Leather Chestplate
+  LEATHER_LEGGINGS: 
+    names: 
+    data: 
+    name: Leather Leggings
+  LEATHER_BOOTS: 
+    names: 
+    data: 
+    name: Leather Boots
+  CHAINMAIL_HELMET: 
+    names: 
+    data: 
+    name: Chainmail Helmet
+  CHAINMAIL_CHESTPLATE: 
+    names: 
+    data: 
+    name: Chainmail Chestplate
+  CHAINMAIL_LEGGINGS: 
+    names: 
+    data: 
+    name: Chainmail Leggings
+  CHAINMAIL_BOOTS: 
+    names: 
+    data: 
+    name: Chainmail Boots
+  IRON_HELMET: 
+    names: 
+    data: 
+    name: Iron Helmet
+  IRON_CHESTPLATE: 
+    names: 
+    data: 
+    name: Iron Chestplate
+  IRON_LEGGINGS: 
+    names: 
+    data: 
+    name: Iron Leggings
+  IRON_BOOTS: 
+    names: 
+    data: 
+    name: Iron Boots
+  DIAMOND_HELMET: 
+    names: 
+    data: 
+    name: Diamond Helmet
+  DIAMOND_CHESTPLATE: 
+    names: 
+    data: 
+    name: Diamond Chestplate
+  DIAMOND_LEGGINGS: 
+    names: 
+    data: 
+    name: Diamond Leggings
+  DIAMOND_BOOTS: 
+    names: 
+    data: 
+    name: Diamond Boots
+  GOLD_HELMET: 
+    names: 
+    data: 
+    name: Golden Helmet
+  GOLD_CHESTPLATE: 
+    names: 
+    data: 
+    name: Golden Chestplate
+  GOLD_LEGGINGS: 
+    names: 
+    data: 
+    name: Golden Leggings
+  GOLD_BOOTS: 
+    names: 
+    data: 
+    name: Golden Boots
+  FLINT: 
+    names: 
+    data: 
+    name: Flint
+  PORK: 
+    names: 
+    data: 
+    name: Pork
+  GRILLED_PORK: 
+    names: 
+    data: 
+    name: Grilled Pork
+  PAINTING: 
+    names: 
+    data: 
+    name: Painting
+  GOLDEN_APPLE: 
+    names: 
+      enchanted: 1
+    data: 
+      1: Enchanted
+    name: Golden Apple
+  SIGN: 
+    names: 
+    data: 
+    name: Sign
+  WOOD_DOOR: 
+    names: 
+    data: 
+    name: Wooden Door
+  BUCKET: 
+    names: 
+    data: 
+    name: Bucket
+  WATER_BUCKET: 
+    names: 
+    data: 
+    name: Water Bucket
+  LAVA_BUCKET: 
+    names: 
+    data: 
+    name: Lava Bucket
+  MINECART: 
+    names: 
+    data: 
+    name: Minecart
+  SADDLE: 
+    names: 
+    data: 
+    name: Saddle
+  IRON_DOOR: 
+    names: 
+    data: 
+    name: Iron Door
+  REDSTONE: 
+    names: 
+    data: 
+    name: Redstone Dust
+  SNOW_BALL: 
+    names: 
+    data: 
+    name: Snowball
+  BOAT: 
+    names: 
+    data: 
+    name: Boat
+  LEATHER: 
+    names: 
+    data: 
+    name: Leather
+  MILK_BUCKET: 
+    names: 
+    data: 
+    name: Milk Bucket
+  CLAY_BRICK: 
+    names: 
+    data: 
+    name: Brick
+  CLAY_BALL: 
+    names: 
+    data: 
+    name: Clay Ball
+  SUGAR_CANE: 
+    names: 
+    data: 
+    name: Reeds
+  PAPER: 
+    names: 
+    data: 
+    name: Paper
+  BOOK: 
+    names: 
+    data: 
+    name: Book
+  SLIME_BALL: 
+    names: 
+    data: 
+    name: Slimeball
+  STORAGE_MINECART: 
+    names: 
+    data: 
+    name: Storage Cart
+  POWERED_MINECART: 
+    names: 
+    data: 
+    name: Powered Cart
+  EGG: 
+    names: 
+    data: 
+    name: Egg
+  COMPASS: 
+    names: 
+    data: 
+    name: Compass
+  FISHING_ROD: 
+    names: 
+    data: 
+    name: Fishing Rod
+  WATCH: 
+    names: 
+    data: 
+    name: Watch
+  GLOWSTONE_DUST: 
+    names: 
+    data: 
+    name: Glowstone Dust
+  RAW_FISH: 
+    names: 
+      salmon: 1
+      clown: 2
+      clownfish: 2
+      puffer: 3
+      pufferfish: 3
+    data: 
+      1: Salmon
+      2: Clownfish
+      3: Pufferfish
+    name: Raw Fish
+  COOKED_FISH: 
+    names:
+      salmon: 1
+    data: 
+      1: Salmon
+    name: Cooked Fish
+  INK_SACK: 
+    names: 
+      squid: 0
+      inksack: 0
+      inksac: 0
+      ink: 0
+      black: 0
+      red: 1
+      rosered: 1
+      rose: 1
+      green: 2
+      cactus: 2
+      cactusgreen: 2
+      cocobeans: 3
+      cocoabeans: 3
+      cocobrown: 3
+      cocoabrown: 3
+      cocoabeanbrown: 3
+      cocobeanbrown: 3
+      brown: 3
+      cocoabean: 3
+      cocobean: 3
+      lapis: 4
+      blue: 4
+      lapislazuli: 4
+      lapisblue: 4
+      purple: 5
+      cyan: 6
+      lightgray: 7
+      lightgrey: 7
+      gray: 8
+      grey: 8
+      pink: 9
+      lime: 10
+      yellow: 11
+      dandelionyellow: 11
+      dandelion: 11
+      floweryellow: 11
+      lightblue: 12
+      magenta: 13
+      orange: 14
+      white: 15
+      bonemeal: 15
+      bone: 15
+      bonemealwhite: 15
+    data: 
+      0: Ink Sack Black
+      1: Rose Red
+      2: Cactus Green
+      3: Cocoa Bean Brown
+      4: Lapis Lazuli Blue
+      5: Purple
+      6: Cyan
+      7: Light Grey
+      8: Grey
+      9: Pink
+      10: Lime
+      11: Dandelion Yellow
+      12: Light Blue
+      13: Magenta
+      14: Orange
+      15: Bonemeal White
+    name: Dye
+  BONE: 
+    names: 
+    data: 
+    name: Bone
+  SUGAR: 
+    names: 
+    data: 
+    name: Sugar
+  CAKE: 
+    names: 
+    data: 
+    name: Cake
+  BED: 
+    names: 
+    data: 
+    name: Bed
+  DIODE: 
+    names: 
+    data: 
+    name: Repeater
+  COOKIE: 
+    names: 
+    data: 
+    name: Cookie
+  MAP: 
+    names: 
+    data: 
+    name: Map
+  SHEARS: 
+    names: 
+    data: 
+    name: Shears
+  MELON: 
+    names: 
+    data: 
+    name: Melon
+  PUMPKIN_SEEDS: 
+    names: 
+    data: 
+    name: Pumpkin Seeds
+  MELON_SEEDS: 
+    names: 
+    data: 
+    name: Melon Seeds
+  RAW_BEEF: 
+    names: 
+    data: 
+    name: Raw Beef
+  COOKED_BEEF: 
+    names: 
+    data: 
+    name: Steak
+  RAW_CHICKEN: 
+    names: 
+    data: 
+    name: Raw Chicken
+  COOKED_CHICKEN: 
+    names: 
+    data: 
+    name: Fried Chicken
+  ROTTEN_FLESH: 
+    names: 
+    data: 
+    name: Rotten Flesh
+  ENDER_PEARL: 
+    names: 
+    data: 
+    name: Ender Pearl
+  BLAZE_ROD: 
+    names: 
+    data: 
+    name: Blaze Rod
+  GHAST_TEAR: 
+    names: 
+    data: 
+    name: Ghast Tear
+  GOLD_NUGGET: 
+    names: 
+    data: 
+    name: Gold Nugget
+  NETHER_STALK: 
+    names: 
+    data: 
+    name: Nether Berry
+  POTION: 
+    names: 
+    data: 
+    name: Potion
+  GLASS_BOTTLE: 
+    names: 
+    data: 
+    name: Glass Bottle
+  SPIDER_EYE: 
+    names: 
+    data: 
+    name: Spider Eye
+  FERMENTED_SPIDER_EYE: 
+    names: 
+    data: 
+    name: Fermented Spider Eye
+  BLAZE_POWDER: 
+    names: 
+    data: 
+    name: Blaze Powder
+  MAGMA_CREAM: 
+    names: 
+    data: 
+    name: Magma Cream
+  BREWING_STAND_ITEM: 
+    names: 
+    data: 
+    name: Brewing Stand
+  CAULDRON_ITEM: 
+    names: 
+    data: 
+    name: Cauldron
+  EYE_OF_ENDER: 
+    names: 
+    data: 
+    name: Ender Eye
+  SPECKLED_MELON: 
+    names: 
+    data: 
+    name: Glistering Melon
+  MONSTER_EGG: 
+    names: 
+    data: 
+    name: Spawn Egg
+  EXP_BOTTLE: 
+    names: 
+    data: 
+    name: Bottle O' Enchanting
+  FIREBALL: 
+    names: 
+    data: 
+    name: Fire Charge
+  BOOK_AND_QUILL: 
+    names: 
+    data: 
+    name: Book and Quill
+  WRITTEN_BOOK: 
+    names: 
+    data: 
+    name: Written Book
+  EMERALD: 
+    names: 
+      tool: 1
+    data: 
+      1: Tool
+    name: Emerald
+  ITEM_FRAME: 
+    names: 
+    data: 
+    name: Item Frame
+  FLOWER_POT_ITEM: 
+    names: 
+    data: 
+    name: Flower Pot
+  CARROT_ITEM: 
+    names: 
+    data: 
+    name: Carrot
+  POTATO_ITEM: 
+    names: 
+    data: 
+    name: Potato
+  BAKED_POTATO: 
+    names: 
+    data: 
+    name: Baked Potato
+  POISONOUS_POTATO: 
+    names: 
+    data: 
+    name: Poisonous Potato
+  EMPTY_MAP: 
+    names: 
+    data: 
+    name: Empty Map
+  GOLDEN_CARROT: 
+    names: 
+    data: 
+    name: Golden Carrot
+  SKULL_ITEM: 
+    names: 
+      skeleton: 0
+      wither: 1
+      witherskeleton: 1
+      zombie: 2
+      human: 3
+      player: 3
+      creeper: 4
+    data: 
+      0: Skeleton
+      1: Wither Skeleton
+      2: Zombie
+      3: Human
+      4: Creeper
+    name: Head
+  CARROT_STICK: 
+    names: 
+    data: 
+    name: Carrot on a Stick
+  NETHER_STAR: 
+    names: 
+    data: 
+    name: Nether Star
+  PUMPKIN_PIE: 
+    names: 
+    data: 
+    name: Pumpkin Pie
+  FIREWORK: 
+    names: 
+    data: 
+    name: Firework Rocket
+  FIREWORK_CHARGE: 
+    names: 
+    data: 
+    name: Firework Charge
+  ENCHANTED_BOOK: 
+    names: 
+    data: 
+    name: Enchanted Book
+  REDSTONE_COMPARATOR: 
+    names: 
+    data: 
+    name: Comparator
+  NETHER_BRICK_ITEM: 
+    names: 
+    data: 
+    name: Nether Brick
+  QUARTZ: 
+    names: 
+    data: 
+    name: Nether Quartz
+  EXPLOSIVE_MINECART: 
+    names: 
+    data: 
+    name: TNT Cart
+  HOPPER_MINECART: 
+    names: 
+    data: 
+    name: Hopper Cart
+#  PRISMARINE_SHARD:
+#    names:
+#    data:
+#    name: Prismarine Shard
+#  PRISMARINE_CRYSTALS:
+#    names:
+#    data:
+#    name: Prismarine Crystals
+#  RAW_RABBIT:
+#    names:
+#    data:
+#    name: Raw Rabbit
+#  COOKED_RABBIT:
+#    names:
+#    data:
+#    name: Cooked Rabbit
+#  RABBIT_STEW:
+#    names:
+#    data:
+#    name: Rabbit Stew
+#  RABBIT_FOOT:
+#    names:
+#    data:
+#    name: Rabbit's Foot
+#  RABBIT_HIDE:
+#    names:
+#    data:
+#    name: Rabbit Hide
+  IRON_BARDING: 
+    names: 
+    data: 
+    name: Iron Barding
+  GOLD_BARDING: 
+    names: 
+    data: 
+    name: Gold Barding
+  DIAMOND_BARDING: 
+    names: 
+    data: 
+    name: Diamond Barding
+  LEASH: 
+    names: 
+    data: 
+    name: Lead
+  NAME_TAG: 
+    names: 
+    data: 
+    name: Name Tag
+  COMMAND_MINECART:
+    names:
+    data:
+    name: Command Cart
+#  RAW_MUTTON:
+#    names:
+#    data:
+#    name: Raw Mutton
+#  COOKED_MUTTON:
+#    names:
+#    data:
+#    name: Cooked Mutton
 lookup:
-  air: 0
-  stone: 1
-  grass: 2
-  dirt: 3
-  cobblestone: 4
-  cobble: 4
-  wood: 5
-  planks: 5
-  plank: 5
-  sapling: 6
-  bedrock: 7
-  adminium: 7
-  water: 8
-  flowingwater: 8
-  watersource: 9
-  sourcewater: 9
-  stationarywater: 9
-  lava: 10
-  flowinglava: 10
-  lavasource: 11
-  sourcelava: 11
-  stationarylava: 11
-  sand: 12
-  gravel: 13
-  goldore: 14
-  oregold: 14
-  ironore: 15
-  oreiron: 15
-  coalore: 16
-  orecoal: 16
-  log: 17
-  leaves: 18
-  sponge: 19
-  glass: 20
-  lapisore: 21
-  orelapis: 21
-  lapislazuliore: 21
-  orelapislazuli: 21
-  lapisblock: 22
-  lapislazuliblock: 22
-  dispenser: 23
-  sandstone: 24
-  noteblock: 25
-  bedblock: 26
-  poweredrail: 27
-  powerrail: 27
-  poweredrails: 27
-  powerrails: 27
-  boostrail: 27
-  boostrails: 27
-  detectorrail: 28
-  detectorrails: 28
-  pistonstickybase: 29
-  stickypiston: 29
-  stickypistonbase: 29
-  pistonsticky: 29
-  web: 30
-  spiderweb: 30
-  longgrass: 31
-  tallgrass: 31
-  deadbush: 32
-  pistonbase: 33
-  piston: 33
-  pistonextension: 34
-  wool: 35
-  cloth: 35
-  pistonmovingpiece: 36
-  yellowflower: 37
-  dandelion: 37
-  redrose: 38
-  peony: 38
-  flower: 38
-  flowers: 38
-  brownmushroom: 39
-  redmushroom: 40
-  goldblock: 41
-  blockgold: 42
-  blockofgold: 42
-  ironblock: 42
-  blockiron: 42
-  blockofiron: 42
-  doublestep: 43
-  doubleslab: 43
-  step: 44
-  slab: 43
-  brick: 45
-  bricks: 45
-  tnt: 46
-  explosives: 46
-  tntbarrel: 46
-  explosivebarrel: 46
-  boom: 46
-  bookshelf: 47
-  shelf: 47
-  mossycobblestone: 48
-  mossycobble: 48
-  obsidian: 49
-  torch: 50
-  fire: 51
-  flame: 51
-  flames: 51
-  mobspawner: 52
-  cage: 52
-  mobcage: 52
-  spawner: 52
-  woodstairs: 53
-  woodenstairs: 53
-  woodstair: 53
-  woodenstair: 53
-  chest: 54
-  redstonewire: 55
-  diamondore: 56
-  orediamond: 56
-  diamondblock: 57
-  blockdiamond: 57
-  blockofdiamond: 57
-  workbench: 58
-  craftingtable: 58
-  craftingbench: 58
-  worktable: 58
-  crops: 59
-  soil: 60
-  farmland: 60
-  tilledsoil: 60
-  tilleddirt: 60
-  tilledland: 60
-  furnace: 61
-  burningfurnace: 62
-  litfurnace: 62
-  signpost: 63
-  woodendoor: 64
-  ladder: 65
-  rails: 66
-  cobblestonestairs: 67
-  wallsign: 68
-  lever: 69
-  stoneplate: 70
-  irondoorblock: 71
-  woodplate: 72
-  redstoneore: 73
-  glowingredstoneore: 74
-  redstonetorchoff: 75
-  redstonetorchon: 76
-  stonebutton: 77
-  snow: 78
-  ice: 79
-  snowblock: 80
-  cactus: 81
-  clay: 82
-  sugarcaneblock: 83
-  jukebox: 84
-  fence: 85
-  pumpkin: 86
-  netherrack: 87
-  soulsand: 88
-  glowstone: 89
-  portal: 90
-  jackolantern: 91
-  cakeblock: 92
-  diodeblockoff: 93
-  diodeblockon: 94
-  stainedglass: 95
-  trapdoor: 96
-  monstereggs: 97
-  smoothbrick: 98
-  hugemushroom1: 99
-  hugemushroom2: 100
-  ironfence: 101
-  thinglass: 102
-  melonblock: 103
-  pumpkinstem: 104
-  melonstem: 105
-  vine: 106
-  fencegate: 107
-  brickstairs: 108
-  smoothstairs: 109
-  mycel: 110
-  waterlily: 111
-  netherbrick: 112
-  netherfence: 113
-  netherbrickstairs: 114
-  netherwarts: 115
-  enchantmenttable: 116
-  brewingstand: 117
-  cauldron: 118
-  enderportal: 119
-  enderportalframe: 120
-  enderstone: 121
-  dragonegg: 122
-  redstonelampoff: 123
-  redstonelampon: 124
-  wooddoublestep: 125
-  woodstep: 126
-  cocoa: 127
-  sandstonestairs: 128
-  emeraldore: 129
-  enderchest: 130
-  tripwirehook: 131
-  tripwire: 132
-  emeraldblock: 133
-  sprucewoodstairs: 134
-  birchwoodstairs: 135
-  junglewoodstairs: 136
-  command: 137
-  beacon: 138
-  cobblewall: 139
-  flowerpot: 140
-  carrot: 141
-  potato: 142
-  woodbutton: 143
-  skull: 144
-  anvil: 145
-  trappedchest: 146
-  goldplate: 147
-  ironplate: 148
-  redstonecomparatoroff: 149
-  redstonecomparatoron: 150
-  daylightdetector: 151
-  redstoneblock: 152
-  quartzore: 153
-  hopper: 154
-  quartzblock: 155
-  quartzstairs: 156
-  activatorrail: 157
-  dropper: 158
-  stainedclay: 159
-  stainedglasspane: 160
-  leaves2: 161
-  log2: 162
-  acaciastairs: 163
-  darkoakstairs: 164
-  hayblock: 170
-  carpet: 171
-  hardclay: 172
-  coalblock: 173
-  packedice: 174
-  doubleplant: 175
-  ironspade: 256
-  ironpickaxe: 257
-  ironaxe: 258
-  flintandsteel: 259
-  apple: 260
-  bow: 261
-  arrow: 262
-  coal: 263
-  charcoal: 263 1
-  diamond: 264
-  ironingot: 265
-  goldingot: 266
-  ironsword: 267
-  woodsword: 268
-  woodspade: 269
-  woodpickaxe: 270
-  woodaxe: 271
-  stonesword: 272
-  stonespade: 273
-  stonepickaxe: 274
-  stoneaxe: 275
-  diamondsword: 276
-  diamondspade: 277
-  diamondpickaxe: 278
-  diamondaxe: 279
-  stick: 280
-  bowl: 281
-  mushroomsoup: 282
-  goldsword: 283
-  goldspade: 284
-  goldpickaxe: 285
-  goldaxe: 286
-  string: 287
-  feather: 288
-  sulphur: 289
-  woodhoe: 290
-  stonehoe: 291
-  ironhoe: 292
-  diamondhoe: 293
-  goldhoe: 294
-  seeds: 295
-  wheat: 296
-  bread: 297
-  leatherhelmet: 298
-  leatherchestplate: 299
-  leatherleggings: 300
-  leatherboots: 301
-  chainmailhelmet: 302
-  chainmailchestplate: 303
-  chainmailleggings: 304
-  chainmailboots: 305
-  ironhelmet: 306
-  ironchestplate: 307
-  ironleggings: 308
-  ironboots: 309
-  diamondhelmet: 310
-  diamondchestplate: 311
-  diamondleggings: 312
-  diamondboots: 313
-  goldhelmet: 314
-  goldchestplate: 315
-  goldleggings: 316
-  goldboots: 317
-  flint: 318
-  pork: 319
-  grilledpork: 320
-  painting: 321
-  goldenapple: 322
-  enchantedgoldenapple: 322 1
-  sign: 323
-  wooddoor: 324
-  bucket: 325
-  waterbucket: 326
-  lavabucket: 327
-  minecart: 328
-  saddle: 329
-  irondoor: 330
-  redstone: 331
-  snowball: 332
-  boat: 333
-  leather: 334
-  milkbucket: 335
-  claybrick: 336
-  clayball: 337
-  sugarcane: 338
-  paper: 339
-  book: 340
-  slimeball: 341
-  storageminecart: 342
-  poweredminecart: 343
-  egg: 344
-  compass: 345
-  fishingrod: 346
-  watch: 347
-  glowstonedust: 348
-  rawfish: 349
-  rawsalmon: 349 1
-  clownfish: 349 2
-  pufferfish: 349 3
-  cookedfish: 350
-  cookedsalmon: 350 1
-  inksack: 351
-  rosered: 351 1
-  cactusgreen: 351 2
-  cocoabeans: 351 3
-  lapislazuli: 351 4
-  purpledye: 351 5
-  cyandye: 351 6
-  lightgreydye: 351 7
-  greydye: 351 8
-  pinkdye: 351 9
-  limedye: 351 10
-  dandelionyellow: 351 11
-  lightbluedye: 351 12
-  magentadye: 351 13
-  orangedye: 351 14
-  bonemeal: 351 15
-  bone: 352
-  sugar: 353
-  cake: 354
-  bed: 355
-  diode: 356
-  cookie: 357
-  map: 358
-  shears: 359
-  melon: 360
-  pumpkinseeds: 361
-  melonseeds: 362
-  rawbeef: 363
-  cookedbeef: 364
-  rawchicken: 365
-  cookedchicken: 366
-  rottenflesh: 367
-  enderpearl: 368
-  blazerod: 369
-  ghasttear: 370
-  goldnugget: 371
-  netherstalk: 372
-  potion: 373
-  glassbottle: 374
-  spidereye: 375
-  fermentedspidereye: 376
-  blazepowder: 377
-  magmacream: 378
-  brewingstanditem: 379
-  cauldronitem: 380
-  eyeofender: 381
-  speckledmelon: 382
-  monsteregg: 383
-  expbottle: 384
-  fireball: 385
-  bookandquill: 386
-  writtenbook: 387
-  emerald: 388
-  itemframe: 389
-  flowerpotitem: 390
-  carrotitem: 391
-  potatoitem: 392
-  bakedpotato: 393
-  poisonouspotato: 394
-  emptymap: 395
-  goldencarrot: 396
-  skullitem: 397
-  skullwitherskeleton: 397 1
-  skullzombie: 397 2
-  skullhuman: 397 3
-  skullcreeper: 397 4
-  carrotstick: 398
-  netherstar: 399
-  pumpkinpie: 400
-  firework: 401
-  fireworkcharge: 402
-  enchantedbook: 403
-  redstonecomparator: 404
-  netherbrickitem: 405
-  quartz: 406
-  explosiveminecart: 407
-  hopperminecart: 408
-#  prismarineshard: 409
-#  prismarinecrystals: 410
-#  rawrabbit: 411
-#  cookedrabbit: 412
-#  rabbitstew: 413
-#  rabbitfoot: 414
-#  rabbithide: 415
-  ironbarding: 417
-  goldbarding: 418
-  diamondbarding: 419
-  leash: 420
-  nametag: 421
-  commandminecart: 422
-#  rawmutton: 423
-#  cookedmutton: 424
-  13disk: 2256
-  catdisk: 2257
-  blocksdisk: 2258
-  chirpdisk: 2259
-  fardisk: 2260
-  malldisk: 2261
-  mellohidisk: 2262
-  staldisk: 2263
-  straddisk: 2264
-  warddisk: 2265
-  11disk: 2266
-  waitdisk: 2267
+  air: AIR
+  stone: STONE
+  grass: GRASS
+  dirt: DIRT
+  cobblestone: COBBLESTONE
+  cobble: COBBLESTONE
+  wood: WOOD
+  planks: WOOD
+  plank: WOOD
+  sapling: SAPLING
+  bedrock: BEDROCK
+  adminium: BEDROCK
+  water: WATER
+  flowingwater: WATER
+  watersource: STATIONARY_WATER
+  sourcewater: STATIONARY_WATER
+  stationarywater: STATIONARY_WATER
+  lava: LAVA
+  flowinglava: LAVA
+  lavasource: STATIONARY_LAVA
+  sourcelava: STATIONARY_LAVA
+  stationarylava: STATIONARY_LAVA
+  sand: SAND
+  gravel: GRAVEL
+  goldore: GOLD_ORE
+  oregold: GOLD_ORE
+  ironore: IRON_ORE
+  oreiron: IRON_ORE
+  coalore: COAL_ORE
+  orecoal: COAL_ORE
+  log: LOG
+  leaves: LEAVES
+  sponge: SPONGE
+  glass: GLASS
+  lapisore: LAPIS_ORE
+  orelapis: LAPIS_ORE
+  lapislazuliore: LAPIS_ORE
+  orelapislazuli: LAPIS_ORE
+  lapisblock: LAPIS_BLOCK
+  lapislazuliblock: LAPIS_BLOCK
+  dispenser: DISPENSER
+  sandstone: SANDSTONE
+  noteblock: NOTE_BLOCK
+  bedblock: BED_BLOCK
+  poweredrail: POWERED_RAIL
+  powerrail: POWERED_RAIL
+  poweredrails: POWERED_RAIL
+  powerrails: POWERED_RAIL
+  boostrail: POWERED_RAIL
+  boostrails: POWERED_RAIL
+  detectorrail: DETECTOR_RAIL
+  detectorrails: DETECTOR_RAIL
+  pistonstickybase: PISTON_STICKY_BASE
+  stickypiston: PISTON_STICKY_BASE
+  stickypistonbase: PISTON_STICKY_BASE
+  pistonsticky: PISTON_STICKY_BASE
+  web: WEB
+  spiderweb: WEB
+  longgrass: LONG_GRASS
+  tallgrass: LONG_GRASS
+  deadbush: DEAD_BUSH
+  pistonbase: PISTON_BASE
+  piston: PISTON_BASE
+  pistonextension: PISTON_EXTENSION
+  wool: WOOL
+  cloth: WOOL
+  pistonmovingpiece: PISTON_MOVING_PIECE
+  yellowflower: YELLOW_FLOWER
+  dandelion: YELLOW_FLOWER
+  redrose: RED_ROSE
+  peony: RED_ROSE
+  flower: RED_ROSE
+  flowers: RED_ROSE
+  brownmushroom: BROWN_MUSHROOM
+  redmushroom: RED_MUSHROOM
+  goldblock: GOLD_BLOCK
+  blockgold: GOLD_BLOCK
+  blockofgold: GOLD_BLOCK
+  ironblock: IRON_BLOCK
+  blockiron: IRON_BLOCK
+  blockofiron: IRON_BLOCK
+  doublestep: DOUBLE_STEP
+  doubleslab: DOUBLE_STEP
+  step: STEP
+  slab: STEP
+  brick: BRICK
+  bricks: BRICK
+  tnt: TNT
+  explosives: TNT
+  tntbarrel: TNT
+  explosivebarrel: TNT
+  boom: TNT
+  bookshelf: BOOKSHELF
+  shelf: BOOKSHELF
+  mossycobblestone: MOSSY_COBBLESTONE
+  mossycobble: MOSSY_COBBLESTONE
+  obsidian: OBSIDIAN
+  torch: TORCH
+  fire: FIRE
+  flame: FIRE
+  flames: FIRE
+  mobspawner: MOB_SPAWNER
+  cage: MOB_SPAWNER
+  mobcage: MOB_SPAWNER
+  spawner: MOB_SPAWNER
+  woodstairs: WOOD_STAIRS
+  woodenstairs: WOOD_STAIRS
+  woodstair: WOOD_STAIRS
+  woodenstair: WOOD_STAIRS
+  oakwoodstairs: WOOD_STAIRS
+  plankstairs: WOOD_STAIRS
+  plankstair: WOOD_STAIRS
+  oakwoodstair: WOOD_STAIRS
+  oakstairs: WOOD_STAIRS
+  oakstair: WOOD_STAIRS
+  oakplankstairs: WOOD_STAIRS
+  oakplankstair: WOOD_STAIRS
+  stairs: WOOD_STAIRS
+  stair: WOOD_STAIRS
+  chest: CHEST
+  redstonewire: REDSTONE_WIRE
+  diamondore: DIAMOND_ORE
+  orediamond: DIAMOND_ORE
+  diamondblock: DIAMOND_BLOCK
+  blockdiamond: DIAMOND_BLOCK
+  blockofdiamond: DIAMOND_BLOCK
+  workbench: WORKBENCH
+  craftingtable: WORKBENCH
+  craftingbench: WORKBENCH
+  worktable: WORKBENCH
+  crops: CROPS
+  soil: SOIL
+  farmland: SOIL
+  tilledsoil: SOIL
+  tilleddirt: SOIL
+  tilledland: SOIL
+  furnace: FURNACE
+  burningfurnace: BURNING_FURNACE
+  litfurnace: BURNING_FURNACE
+  signpost: SIGN_POST
+  woodendoorblock: WOODEN_DOOR
+  wooddoorblock: WOODEN_DOOR
+  doorblock: WOODEN_DOOR
+  ladder: LADDER
+  rails: RAILS
+  rail: RAILS
+  cobblestonestairs: COBBLESTONE_STAIRS
+  cobblestairs: COBBLESTONE_STAIRS
+  wallsign: WALL_SIGN
+  lever: LEVER
+  stoneplate: STONE_PLATE
+  stonepressureplate: STONE_PLATE
+  pressureplate: STONE_PLATE
+  plate: STONE_PLATE
+  irondoorblock: IRON_DOOR_BLOCK
+  woodplate: WOOD_PLATE
+  woodenplate: WOOD_PLATE
+  woodenpressureplate: WOOD_PLATE
+  woodpressureplate: WOOD_PLATE
+  redstoneore: REDSTONE_ORE
+  glowingredstoneore: GLOWING_REDSTONE_ORE
+  litredstoneore: GLOWING_REDSTONE_ORE
+  lightredstoneore: GLOWING_REDSTONE_ORE
+  redstonetorchoff: REDSTONE_TORCH_OFF
+  redstonetorch: REDSTONE_TORCH_ON
+  redstonetorchon: REDSTONE_TORCH_ON
+  stonebutton: STONE_BUTTON
+  button: STONE_BUTTON
+  snow: SNOW
+  thinsnow: SNOW
+  ice: ICE
+  fullsnow: SNOW_BLOCK
+  snowblock: SNOW_BLOCK
+  cactus: CACTUS
+  clay: CLAY
+  sugarcaneblock: SUGAR_CANE_BLOCK
+  bambooblock: SUGAR_CANE_BLOCK
+  reedblock: SUGAR_CANE_BLOCK
+  jukebox: JUKEBOX
+  musicplayer: JUKEBOX
+  musicbox: JUKEBOX
+  fence: FENCE
+  woodfence: FENCE
+  woodenfence: FENCE
+  pumpkin: PUMPKIN
+  netherrack: NETHERRACK
+  netherrock: NETHERRACK
+  netherstone: NETHERRACK
+  soulsand: SOUL_SAND
+  muck: SOUL_SAND
+  nethersand: SOUL_SAND
+  nethermuck: SOUL_SAND
+  sludge: SOUL_SAND
+  nethersludge: SOUL_SAND
+  glowstone: GLOWSTONE
+  lightstone: GLOWSTONE
+  portal: PORTAL
+  netherportal: PORTAL
+  jackolantern: JACK_O_LANTERN
+  monitoron: JACK_O_LANTERN
+  litmonitor: JACK_O_LANTERN
+  computeron: JACK_O_LANTERN
+  litcomputer: JACK_O_LANTERN
+  screenon: JACK_O_LANTERN
+  litscreen: JACK_O_LANTERN
+  litpumpkin: JACK_O_LANTERN
+  cakeblock: CAKE_BLOCK
+  diodeblockoff: DIODE_BLOCK_OFF
+  diode: DIODE_BLOCK_OFF
+  repeater: DIODE_BLOCK_OFF
+  redstonerepeater: DIODE_BLOCK_OFF
+  diodeblockon: DIODE_BLOCK_ON
+  repeateron: DIODE_BLOCK_ON
+  redstonerepeateron: DIODE_BLOCK_ON
+  stainedglass: STAINED_GLASS
+  coloredglass: STAINED_GLASS
+  colouredglass: STAINED_GLASS
+  trapdoor: TRAPDOOR
+  hatch: TRAPDOOR
+  monstereggs: MONSTER_EGGS
+  silverfish: MONSTER_EGGS
+  silverfishblock: MONSTER_EGGS
+  silverfishstone: MONSTER_EGGS
+  silverfishbrick: MONSTER_EGGS
+  monsterstone: MONSTER_EGGS
+  smoothbrick: SMOOTH_BRICK
+  stonebrick: SMOOTH_BRICK
+  smoothbricks: SMOOTH_BRICK
+  stonebricks: SMOOTH_BRICK
+  hugemushroom1: HUGE_MUSHROOM_1
+  brownmushroomblock: HUGE_MUSHROOM_1
+  brownhugemushroom: HUGE_MUSHROOM_1
+  hugemushroombrown: HUGE_MUSHROOM_1
+  mushroomblockbrown: HUGE_MUSHROOM_1
+  hugebrownmushroom: HUGE_MUSHROOM_1
+  hugemushroom2: HUGE_MUSHROOM_2
+  redmushroomblock: HUGE_MUSHROOM_2
+  redhugemushroom: HUGE_MUSHROOM_2
+  hugemushroomred: HUGE_MUSHROOM_2
+  mushroomblockred: HUGE_MUSHROOM_2
+  hugeredmushroom: HUGE_MUSHROOM_2
+  ironfence: IRON_FENCE
+  ironbars: IRON_FENCE
+  metalfence: IRON_FENCE
+  metalbars: IRON_FENCE
+  thinglass: THIN_GLASS
+  glasspane: THIN_GLASS
+  melonblock: MELON_BLOCK
+  fullmelon: MELON_BLOCK
+  pumpkinstem: PUMPKIN_STEM
+  melonstem: MELON_STEM
+  vine: VINE
+  vines: VINE
+  fencegate: FENCE_GATE
+  brickstairs: BRICK_STAIRS
+  brickstair: BRICK_STAIRS
+  smoothstairs: SMOOTH_STAIRS
+  smoothbrickstairs: SMOOTH_STAIRS
+  stonebrickstairs: SMOOTH_STAIRS
+  stonestairs: SMOOTH_STAIRS
+  smoothstair: SMOOTH_STAIRS
+  smoothbrickstair: SMOOTH_STAIRS
+  stonebrickstair: SMOOTH_STAIRS
+  stonestair: SMOOTH_STAIRS
+  mycel: MYCEL
+  mycellium: MYCEL
+  mushroomgrass: MYCEL
+  graveldirt: MYCEL
+  gravellydirt: MYCEL
+  mushroomdirt: MYCEL
+  taintedsoil: MYCEL
+  waterlily: WATER_LILY
+  lily: WATER_LILY
+  netherbrick: NETHER_BRICK
+  netherbricks: NETHER_BRICK
+  netherfence: NETHER_FENCE
+  netherbrickstairs: NETHER_BRICK_STAIRS
+  netherbrickstair: NETHER_BRICK_STAIRS
+  netherwarts: NETHER_WARTS
+  netherberries: NETHER_WARTS
+  netherwartblock: NETHER_WARTS
+  enchantmenttable: ENCHANTMENT_TABLE
+  enchantingtable: ENCHANTMENT_TABLE
+  brewingstandblock: BREWING_STAND
+  potionstandblock: BREWING_STAND
+  cauldronblock: CAULDRON
+  enderportal: ENDER_PORTAL
+  endportal: ENDER_PORTAL
+  enderportalframe: ENDER_PORTAL_FRAME
+  endportalframe: ENDER_PORTAL_FRAME
+  enderstone: ENDER_STONE
+  endstone: ENDER_STONE
+  dragonegg: DRAGON_EGG
+  endegg: DRAGON_EGG
+  enddragonegg: DRAGON_EGG
+  redstonelampoff: REDSTONE_LAMP_OFF
+  redstonelamp: REDSTONE_LAMP_OFF
+  redstonelight: REDSTONE_LAMP_OFF
+  redstonelantern: REDSTONE_LAMP_OFF
+  redstonelampon: REDSTONE_LAMP_ON
+  litredstonelamp: REDSTONE_LAMP_ON
+  redstonelighton: REDSTONE_LAMP_ON
+  litredstonelight: REDSTONE_LAMP_ON
+  redstonelanternon: REDSTONE_LAMP_ON
+  litredstonelantern: REDSTONE_LAMP_ON
+  wooddoublestep: WOOD_DOUBLE_STEP
+  woodendoublestep: WOOD_DOUBLE_STEP
+  wooddoubleslab: WOOD_DOUBLE_STEP
+  woodendoubleslab: WOOD_DOUBLE_STEP
+  metalbeam: WOOD_DOUBLE_STEP
+  woodstep: WOOD_STEP
+  woodenstep: WOOD_STEP
+  woodslab: WOOD_STEP
+  woodenslab: WOOD_STEP
+  cocoa: COCOA
+  cocoapod: COCOA
+  sandstonestairs: SANDSTONE_STAIRS
+  sandstonestair: SANDSTONE_STAIRS
+  invisiblestairs: SANDSTONE_STAIRS
+  invisiblestair: SANDSTONE_STAIRS
+  emeraldore: EMERALD_ORE
+  enderchest: ENDER_CHEST
+  endchest: ENDER_CHEST
+  tripwirehook: TRIPWIRE_HOOK
+  hook: TRIPWIRE_HOOK
+  tripwire: TRIPWIRE
+  emeraldblock: EMERALD_BLOCK
+  blockofemerald: EMERALD_BLOCK
+  blockemerald: EMERALD_BLOCK
+  spruceplankstairs: SPRUCE_WOOD_STAIRS
+  sprucewoodstairs: SPRUCE_WOOD_STAIRS
+  sprucewoodstair: SPRUCE_WOOD_STAIRS
+  pinewoodstairs: SPRUCE_WOOD_STAIRS
+  pinewoodstair: SPRUCE_WOOD_STAIRS
+  sprucestairs: SPRUCE_WOOD_STAIRS
+  sprucestair: SPRUCE_WOOD_STAIRS
+  pinestairs: SPRUCE_WOOD_STAIRS
+  pinestair: SPRUCE_WOOD_STAIRS
+  spruceplankstair: SPRUCE_WOOD_STAIRS
+  pineplankstairs: SPRUCE_WOOD_STAIRS
+  pineplankstair: SPRUCE_WOOD_STAIRS
+  birchwoodstairs: BIRCH_WOOD_STAIRS
+  birchwoodstair: BIRCH_WOOD_STAIRS
+  birchstairs: BIRCH_WOOD_STAIRS
+  birchstair: BIRCH_WOOD_STAIRS
+  birchplankstairs: BIRCH_WOOD_STAIRS
+  birchplankstair: BIRCH_WOOD_STAIRS
+  junglewoodstairs: JUNGLE_WOOD_STAIRS
+  junglewoodstair: JUNGLE_WOOD_STAIRS
+  jungleplankstairs: JUNGLE_WOOD_STAIRS
+  jungleplankstair: JUNGLE_WOOD_STAIRS
+  junglestairs: JUNGLE_WOOD_STAIRS
+  junglestair: JUNGLE_WOOD_STAIRS
+  command: COMMAND
+  commandblock: COMMAND
+  beacon: BEACON
+  cobblewall: COBBLE_WALL
+  cobblestonewall: COBBLE_WALL
+  wall: COBBLE_WALL
+  stonewall: COBBLE_WALL
+  jackson: COBBLE_WALL
+  flowerpotblock: FLOWER_POT
+  potblock: FLOWER_POT
+  mugblock: FLOWER_POT
+  carrotcrops: CARROT
+  carrotblock: CARROT
+  carrots: CARROT
+  potatocrops: POTATO
+  potatoblock: POTATO
+  potatoes: POTATO
+  woodbutton: WOOD_BUTTON
+  woodenbutton: WOOD_BUTTON
+  skullblock: SKULL
+  headblock: SKULL
+  anvil: ANVIL
+  trappedchest: TRAPPED_CHEST
+  trapchest: TRAPPED_CHEST
+  goldplate: GOLD_PLATE
+  goldpressureplate: GOLD_PLATE
+  goldenplate: GOLD_PLATE
+  goldenpressureplate: GOLD_PLATE
+  ironplate: IRON_PLATE
+  ironpressureplate: IRON_PLATE
+  redstonecomparatoroff: REDSTONE_COMPARATOR_OFF
+  redstonecomparatorblock: REDSTONE_COMPARATOR_OFF
+  comparatorblock: REDSTONE_COMPARATOR_OFF
+  redstonecomparatoron: REDSTONE_COMPARATOR_ON
+  daylightdetector: DAYLIGHT_DETECTOR
+  lightdetector: DAYLIGHT_DETECTOR
+  redstoneblock: REDSTONE_BLOCK
+  blockofredstone: REDSTONE_BLOCK
+  blockredstone: REDSTONE_BLOCK
+  quartzore: QUARTZ_ORE
+  netherquartzore: QUARTZ_ORE
+  marbleore: QUARTZ_ORE
+  orequartz: QUARTZ_ORE
+  oremarble: QUARTZ_ORE
+  orenetherquartz: QUARTZ_ORE
+  hopper: HOPPER
+  quartzblock: QUARTZ_BLOCK
+  netherquartzblock: QUARTZ_BLOCK
+  blockofquartz: QUARTZ_BLOCK
+  blockquartz: QUARTZ_BLOCK
+  marble: QUARTZ_BLOCK
+  marbleblock: QUARTZ_BLOCK
+  blockofmarble: QUARTZ_BLOCK
+  blockmarble: QUARTZ_BLOCK
+  quartzstairs: QUARTZ_STAIRS
+  quartzstair: QUARTZ_STAIRS
+  netherquartzstairs: QUARTZ_STAIRS
+  netherquartzstair: QUARTZ_STAIRS
+  marblestairs: QUARTZ_STAIRS
+  marblestair: QUARTZ_STAIRS
+  activatorrail: ACTIVATOR_RAIL
+  dropper: DROPPER
+  stainedclay: STAINED_CLAY
+  coloredclay: STAINED_CLAY
+  colouredclay: STAINED_CLAY
+  stainedglasspane: STAINED_GLASS_PANE
+  stainedthinglass: STAINED_GLASS_PANE
+  coloredglasspane: STAINED_GLASS_PANE
+  colouredglasspane: STAINED_GLASS_PANE
+  coloredthinglass: STAINED_GLASS_PANE
+  colouredthinglass: STAINED_GLASS_PANE
+  leaves2: LEAVES_2
+  log2: LOG_2
+  acaciastairs: ACACIA_STAIRS
+  acaciastair: ACACIA_STAIRS
+  acaciawoodstairs: ACACIA_STAIRS
+  acaciaplankstairs: ACACIA_STAIRS
+  acaciawoodstair: ACACIA_STAIRS
+  acaciaplankstair: ACACIA_STAIRS
+  darkoakstairs: DARK_OAK_STAIRS
+  darkoakstair: DARK_OAK_STAIRS
+  darkoakwoodstairs: DARK_OAK_STAIRS
+  darkoakplankstairs: DARK_OAK_STAIRS
+  darkoakwoodstair: DARK_OAK_STAIRS
+  darkoakplankstair: DARK_OAK_STAIRS
+#  slimeblock: SLIME_BLOCK
+#  blockofslime: SLIME_BLOCK
+#  blockslime: SLIME_BLOCK
+#  barrier: BARRIER
+#  invisiblewall: BARRIER
+#  irontrapdoor: IRON_TRAPDOOR
+#  ironhatch: IRON_TRAPDOOR
+#  prismarine: PRISMARINE
+#  prismarineblock: PRISMARINE
+#  blockofprismarine: PRISMARINE
+#  blockprismarine: PRISMARINE
+#  sealantern: SEA_LANTERN
+#  waterlantern: SEA_LANTERN
+#  sealamp: SEA_LANTERN
+#  waterlamp: SEA_LANTERN
+  hayblock: HAY_BLOCK
+  hay: HAY_BLOCK
+  wheatblock: HAY_BLOCK
+  haybale: HAY_BLOCK
+  baleofhay: HAY_BLOCK
+  carpet: CARPET
+  hardclay: HARD_CLAY
+  hardenedclay: HARD_CLAY
+  coalblock: COAL_BLOCK
+  blockofcoal: COAL_BLOCK
+  blockcoal: COAL_BLOCK
+  packedice: PACKED_ICE
+  solidice: PACKED_ICE
+  compressedice: PACKED_ICE
+  opaqueice: PACKED_ICE
+  doubleplantblock: DOUBLE_PLANT
+  doublegrassblock: DOUBLE_PLANT
+  ironspade: IRON_SPADE
+  ironshovel: IRON_SPADE
+  ironpickaxe: IRON_PICKAXE
+  ironpick: IRON_PICKAXE
+  ironaxe: IRON_AXE
+  ironhatchet: IRON_AXE
+  flintandsteel: FLINT_AND_STEEL
+  flintandtinder: FLINT_AND_STEEL
+  flintandiron: FLINT_AND_STEEL
+  lighter: FLINT_AND_STEEL
+  apple: APPLE
+  redapple: APPLE
+  bow: BOW
+  arrow: ARROW
+  coal: COAL
+  diamond: DIAMOND
+  ironingot: IRON_INGOT
+  iron: IRON_INGOT
+  ironbar: IRON_INGOT
+  goldingot: GOLD_INGOT
+  goldbar: GOLD_INGOT
+  gold: GOLD_INGOT
+  ironsword: IRON_SWORD
+  woodsword: WOOD_SWORD
+  woodensword: WOOD_SWORD
+  woodspade: WOOD_SPADE
+  woodenspade: WOOD_SPADE
+  woodshovel: WOOD_SPADE
+  woodenspade: WOOD_SPADE
+  woodpickaxe: WOOD_PICKAXE
+  woodenpickaxe: WOOD_PICKAXE
+  woodpick: WOOD_PICKAXE
+  woodenpick: WOOD_PICKAXE
+  woodaxe: WOOD_AXE
+  woodenaxe: WOOD_AXE
+  woodhatchet: WOOD_AXE
+  woodenhatchet: WOOD_AXE
+  stonesword: STONE_SWORD
+  stonespade: STONE_SPADE
+  stoneshovel: STONE_SPADE
+  stonepickaxe: STONE_PICKAXE
+  stonepick: STONE_PICKAXE
+  stoneaxe: STONE_AXE
+  stonehatchet: STONE_AXE
+  diamondsword: DIAMOND_SWORD
+  diamondspade: DIAMOND_SPADE
+  diamondshovel: DIAMOND_SPADE
+  diamondpickaxe: DIAMOND_PICKAXE
+  diamondpick: DIAMOND_PICKAXE
+  diamondaxe: DIAMOND_AXE
+  diamondhatchet: DIAMOND_AXE
+  stick: STICK
+  bowl: BOWL
+  mushroomsoup: MUSHROOM_SOUP
+  mushroomstew: MUSHROOM_SOUP
+  goldsword: GOLD_SWORD
+  goldensword: GOLD_SWORD
+  goldspade: GOLD_SPADE
+  goldenshovel: GOLD_SPADE
+  goldshovel: GOLD_SPADE
+  goldenspade: GOLD_SPADE
+  goldpickaxe: GOLD_PICKAXE
+  goldpick: GOLD_PICKAXE
+  goldenpickaxe: GOLD_PICKAXE
+  goldenpick: GOLD_PICKAXE
+  goldaxe: GOLD_AXE
+  goldenaxe: GOLD_AXE
+  goldhatchet: GOLD_AXE
+  goldenhatchet: GOLD_AXE
+  string: STRING
+  silk: STRING
+  feather: FEATHER
+  sulphur: SULPHUR
+  sulfur: SULPHUR
+  gunpowder: SULPHUR
+  woodhoe: WOOD_HOE
+  woodenhoe: WOOD_HOE
+  stonehoe: STONE_HOE
+  ironhoe: IRON_HOE
+  diamondhoe: DIAMOND_HOE
+  goldhoe: GOLD_HOE
+  goldenhoe: GOLD_HOE
+  seeds: SEEDS
+  seed: SEEDS
+  wheatseeds: SEEDS
+  wheat: WHEAT
+  bread: BREAD
+  leatherhelmet: LEATHER_HELMET
+  leatherhelm: LEATHER_HELMET
+  leatherhat: LEATHER_HELMET
+  leatherchestplate: LEATHER_CHESTPLATE
+  leatherarmor: LEATHER_CHESTPLATE
+  leathervest: LEATHER_CHESTPLATE
+  leatherbreastplate: LEATHER_CHESTPLATE
+  leatherplate: LEATHER_CHESTPLATE
+  leatherbody: LEATHER_CHESTPLATE
+  leatherleggings: LEATHER_LEGGINGS
+  leatherpants: LEATHER_LEGGINGS
+  leatherbreeches: LEATHER_LEGGINGS
+  leatherlegs: LEATHER_LEGGINGS
+  leathergreaves: LEATHER_LEGGINGS
+  leatherstockings: LEATHER_LEGGINGS
+  leatherboots: LEATHER_BOOTS
+  leathershoes: LEATHER_BOOTS
+  leatherfeet: LEATHER_BOOTS
+  chainmailhelmet: CHAINMAIL_HELMET
+  chainmailhelm: CHAINMAIL_HELMET
+  chainmailhat: CHAINMAIL_HELMET
+  chainmailchestplate: CHAINMAIL_CHESTPLATE
+  chainmailarmor: CHAINMAIL_CHESTPLATE
+  chainmailvest: CHAINMAIL_CHESTPLATE
+  chainmailbreastplate: CHAINMAIL_CHESTPLATE
+  chainmailplate: CHAINMAIL_CHESTPLATE
+  chainmailbody: CHAINMAIL_CHESTPLATE
+  chainmailleggings: CHAINMAIL_LEGGINGS
+  chainmailpants: CHAINMAIL_LEGGINGS
+  chainmailbreeches: CHAINMAIL_LEGGINGS
+  chainmaillegs: CHAINMAIL_LEGGINGS
+  chainmailgreaves: CHAINMAIL_LEGGINGS
+  chainmailstockings: CHAINMAIL_LEGGINGS
+  chainmailboots: CHAINMAIL_BOOTS
+  chainmailshoes: CHAINMAIL_BOOTS
+  chainmailfeet: CHAINMAIL_BOOTS
+  ironhelmet: IRON_HELMET
+  ironhelm: IRON_HELMET
+  ironhat: IRON_HELMET
+  ironchestplate: IRON_CHESTPLATE
+  ironarmor: IRON_CHESTPLATE
+  ironvest: IRON_CHESTPLATE
+  ironbreastplate: IRON_CHESTPLATE
+  ironplate: IRON_CHESTPLATE
+  ironbody: IRON_CHESTPLATE
+  ironleggings: IRON_LEGGINGS
+  ironpants: IRON_LEGGINGS
+  ironbreeches: IRON_LEGGINGS
+  ironlegs: IRON_LEGGINGS
+  irongreaves: IRON_LEGGINGS
+  ironstockings: IRON_LEGGINGS
+  ironboots: IRON_BOOTS
+  ironshoes: IRON_BOOTS
+  ironfeet: IRON_BOOTS
+  diamondhelmet: DIAMOND_HELMET
+  diamondhelm: DIAMOND_HELMET
+  diamondhat: DIAMOND_HELMET
+  diamondchestplate: DIAMOND_CHESTPLATE
+  diamondarmor: DIAMOND_CHESTPLATE
+  diamondvest: DIAMOND_CHESTPLATE
+  diamondbreastplate: DIAMOND_CHESTPLATE
+  diamondplate: DIAMOND_CHESTPLATE
+  diamondbody: DIAMOND_CHESTPLATE
+  diamondleggings: DIAMOND_LEGGINGS
+  diamondpants: DIAMOND_LEGGINGS
+  diamondbreeches: DIAMOND_LEGGINGS
+  diamondlegs: DIAMOND_LEGGINGS
+  diamondgreaves: DIAMOND_LEGGINGS
+  diamondstockings: DIAMOND_LEGGINGS
+  diamondboots: DIAMOND_BOOTS
+  diamondshoes: DIAMOND_BOOTS
+  diamondfeet: DIAMOND_BOOTS
+  goldhelmet: GOLD_HELMET
+  goldhelm: GOLD_HELMET
+  goldhat: GOLD_HELMET
+  goldchestplate: GOLD_CHESTPLATE
+  goldarmor: GOLD_CHESTPLATE
+  goldvest: GOLD_CHESTPLATE
+  goldbreastplate: GOLD_CHESTPLATE
+  goldplate: GOLD_CHESTPLATE
+  goldbody: GOLD_CHESTPLATE
+  goldleggings: GOLD_LEGGINGS
+  goldpants: GOLD_LEGGINGS
+  goldbreeches: GOLD_LEGGINGS
+  goldlegs: GOLD_LEGGINGS
+  goldgreaves: GOLD_LEGGINGS
+  goldstockings: GOLD_LEGGINGS
+  goldboots: GOLD_BOOTS
+  goldshoes: GOLD_BOOTS
+  goldfeet: GOLD_BOOTS
+  flint: FLINT
+  pork: PORK
+  rawpork: PORK
+  rawporkchop: PORK
+  rawbacon: PORK
+  rawmeat: PORK
+  meat: PORK
+  grilledpork: GRILLED_PORK
+  cookedpork: GRILLED_PORK
+  cookedmeat: GRILLED_PORK
+  grilledmeat: GRILLED_PORK
+  cookedpig: GRILLED_PORK
+  bacon: GRILLED_PORK
+  cookedbacon: GRILLED_PORK
+  grilledbacon: GRILLED_PORK
+  painting: PAINTING
+  art: PAINTING
+  goldenapple: GOLDEN_APPLE
+  goldapple: GOLDEN_APPLE
+  sign: SIGN
+  woodsign: SIGN
+  woodensign: SIGN
+  wooddoor: WOOD_DOOR
+  woodendoor: WOOD_DOOR
+  door: WOOD_DOOR
+  bucket: BUCKET
+  pail: BUCKET
+  emptypail: BUCKET
+  emptybucket: BUCKET
+  waterbucket: WATER_BUCKET
+  waterpail: WATER_BUCKET
+  lavabucket: LAVA_BUCKET
+  lavapail: LAVA_BUCKET
+  minecart: MINECART
+  cart: MINECART
+  saddle: SADDLE
+  irondoor: IRON_DOOR
+  metaldoor: IRON_DOOR
+  redstone: REDSTONE
+  redstonedust: REDSTONE
+  snowball: SNOWBALL
+  boat: BOAT
+  woodenboat: BOAT
+  woodboat: BOAT
+  leather: LEATHER
+  cowhide: LEATHER
+  milkbucket: MILK_BUCKET
+  milkpail: MILK_BUCKET
+  claybrick: CLAY_BRICK
+  brickitem: CLAY_BRICK
+  singlebrick: CLAY_BRICK
+  clayball: CLAY_BALL
+  sugarcane: SUGAR_CANE
+  reed: SUGAR_CANE
+  bamboo: SUGAR_CANE
+  reeds: SUGAR_CANE
+  paper: PAPER
+  book: BOOK
+  slimeball: SLIME_BALL
+  slime: SLIME_BALL
+  storageminecart: STORAGE_MINECART
+  chestminecart: STORAGE_MINECART
+  chestcart: STORAGE_MINECART
+  storagecart: STORAGE_MINECART
+  poweredminecart: POWERED_MINECART
+  furnaceminecart: POWERED_MINECART
+  poweredcart: POWERED_MINECART
+  furnacecart: POWERED_MINECART
+  egg: EGG
+  compass: COMPASS
+  fishingrod: FISHING_ROD
+  fishingpole: FISHING_ROD
+  watch: WATCH
+  clock: WATCH
+  pocketwatch: WATCH
+  glowstonedust: GLOWSTONE_DUST
+  rawfish: RAW_FISH
+  fish: RAW_FISH
+  sushi: RAW_FISH
+  cookedfish: COOKED_FISH
+  inksack: INK_SACK
+  dye: INK_SACK
+  ink: INK_SACK
+  inksac: INK_SACK
+  bone: BONE
+  sugar: SUGAR
+  cake: CAKE
+  bed: BED
+  diode: DIODE
+  redstonerepeater: DIODE
+  repeater: DIODE
+  redstonediode: DIODE
+  delayer: DIODE
+  cookie: COOKIE
+  oreo: COOKIE
+  map: MAP
+  shears: SHEARS
+  scissors: SHEARS
+  melon: MELON
+  melonslice: MELON
+  pumpkinseeds: PUMPKIN_SEEDS
+  pumpkinseed: PUMPKIN_SEEDS
+  melonseeds: MELON_SEEDS
+  melonseed: MELON_SEEDS
+  rawbeef: RAW_BEEF
+  uncookedbeef: RAW_BEEF
+  beef: RAW_BEEF
+  uncookedsteak: RAW_BEEF
+  cookedbeef: COOKED_BEEF
+  steak: COOKED_BEEF
+  grilledbeef: COOKED_BEEF
+  rawchicken: RAW_CHICKEN
+  chicken: RAW_CHICKEN
+  cookedchicken: COOKED_CHICKEN
+  grilledchicken: COOKED_CHICKEN
+  friedchicken: COOKED_CHICKEN
+  rottenflesh: ROTTEN_FLESH
+  zombieflesh: ROTTEN_FLESH
+  zombiemeat: ROTTEN_FLESH
+  flesh: ROTTEN_FLESH
+  enderpearl: ENDER_PEARL
+  pearl: ENDER_PEARL
+  endpearl: ENDER_PEARL
+  blazerod: BLAZE_ROD
+  ghasttear: GHAST_TEAR
+  goldnugget: GOLD_NUGGET
+  netherstalk: NETHER_STALK
+  netherwart: NETHER_STALK
+  netherwartseed: NETHER_STALK
+  netherwartseeds: NETHER_STALK
+  netherberry: NETHER_STALK
+  potion: POTION
+  glassbottle: GLASS_BOTTLE
+  spidereye: SPIDER_EYE
+  fermentedspidereye: FERMENTED_SPIDER_EYE
+  fermentedeye: FERNENTED_SPIDER_EYE
+  blazepowder: BLAZE_POWDER
+  magmacream: MAGMA_CREAM
+  brewingstanditem: BREWING_STAND_ITEM
+  brewingstand: BREWING_STAND_ITEM
+  potionstand: BREWING_STAND_ITEM
+  cauldronitem: CAULDRON_ITEM
+  cauldron: CAULDRON_ITEM
+  eyeofender: EYE_OF_ENDER
+  endereye: EYE_OF_ENDER
+  speckledmelon: SPECKLED_MELON
+  glisteningmelon: SPECKLED_MELON
+  goldmelon: SPECKLED_MELON
+  goldenmelon: SPECKLED_MELON
+  glisteringmelon: SPECKLED_MELON
+  monsteregg: MONSTER_EGG
+  spawnegg: MONSTER_EGG
+  mobegg: MONSTER_EGG
+  mobspawnegg: MONSTER_EGG
+  expbottle: EXP_BOTTLE
+  bottleoenchanting: EXP_BOTTLE
+  bottleoenchantment: EXP_BOTTLE
+  experiencebottle: EXP_BOTTLE
+  exppotion: EXP_BOTTLE
+  fireball: FIREBALL
+  firecharge: FIREBALL
+  bookandquill: BOOK_AND_QUILL
+  writingbook: BOOK_AND_QUILL
+  quill: BOOK_AND_QUILL
+  writtenbook: WRITTEN_BOOK
+  emerald: EMERALD
+  emeraldingot: EMERALD
+  itemframe: ITEM_FRAME
+  frame: ITEM_FRAME
+  flowerpotitem: FLOWER_POT_ITEM
+  flowerpot: FLOWER_POT_ITEM
+  pot: FLOWER_POT_ITEM
+  plantpot: FLOWER_POT_ITEM
+  mug: FLOWER_POT_ITEM
+  carrotitem: CARROT_ITEM
+  carrot: CARROT_ITEM
+  potatoitem: POTATO_ITEM
+  potato: POTATO_ITEM
+  bakedpotato: BAKED_POTATO
+  cookedpotato: BAKED_POTATO
+  poisonouspotato: POISONOUS_POTATO
+  poisonpotato: POISONOUS_POTATO
+  emptymap: EMPTY_MAP
+  blankmap: EMPTY_MAP
+  goldencarrot: GOLDEN_CARROT
+  goldcarrot: GOLDEN_CARROT
+  skullitem: SKULL_ITEM
+  skull: SKULL_ITEM
+  head: SKULL_ITEM
+  headitem: SKULL_ITEM
+  carrotstick: CARROT_STICK
+  carrotonastick: CARROT_STICK
+  stickcarrot: CARROT_STICK
+  netherstar: NETHER_STAR
+  pumpkinpie: PUMPKIN_PIE
+  firework: FIREWORK
+  rocket: FIREWORK
+  fireworkrocket: FIREWORK
+  fireworkcharge: FIREWORK_CHARGE
+  fireworkstar: FIREWORK_CHARGE
+  enchantedbook: ENCHANTED_BOOK
+  spellbook: ENCHANTED_BOOK
+  tome: ENCHANTED_BOOK
+  enchantedtome: ENCHANTED_BOOK
+  redstonecomparator: REDSTONE_COMPARATOR
+  comparator: REDSTONE_COMPARATOR
+  capacitor: REDSTONE_COMPARATOR
+  netherbrickitem: NETHER_BRICK_ITEM
+  singlenetherbrick: NETHER_BRICK_ITEM
+  quartz: QUARTZ
+  netherquartz: QUARTZ
+  explosiveminecart: EXPLOSIVE_MINECART
+  tntminecart: EXPLOSIVE_MINECART
+  explosivecart: EXPLOSIVE_MINECART
+  tntcart: EXPLOSIVE_MINECART
+  hopperminecart: HOPPER_MINECART
+  hoppercart: HOPPER_MINECART
+#  prismarineshard: PRISMARINE_SHARD
+#  prismarinecrystals: PRISMARINE_CRYSTALS
+#  rawrabbit: RAW_RABBIT
+#  cookedrabbit: COOKED_RABBIT
+#  rabbitstew: RABBIT_STEW
+#  rabbitfoot: RABBIT_FOOT
+#  rabbithide: RABBIT_HIDE
+  ironbarding: IRON_BARDING
+  ironhorsearmor: IRON_BARDING
+  ironhorsearmour: IRON_BARDING
+  goldbarding: GOLD_BARDING
+  goldenbarding: GOLD_BARDING
+  goldhorsearmor: GOLD_BARDING
+  goldenhorsearmor: GOLD_BARDING
+  goldhorsearmour: GOLD_BARDING
+  goldenhorsearmour: GOLD_BARDING
+  diamondbarding: DIAMOND_BARDING
+  diamondhorsearmor: DIAMOND_BARDING
+  diamondhorsearmour: DIAMOND_BARDING
+  leash: LEASH
+  lead: LEASH
+  nametag: NAME_TAG
+  label: NAME_TAG
+  commandminecart: COMMAND_MINECART
+  commandcart: COMMAND_MINECART
+#  rawmutton: RAW_MUTTON
+#  cookedmutton: COOKED_MUTTON
+  13disk: GOLD_RECORD
+  disk13: GOLD_RECORD
+  record13: GOLD_RECORD
+  13record: GOLD_RECORD
+  catdisk: GREEN_RECORD
+  recordcat: GREEN_RECORD
+  catrecord: GREEN_RECORD
+  diskcat: GREEN_RECORD
+  blocksdisk: RECORD_3
+  diskblocks: RECORD_3
+  blocksrecord: RECORD_3
+  recordblocks: RECORD_3
+  chirpdisk: RECORD_4
+  diskchirp: RECORD_4
+  chirprecord: RECORD_4
+  recordchirp: RECORD_4
+  fardisk: RECORD_5
+  diskfar: RECORD_5
+  farrecord: RECORD_5
+  recordfar: RECORD_5
+  malldisk: RECORD_6
+  diskmall: RECORD_6
+  mallrecord: RECORD_6
+  recordmall: RECORD_6
+  mellohidisk: RECORD_7
+  diskmellohi: RECORD_7
+  mellohirecord: RECORD_7
+  recordmellohi: RECORD_7
+  staldisk: RECORD_8
+  diskstal: RECORD_8
+  stalrecord: RECORD_8
+  recordstal: RECORD_8
+  straddisk: RECORD_9
+  diskstrad: RECORD_9
+  stradrecord: RECORD_9
+  recordstrad: RECORD_9
+  warddisk: RECORD_10
+  diskward: RECORD_10
+  wardrecord: RECORD_10
+  recordward: RECORD_10
+  11disk: RECORD_11
+  disk11: RECORD_11
+  11record: RECORD_11
+  record11: RECORD_11
+  brokenrecord: RECORD_11
+  brokendisk: RECORD_11
+  waitdisk: RECORD_12
+  diskwait: RECORD_12
+  waitrecord: RECORD_12
+  recordwait: RECORD_12

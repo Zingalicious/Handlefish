@@ -1,15 +1,18 @@
 package us.zingalicio.handlefish.events;
 
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.commands.HandleMovement;
+import us.zingalicio.handlefish.flight.BuildMode;
 import us.zingalicio.handlefish.util.ChatUtil;
 
 public final class JoinListener implements Listener
@@ -72,6 +75,13 @@ public final class JoinListener implements Listener
 		else
 		{
 			HandleMovement.resetFlySpeed(null, player);
+		}
+		if(user.getOptionBoolean("buildmode", world.getName(), false))
+		{
+			BuildMode build = new BuildMode(player, plugin);
+			BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+			int task = scheduler.scheduleSyncRepeatingTask(plugin, build, 0, 1L);
+			build.setId(task);
 		}
 	}
 }

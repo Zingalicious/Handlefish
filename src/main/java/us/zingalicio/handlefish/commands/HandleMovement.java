@@ -38,14 +38,15 @@ public final class HandleMovement implements CommandExecutor
 					PermissionUser user = PermissionsEx.getUser((Player) sender);
 					if(user.getOptionBoolean("buildmode", ((Player) sender).getWorld().getName(), false))
 					{
-						user.setOption("buildmode", "true", ((Player) sender).getWorld().getName());
-						BuildMode build = new BuildMode((Player) sender, plugin);
-						BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-						scheduler.scheduleSyncRepeatingTask(plugin, build, 0, 1L);
+						user.setOption("buildmode", "false", ((Player) sender).getWorld().getName());
 					}
 					else
 					{
-						user.setOption("buildmode", "false", ((Player) sender).getWorld().getName());
+						user.setOption("buildmode", "true", ((Player) sender).getWorld().getName());
+						BuildMode build = new BuildMode((Player) sender, plugin);
+						BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+						int task = scheduler.scheduleSyncRepeatingTask(plugin, build, 0, 1L);
+						build.setId(task);
 					}
 				}
 				else

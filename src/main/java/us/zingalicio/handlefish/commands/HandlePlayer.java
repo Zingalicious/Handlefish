@@ -3,17 +3,20 @@ package us.zingalicio.handlefish.commands;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import us.zingalicio.handlefish.Handlefish;
+import us.zingalicio.handlefish.flight.BuildMode;
 import us.zingalicio.handlefish.util.MessageUtil;
 import us.zingalicio.handlefish.util.NumberUtil;
 
@@ -210,6 +213,21 @@ public class HandlePlayer implements CommandExecutor
 					else
 					{
 						HandleMovement.setFlight(sender, ((Player) sender), true);
+					}
+				}
+				else if(args[0].equalsIgnoreCase("buildmode"))
+				{
+					if(user.getOptionBoolean("buildmode", world.getName(), false))
+					{
+						user.setOption("buildmode", "false", ((Player) sender).getWorld().getName());
+					}
+					else
+					{
+						user.setOption("buildmode", "true", ((Player) sender).getWorld().getName());
+						BuildMode build = new BuildMode((Player) sender, plugin);
+						BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+						int task = scheduler.scheduleSyncRepeatingTask(plugin, build, 0, 1L);
+						build.setId(task);
 					}
 				}
 			}

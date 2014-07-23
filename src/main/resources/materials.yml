@@ -456,7 +456,7 @@ blocks:
     data:
     name: Dead Bush
   PISTON_BASE: 
-    scroll:[0,1,2,3,4,5,6,8,9,10,11,12,13]
+    scroll: [0,1,2,3,4,5,6,8,9,10,11,12,13]
     sound: DIG_WOOD
     names:
     data:
@@ -1605,7 +1605,7 @@ blocks:
       12: Colourful
     name: Stone Brick
   HUGE_MUSHROOM_1: 
-    scroll:[0,1,2,3,4,5,6,7,8,9,10,14,15]
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,14,15]
     sound: DIG_WOOD
     names:
       flesh: 0
@@ -1672,7 +1672,7 @@ blocks:
       15: All Stalk
     name: Brown Mushroom Block
   HUGE_MUSHROOM_2: 
-    scroll:[0,1,2,3,4,5,6,7,8,9,10,14,15]
+    scroll: [0,1,2,3,4,5,6,7,8,9,10,14,15]
     sound: DIG_WOOD
     names:
       flesh: 0

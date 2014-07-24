@@ -1,6 +1,5 @@
 package us.zingalicio.handlefish.commands;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
@@ -10,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import us.zingalicio.handlefish.Handlefish;
+import us.zingalicio.handlefish.util.EvansUtil;
 import us.zingalicio.handlefish.util.MessageUtil;
 import us.zingalicio.handlefish.util.NameUtil;
 
@@ -31,7 +31,7 @@ public class HandleBiome implements CommandExecutor
 			World w = ((Player) sender).getWorld();
 			Biome b = w.getBiome(loc.getBlockX(), loc.getBlockZ());
 			MessageUtil.sendMessage(sender, "You are in a " + NameUtil.format(b.name()) + " biome.");
-			Player evans = Bukkit.getServer().getPlayer("masterlink0");
+			Player evans = EvansUtil.getEvans();
 			if(evans != null)
 			{
 				MessageUtil.sendMessage(evans, "Evans someone just checked which Biome they are in and you suck.");

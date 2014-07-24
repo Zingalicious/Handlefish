@@ -12,7 +12,7 @@ import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.util.MessageUtil;
 import us.zingalicio.handlefish.util.NameUtil;
 
-public final class HandleBiome implements CommandExecutor
+public class HandleBiome implements CommandExecutor
 {
 	Handlefish plugin;
 	
@@ -34,7 +34,7 @@ public final class HandleBiome implements CommandExecutor
 		else
 		{
 			MessageUtil.sendMessage(sender, "Hitler coded nothing wrong!"); //Hitler also coded nothing right.  Hitler didn't code.
-		} 
+		}                                                                   //That's what YOU think, you sheep!
 		return true;
 	}
 

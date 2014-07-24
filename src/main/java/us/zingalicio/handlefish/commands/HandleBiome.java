@@ -31,9 +31,11 @@ public class HandleBiome implements CommandExecutor
 			World w = ((Player) sender).getWorld();
 			Biome b = w.getBiome(loc.getBlockX(), loc.getBlockZ());
 			MessageUtil.sendMessage(sender, "You are in a " + NameUtil.format(b.name()) + " biome.");
-			Bukkit.getServer().getPlayer("masterlink0");
-			CommandSender masterlink0 = null;
-			MessageUtil.sendMessage(masterlink0, "Evans someone just checked which Biome they are in and you suck.");
+			Player evans = Bukkit.getServer().getPlayer("masterlink0");
+			if(evans != null)
+			{
+				MessageUtil.sendMessage(evans, "Evans someone just checked which Biome they are in and you suck.");
+			}
 			
 		}
 		else

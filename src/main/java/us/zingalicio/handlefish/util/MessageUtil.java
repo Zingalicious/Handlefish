@@ -14,25 +14,17 @@ public final class MessageUtil
 		int pages = s.size() / PAGE_LENGTH + (s.size() % PAGE_LENGTH == 0 ? 0 : 1);
 		if(pages == 0)
 		{
-			sendError(sender, "Nothing to see here, apparently...");
+			sender.sendMessage(ChatColor.RED + "Nothing to see here, apparently...");
 			return;
 		}
 		else if(p > pages)
 		{
-			if(pages == 1)
-			{
-				sendError(sender, "There's just the one page, brother.");
-				return;
-			}
-			sendError(sender, "There are only " + pages + " pages, brother.");
+			sender.sendMessage(ChatColor.RED + "There are only " + pages + " pages, brother.");
 			return;
 		}
-		if(pages > 1)
-		{
-			sender.sendMessage(ChatColor.GOLD + "========| " + ChatColor.WHITE + "Page " + ChatColor.YELLOW + "" + 
-					ChatColor.BOLD + p + ChatColor.WHITE + " of " + ChatColor.YELLOW + "" + ChatColor.BOLD + pages + 
-					ChatColor.GOLD + " |========");
-		}
+		sender.sendMessage(ChatColor.GOLD + "========| " + ChatColor.WHITE + "Page " + ChatColor.YELLOW + "" + 
+				ChatColor.BOLD + p + ChatColor.WHITE + " of " + ChatColor.YELLOW + "" + ChatColor.BOLD + pages + 
+				ChatColor.GOLD + " |========");
 		int c = 0;
 		while(c < PAGE_LENGTH)
 		{
@@ -47,14 +39,9 @@ public final class MessageUtil
 			c += 1;
 		}
 	}
-
+	
 	public static void sendMessage(CommandSender sender, String message)
 	{
 		sender.sendMessage(ChatColor.GOLD + "[Handlefish] " + ChatColor.YELLOW + message);
-	}
-	
-	public static void sendError(CommandSender sender, String message)
-	{
-		sender.sendMessage(ChatColor.DARK_RED + "[Handlefish] " + ChatColor.RED + message);
 	}
 }

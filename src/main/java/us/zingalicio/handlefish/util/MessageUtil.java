@@ -44,4 +44,8 @@ public final class MessageUtil
 	{
 		sender.sendMessage(ChatColor.GOLD + "[Handlefish] " + ChatColor.YELLOW + message);
 	}
+	public static void sendError(CommandSender sender, String message)
+	{
+		sender.sendMessage(ChatColor.DARK_RED + "[Handlefish] " + ChatColor.RED + message);
+	}
 }

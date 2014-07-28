@@ -64,7 +64,6 @@ public final class JoinListener implements Listener
 		}
 		if(!user.getOption("flyspeed", world.getName()).equals(""))
 		{
-			player.sendMessage("yes");
 			try
 			{
 				player.setFlySpeed(Float.parseFloat(user.getOption("flyspeed", world.getName())));

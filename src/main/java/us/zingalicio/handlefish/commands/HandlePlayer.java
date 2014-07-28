@@ -17,8 +17,8 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.flight.BuildMode;
-import us.zingalicio.handlefish.util.MessageUtil;
-import us.zingalicio.handlefish.util.NumberUtil;
+import us.zingalicio.zinglib.util.MessageUtil;
+import us.zingalicio.zinglib.util.NumberUtil;
 
 public class HandlePlayer implements CommandExecutor
 {

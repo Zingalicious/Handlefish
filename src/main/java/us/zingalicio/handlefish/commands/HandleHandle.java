@@ -10,9 +10,9 @@ import org.bukkit.material.MaterialData;
 import org.bukkit.plugin.PluginManager;
 
 import us.zingalicio.handlefish.Handlefish;
-import us.zingalicio.handlefish.configuration.ConfigHandler;
-import us.zingalicio.handlefish.util.NameUtil;
-import us.zingalicio.handlefish.util.MessageUtil;
+import us.zingalicio.zinglib.util.ConfigUtil;
+import us.zingalicio.zinglib.util.MessageUtil;
+import us.zingalicio.zinglib.util.NameUtil;
 
 public final class HandleHandle implements CommandExecutor
 {
@@ -30,9 +30,9 @@ public final class HandleHandle implements CommandExecutor
 		{
 			if(args[0].equalsIgnoreCase("reload"))
 			{
-				ConfigHandler.loadYaml(plugin.getHelp(), plugin.getHelpFile());
-				ConfigHandler.loadYaml(plugin.getConfig(), plugin.getConfigFile());
-				ConfigHandler.loadYaml(plugin.getMaterials(), plugin.getMaterialFile());
+				ConfigUtil.loadYaml(plugin.getHelp(), plugin.getHelpFile());
+				ConfigUtil.loadYaml(plugin.getConfig(), plugin.getConfigFile());
+				ConfigUtil.loadYaml(plugin.getMaterials(), plugin.getMaterialFile());
 				PluginManager pluginManager = Bukkit.getPluginManager();
 				pluginManager.disablePlugin(plugin);
 				pluginManager.enablePlugin(plugin);

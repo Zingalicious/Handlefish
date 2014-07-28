@@ -9,9 +9,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import us.zingalicio.handlefish.Handlefish;
-import us.zingalicio.handlefish.util.EvansUtil;
-import us.zingalicio.handlefish.util.MessageUtil;
-import us.zingalicio.handlefish.util.NameUtil;
+import us.zingalicio.zinglib.util.EvansUtil;
+import us.zingalicio.zinglib.util.MessageUtil;
+import us.zingalicio.zinglib.util.NameUtil;
 
 public class HandleBiome implements CommandExecutor
 {

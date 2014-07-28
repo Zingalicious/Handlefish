@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import us.zingalicio.handlefish.Handlefish;
-import us.zingalicio.handlefish.util.SoundUtil;
+import us.zingalicio.zinglib.util.SoundUtil;
 
 public final class BuildModeListener implements Listener
 {

@@ -10,9 +10,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import us.zingalicio.handlefish.Handlefish;
-import us.zingalicio.handlefish.util.MessageUtil;
-import us.zingalicio.handlefish.util.NumberUtil;
-import us.zingalicio.handlefish.util.PermissionsUtil;
+import us.zingalicio.zinglib.util.MessageUtil;
+import us.zingalicio.zinglib.util.NumberUtil;
+import us.zingalicio.zinglib.util.PermissionsUtil;
 
 public final class HandleHelp implements CommandExecutor
 {

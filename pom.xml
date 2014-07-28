@@ -24,15 +24,13 @@
             <name>Comphenix Repository</name>
             <url>http://repo.comphenix.net/content/groups/public</url>
         </repository>
+        <repository>
+        	<id>zingalicious-repo</id>
+        	<url>http://zingalicio.us/repo</url>
+        </repository>
     </repositories>
     
   <dependencies>
-  	<dependency>
-  		<groupId>org.bukkit</groupId>
-  		<artifactId>bukkit</artifactId>
-  		<version>1.7.2-R0.3</version>
-  		<scope>provided</scope>
-  	</dependency>
   	<dependency>
   		<groupId>ru.tehkode</groupId>
   		<artifactId>PermissionsEx</artifactId>
@@ -44,6 +42,11 @@
   		<artifactId>craftbukkit</artifactId>
   		<version>1.7.2-R0.3</version>
   		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>us.zingalicio</groupId>
+  		<artifactId>ZingLib</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
   </dependencies>
   

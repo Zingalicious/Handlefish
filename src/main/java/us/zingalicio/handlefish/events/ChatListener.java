@@ -5,7 +5,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import us.zingalicio.handlefish.Handlefish;
-import us.zingalicio.handlefish.util.ChatUtil;
+import us.zingalicio.zinglib.util.ChatUtil;
 
 public final class ChatListener implements Listener
 {

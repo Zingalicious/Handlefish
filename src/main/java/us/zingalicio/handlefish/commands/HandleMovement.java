@@ -12,8 +12,8 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.flight.BuildMode;
-import us.zingalicio.handlefish.util.MessageUtil;
-import us.zingalicio.handlefish.util.PermissionsUtil;
+import us.zingalicio.zinglib.util.MessageUtil;
+import us.zingalicio.zinglib.util.PermissionsUtil;
 
 public final class HandleMovement implements CommandExecutor
 {

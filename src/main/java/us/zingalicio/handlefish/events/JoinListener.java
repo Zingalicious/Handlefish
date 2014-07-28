@@ -13,7 +13,7 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.commands.HandleMovement;
 import us.zingalicio.handlefish.flight.BuildMode;
-import us.zingalicio.handlefish.util.ChatUtil;
+import us.zingalicio.zinglib.util.ChatUtil;
 
 public final class JoinListener implements Listener
 {

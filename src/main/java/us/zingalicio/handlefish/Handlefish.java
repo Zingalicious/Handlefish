@@ -28,12 +28,13 @@ import us.zingalicio.handlefish.commands.HandleTeleport;
 import us.zingalicio.handlefish.commands.HandleTime;
 import us.zingalicio.handlefish.commands.HandleWarp;
 import us.zingalicio.handlefish.commands.HandleWeather;
-import us.zingalicio.handlefish.configuration.ConfigHandler;
 import us.zingalicio.handlefish.events.BuildModeListener;
 import us.zingalicio.handlefish.events.ChatListener;
 import us.zingalicio.handlefish.events.JoinListener;
 import us.zingalicio.handlefish.persistence.HomeData;
 import us.zingalicio.handlefish.persistence.WarpData;
+import us.zingalicio.zinglib.plugin.ZingPlugin;
+import us.zingalicio.zinglib.util.ConfigUtil;
 
 public final class Handlefish extends ZingPlugin
 {	
@@ -55,37 +56,25 @@ public final class Handlefish extends ZingPlugin
 	private HandleTime handleTime;
 	private HandleWarp handleWarp;
 	private HandleWeather handleWeather;
-	private File configFile;
-	private final YamlConfiguration config;
 	private File helpFile;
 	private final YamlConfiguration help;
-	private File materialFile;
-	private final YamlConfiguration materials;
 	private ChatListener chatListener;
 	private JoinListener joinListener;
 	private BuildModeListener buildModeListener;
 	
 	public Handlefish()
 	{
+		super();
+		helpFile = new File(getDataFolder(), "help.yml");
 		help = new YamlConfiguration();
-		config = new YamlConfiguration();
-		materials = new YamlConfiguration();
+		
+		ConfigUtil.saveDefault(this, helpFile);
+		ConfigUtil.loadYaml(help, helpFile);
 	}
 	
 	@Override
 	public void onEnable()
 	{		
-		helpFile = new File(getDataFolder(), "help.yml");
-		configFile = new File(getDataFolder(), "config.yml");
-		materialFile = new File("plugins/common", "materials.yml");
-		ConfigHandler.saveDefault(this, helpFile);
-		ConfigHandler.saveDefault(this, configFile);
-		ConfigHandler.saveDefault(this, materialFile);
-		
-		ConfigHandler.loadYaml(help, helpFile);
-		ConfigHandler.loadYaml(config, configFile);
-		ConfigHandler.loadYaml(materials, materialFile);
-		
 		registerModules();
 		
 		registerCommands();
@@ -97,9 +86,9 @@ public final class Handlefish extends ZingPlugin
 	@Override
 	public void onDisable()
 	{
-		ConfigHandler.saveYaml(help, helpFile);
-		ConfigHandler.saveYaml(config, configFile);
-		ConfigHandler.saveYaml(materials, materialFile);
+		ConfigUtil.saveYaml(help, helpFile);
+		ConfigUtil.saveYaml(config, configFile);
+		ConfigUtil.saveYaml(materials, materialFile);
 	}
 	
 	private void registerModules()

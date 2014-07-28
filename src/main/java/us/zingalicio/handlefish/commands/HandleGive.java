@@ -7,10 +7,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import us.zingalicio.handlefish.Handlefish;
-import us.zingalicio.handlefish.util.ItemUtil;
-import us.zingalicio.handlefish.util.MessageUtil;
-import us.zingalicio.handlefish.util.NameUtil;
-import us.zingalicio.handlefish.util.NumberUtil;
+import us.zingalicio.zinglib.util.ItemUtil;
+import us.zingalicio.zinglib.util.MessageUtil;
+import us.zingalicio.zinglib.util.NameUtil;
+import us.zingalicio.zinglib.util.NumberUtil;
 
 public final class HandleGive implements CommandExecutor
 {
@@ -29,16 +29,20 @@ public final class HandleGive implements CommandExecutor
 			{
 				if(args.length == 1)
 				{
-					ItemStack item = ItemUtil.getItem(plugin, args[0]);
-					if(item != null)
+					if(sender.hasPermission("give"))
 					{
-						((Player) sender).getInventory().addItem(item);
-						MessageUtil.sendMessage(sender, "You've been given one " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + ".");
+						ItemStack item = ItemUtil.getItem(plugin, args[0]);
+						if(item != null)
+						{
+							((Player) sender).getInventory().addItem(item);
+							MessageUtil.sendMessage(sender, "You've been given one " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + ".");
+						}
+						else
+						{
+							MessageUtil.sendError(sender, "Invalid item!");
+						}
 					}
-					else
-					{
-						MessageUtil.sendError(sender, "Invalid item!");
-					}
+					return true;
 				}
 				if(args.length == 2)
 				{

@@ -81,20 +81,20 @@ public class HandlePlayer implements CommandExecutor
 						}
 						suffix = suffix.trim();
 						user.setSuffix(suffix, null);
-						MessageUtil.sendMessage(sender, "Suffix successfully set to '" + ChatColor.RESET + suffix + ChatColor.YELLOW + "'.");
+						MessageUtil.sendMessage(plugin, sender, "Suffix successfully set to '" + ChatColor.RESET + suffix + ChatColor.YELLOW + "'.");
 						return true;
 					}
 					else
 					{
 						String suffix = user.getSuffix();
-						MessageUtil.sendMessage(sender, "Your suffix is currently '" + ChatColor.RESET + suffix + ChatColor.YELLOW + "'.");
+						MessageUtil.sendMessage(plugin, sender, "Your suffix is currently '" + ChatColor.RESET + suffix + ChatColor.YELLOW + "'.");
 						return true;
 					}
 				}
 				else if(args[0].equalsIgnoreCase("clearsuffix"))
 				{
 					user.setSuffix(null, null);
-					MessageUtil.sendMessage(sender, "Suffix cleared.");
+					MessageUtil.sendMessage(plugin, sender, "Suffix cleared.");
 					return true;
 				}
 				else if(args[0].equalsIgnoreCase("prefix"))
@@ -116,20 +116,20 @@ public class HandlePlayer implements CommandExecutor
 						}
 						prefix = prefix.trim();
 						user.setPrefix(prefix, null);
-						MessageUtil.sendMessage(sender, "Prefix successfully set to '" + ChatColor.RESET + prefix + ChatColor.YELLOW + "'.");
+						MessageUtil.sendMessage(plugin, sender, "Prefix successfully set to '" + ChatColor.RESET + prefix + ChatColor.YELLOW + "'.");
 						return true;
 					}
 					else
 					{
 						String prefix = user.getPrefix();
-						MessageUtil.sendMessage(sender, "Your prefix is currently '" + ChatColor.RESET + prefix + ChatColor.YELLOW + "'.");
+						MessageUtil.sendMessage(plugin, sender, "Your prefix is currently '" + ChatColor.RESET + prefix + ChatColor.YELLOW + "'.");
 						return true;
 					}
 				}
 				else if(args[0].equalsIgnoreCase("clearprefix"))
 				{
 					user.setPrefix(null, null);
-					MessageUtil.sendMessage(sender, "Prefix cleared.");
+					MessageUtil.sendMessage(plugin, sender, "Prefix cleared.");
 					return true;
 				}
 				else if(args[0].equalsIgnoreCase("displayname"))
@@ -152,20 +152,20 @@ public class HandlePlayer implements CommandExecutor
 						displayName = displayName.trim();
 						user.setOption("displayname", displayName);
 						((Player) sender).setDisplayName(displayName);
-						MessageUtil.sendMessage(sender, "Display name successully set to '" + ChatColor.RESET + displayName + ChatColor.YELLOW + "'.");
+						MessageUtil.sendMessage(plugin, sender, "Display name successully set to '" + ChatColor.RESET + displayName + ChatColor.YELLOW + "'.");
 						return true;
 					}
 					else
 					{
 						String displayName = ((Player) sender).getDisplayName();
-						MessageUtil.sendMessage(sender, "Your display name is currently '" + ChatColor.RESET + displayName + ChatColor.YELLOW + "'.");
+						MessageUtil.sendMessage(plugin, sender, "Your display name is currently '" + ChatColor.RESET + displayName + ChatColor.YELLOW + "'.");
 						return true;
 					}
 				}
 				else if(args[0].equalsIgnoreCase("cleardisplayname"))
 				{
 					user.setOption("displayname", null);
-					MessageUtil.sendMessage(sender, "Display name cleared.");
+					MessageUtil.sendMessage(plugin, sender, "Display name cleared.");
 					return true;
 				}
 				else if(args[0].equalsIgnoreCase("flyspeed"))
@@ -174,17 +174,17 @@ public class HandlePlayer implements CommandExecutor
 					{
 						if(args[1].equalsIgnoreCase("reset") || args[1].equalsIgnoreCase("clear") || args[1].equalsIgnoreCase("default"))
 						{
-							HandleMovement.resetFlySpeed(sender, ((Player) sender));
+							HandleMovement.resetFlySpeed(plugin, sender, ((Player) sender));
 							return true;
 						}
 						Float speed = NumberUtil.getFloat(args[1]);
 						if(speed != null)
 						{
-							HandleMovement.setFlySpeed(sender, ((Player) sender), speed);
+							HandleMovement.setFlySpeed(plugin, sender, ((Player) sender), speed);
 							return true;
 						}
 					}
-					MessageUtil.sendMessage(sender, "Your flight speed is " + Float.toString(((Player) sender).getFlySpeed()) + ".");
+					MessageUtil.sendMessage(plugin, sender, "Your flight speed is " + Float.toString(((Player) sender).getFlySpeed()) + ".");
 				}
 				else if(args[0].equalsIgnoreCase("walkspeed"))
 				{
@@ -192,27 +192,27 @@ public class HandlePlayer implements CommandExecutor
 					{
 						if(args[1].equalsIgnoreCase("reset") || args[1].equalsIgnoreCase("clear") || args[1].equalsIgnoreCase("default"))
 						{
-							HandleMovement.resetWalkSpeed(sender, ((Player) sender));
+							HandleMovement.resetWalkSpeed(plugin, sender, ((Player) sender));
 							return true;
 						}
 						Float speed = NumberUtil.getFloat(args[1]);
 						if(speed != null)
 						{
-							HandleMovement.setWalkSpeed(sender, ((Player) sender), speed);
+							HandleMovement.setWalkSpeed(plugin, sender, ((Player) sender), speed);
 							return true;
 						}
 					}
-					MessageUtil.sendMessage(sender, "Your walk speed is " + Float.toString(((Player) sender).getWalkSpeed()) + ".");
+					MessageUtil.sendMessage(plugin, sender, "Your walk speed is " + Float.toString(((Player) sender).getWalkSpeed()) + ".");
 				}
 				else if(args[0].equalsIgnoreCase("flight"))
 				{
 					if(((Player) sender).getAllowFlight())
 					{
-						HandleMovement.setFlight(sender, ((Player) sender), false);
+						HandleMovement.setFlight(plugin, sender, ((Player) sender), false);
 					}
 					else
 					{
-						HandleMovement.setFlight(sender, ((Player) sender), true);
+						HandleMovement.setFlight(plugin, sender, ((Player) sender), true);
 					}
 				}
 				else if(args[0].equalsIgnoreCase("buildmode"))

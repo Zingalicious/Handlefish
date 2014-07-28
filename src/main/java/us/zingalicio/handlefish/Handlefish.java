@@ -65,6 +65,7 @@ public final class Handlefish extends ZingPlugin
 	public Handlefish()
 	{
 		super();
+		
 		helpFile = new File(getDataFolder(), "help.yml");
 		help = new YamlConfiguration();
 		

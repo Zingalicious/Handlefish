@@ -36,12 +36,12 @@ public final class HandleHandle implements CommandExecutor
 				PluginManager pluginManager = Bukkit.getPluginManager();
 				pluginManager.disablePlugin(plugin);
 				pluginManager.enablePlugin(plugin);
-				MessageUtil.sendMessage(sender, "Reloaded.");
+				MessageUtil.sendMessage(plugin, sender, "Reloaded.");
 				return true;
 			}
 			else if(args[0].equalsIgnoreCase("version"))
 			{
-				MessageUtil.sendMessage(sender, plugin.getDescription().getVersion());
+				MessageUtil.sendMessage(plugin, sender, plugin.getDescription().getVersion());
 				return true;
 			}
 			else if(args[0].equalsIgnoreCase("debug"))
@@ -56,7 +56,7 @@ public final class HandleHandle implements CommandExecutor
 						b.setTypeId(Integer.parseInt(args[1]));
 						b.setData(Byte.parseByte(args[2]));
 					}
-					MessageUtil.sendMessage(sender, 
+					MessageUtil.sendMessage(plugin, sender, 
 							NameUtil.getName(plugin, b.getType()) + 
 							(dataName != null ? ":" + dataName : ""));
 					return true;
@@ -69,7 +69,7 @@ public final class HandleHandle implements CommandExecutor
 		}
 		else if(command.getName().equalsIgnoreCase("ping"))
 		{
-			MessageUtil.sendMessage(sender, "Pong!");
+			MessageUtil.sendMessage(plugin, sender, "Pong!");
 			return true;
 		}
 		return false;

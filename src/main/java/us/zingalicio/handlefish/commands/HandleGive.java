@@ -35,11 +35,11 @@ public final class HandleGive implements CommandExecutor
 						if(item != null)
 						{
 							((Player) sender).getInventory().addItem(item);
-							MessageUtil.sendMessage(sender, "You've been given one " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + ".");
+							MessageUtil.sendMessage(plugin, sender, "You've been given one " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + ".");
 						}
 						else
 						{
-							MessageUtil.sendError(sender, "Invalid item!");
+							MessageUtil.sendError(plugin, sender, "Invalid item!");
 						}
 					}
 					return true;
@@ -52,16 +52,16 @@ public final class HandleGive implements CommandExecutor
 						if(NumberUtil.getInt(args[1]) != null)
 						{
 							int extra = ItemUtil.giveMany(item, (Player) sender, NumberUtil.getInt(args[1]));
-							MessageUtil.sendMessage(sender, "You've been given " + (Integer.parseInt(args[1]) - extra) + " " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + "(s).");
+							MessageUtil.sendMessage(plugin, sender, "You've been given " + (Integer.parseInt(args[1]) - extra) + " " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + "(s).");
 						}
 						else
 						{
-							MessageUtil.sendError(sender, "Invalid amount!");
+							MessageUtil.sendError(plugin, sender, "Invalid amount!");
 						}
 					}
 					else
 					{
-						MessageUtil.sendError(sender, "Invalid item!");
+						MessageUtil.sendError(plugin, sender, "Invalid item!");
 					}
 				}
 			}

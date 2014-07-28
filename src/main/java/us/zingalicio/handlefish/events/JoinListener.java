@@ -43,7 +43,7 @@ public final class JoinListener implements Listener
 		}
 		if(user.getOptionBoolean("flight", world.getName(), false))
 		{
-			HandleMovement.setFlight(null, player, true);
+			HandleMovement.setFlight(plugin, null, player, true);
 		}
 		if(user.getOptionBoolean("god", world.getName(), false))
 		{
@@ -60,7 +60,7 @@ public final class JoinListener implements Listener
 		}
 		else
 		{
-			HandleMovement.resetWalkSpeed(null, player);
+			HandleMovement.resetWalkSpeed(plugin, null, player);
 		}
 		if(!user.getOption("flyspeed", world.getName()).equals(""))
 		{
@@ -74,7 +74,7 @@ public final class JoinListener implements Listener
 		}
 		else
 		{
-			HandleMovement.resetFlySpeed(null, player);
+			HandleMovement.resetFlySpeed(plugin,  null, player);
 		}
 		if(user.getOptionBoolean("buildmode.enabled", world.getName(), false))
 		{

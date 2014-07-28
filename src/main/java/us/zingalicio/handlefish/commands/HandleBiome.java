@@ -30,17 +30,17 @@ public class HandleBiome implements CommandExecutor
 			Location loc = ((Player) sender).getLocation();
 			World w = ((Player) sender).getWorld();
 			Biome b = w.getBiome(loc.getBlockX(), loc.getBlockZ());
-			MessageUtil.sendMessage(sender, "You are in a " + NameUtil.format(b.name()) + " biome.");
+			MessageUtil.sendMessage(plugin, sender, "You are in a " + NameUtil.format(b.name()) + " biome.");
 			Player evans = EvansUtil.getEvans();
 			if(evans != null)
 			{
-				MessageUtil.sendMessage(evans, "Evans someone just checked which Biome they are in and you suck.");
+				MessageUtil.sendMessage(plugin, evans, "Evans someone just checked which Biome they are in and you suck.");
 			}
 			
 		}
 		else
 		{
-			MessageUtil.sendMessage(sender, "Hitler coded nothing wrong!"); //Hitler also coded nothing right.  Hitler didn't code.
+			MessageUtil.sendError(plugin, sender, "Hitler coded nothing wrong!"); //Hitler also coded nothing right.  Hitler didn't code.
 		}                                                                   //That's what YOU think, you sheep!
 		return true;
 	}

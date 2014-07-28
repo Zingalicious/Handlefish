@@ -70,7 +70,7 @@ public final class HandleHelp implements CommandExecutor
 		}
 		else
 		{
-			MessageUtil.sendMessage(sender, "No such topic, friend.");
+			MessageUtil.sendMessage(plugin, sender, "No such topic, friend.");
 		}
 		return false;
 	}

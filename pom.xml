@@ -10,25 +10,30 @@
   	<name>Zingalicious</name>
   	<url>http://zingalicio.us</url>
   </organization>
-    <repositories>
-        <repository>
-            <id>bukkit-repo</id>
-            <url>http://repo.bukkit.org/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>pex-repo</id>
-            <url>http://pex-repo.zachsthings.com</url>
-        </repository>
-        <repository>
-            <id>comphenix-rep</id>
-            <name>Comphenix Repository</name>
-            <url>http://repo.comphenix.net/content/groups/public</url>
-        </repository>
-        <repository>
-        	<id>zingalicious-repo</id>
-        	<url>http://zingalicio.us/repo</url>
-        </repository>
-    </repositories>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <repositories>
+      <repository>
+          <id>bukkit-repo</id>
+          <url>http://repo.bukkit.org/content/groups/public</url>
+      </repository>
+      <repository>
+          <id>pex-repo</id>
+          <url>http://pex-repo.zachsthings.com</url>
+      </repository>
+      <repository>
+          <id>comphenix-rep</id>
+          <name>Comphenix Repository</name>
+          <url>http://repo.comphenix.net/content/groups/public</url>
+      </repository>
+      <repository>
+      	<id>zingalicious-repo</id>
+      	<url>http://zingalicio.us/repo</url>
+      </repository>
+  </repositories>
     
   <dependencies>
   	<dependency>
@@ -92,7 +97,8 @@
                             <minimizeJar>false</minimizeJar>
                             <artifactSet>
                                 <excludes>
-                                    <exclude>org.bukkit:bukkit</exclude>
+                                    <exclude>org.bukkit:craftbukkit</exclude>
+                                    <exclude>ru.tehkode:PermissionsEx</exclude>
                                 </excludes>
                             </artifactSet>
                         </configuration>

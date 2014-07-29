@@ -34,7 +34,7 @@ public final class HandleHelp implements CommandExecutor
 			{
 				for(String s: help.getConfigurationSection("listed." + key).getKeys(false))
 				{
-					if(PermissionsUtil.silentCheckPermission(sender, "help." + s))
+					if(PermissionsUtil.checkPermission(sender, "help." + s, true))
 					{
 						topics.add("/help " + s + ": " + ChatColor.WHITE + help.getString("listed." + key + "." + s));
 					}
@@ -50,7 +50,7 @@ public final class HandleHelp implements CommandExecutor
 			{
 				for(String s: help.getConfigurationSection("listed." + key).getKeys(false))
 				{
-					if(PermissionsUtil.silentCheckPermission(sender, "help." + s))
+					if(PermissionsUtil.checkPermission(sender, "help." + s, true))
 					{
 						topics.add("/help " + s + ": " + ChatColor.WHITE + help.getString("listed." + key + "." + s));
 					}

@@ -71,7 +71,7 @@ public final class HandleMovement implements CommandExecutor
 		}
 		else
 		{
-			if(PermissionsUtil.checkPermission(sender, "movement.flight"))
+			if(PermissionsUtil.checkPermission(sender, "movement.flight", false))
 			{
 				user.setOption("flight", b + "", player.getWorld().getName());
 				player.setAllowFlight(b);
@@ -92,7 +92,7 @@ public final class HandleMovement implements CommandExecutor
 	public static void setWalkSpeed(Handlefish plugin, CommandSender sender, Player player, Float speed)
 	{
 		PermissionUser user = PermissionsEx.getUser(player);
-		if(PermissionsUtil.checkPermission(sender, "movement.walkspeed"))
+		if(PermissionsUtil.checkPermission(sender, "movement.walkspeed", false))
 		{
 			if(-1 <= speed && speed <= 1)
 			{
@@ -127,7 +127,7 @@ public final class HandleMovement implements CommandExecutor
 			player.setWalkSpeed(DEFAULT_WALK_SPEED);
 			return;
 		}
-		if(PermissionsUtil.checkPermission(sender, "movement.walkspeed"))
+		if(PermissionsUtil.checkPermission(sender, "movement.walkspeed", false))
 		{
 			if(sender == player)
 			{
@@ -144,7 +144,7 @@ public final class HandleMovement implements CommandExecutor
 	public static void setFlySpeed(Handlefish plugin, CommandSender sender, Player player, Float speed)
 	{
 		PermissionUser user = PermissionsEx.getUser(player);
-		if(PermissionsUtil.checkPermission(sender, "movement.flyspeed"))
+		if(PermissionsUtil.checkPermission(sender, "movement.flyspeed", false))
 		{
 			if(-1 <= speed && speed <= 1)
 			{
@@ -179,7 +179,7 @@ public final class HandleMovement implements CommandExecutor
 			player.setFlySpeed(DEFAULT_FLY_SPEED);
 			return;
 		}
-		if(PermissionsUtil.checkPermission(sender, "movement.flyspeed"))
+		if(PermissionsUtil.checkPermission(sender, "movement.flyspeed", false))
 		{
 			user.setOption("flyspeed", null, player.getWorld().getName());
 			player.setFlySpeed(DEFAULT_FLY_SPEED);

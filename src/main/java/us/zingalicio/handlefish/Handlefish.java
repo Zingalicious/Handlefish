@@ -12,7 +12,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import us.zingalicio.handlefish.commands.HandleBan;
 import us.zingalicio.handlefish.commands.HandleBiome;
-import us.zingalicio.handlefish.commands.HandleChat;
 import us.zingalicio.handlefish.commands.HandleMovement;
 import us.zingalicio.handlefish.commands.HandleGive;
 import us.zingalicio.handlefish.commands.HandleHandle;
@@ -29,7 +28,6 @@ import us.zingalicio.handlefish.commands.HandleTime;
 import us.zingalicio.handlefish.commands.HandleWarp;
 import us.zingalicio.handlefish.commands.HandleWeather;
 import us.zingalicio.handlefish.events.BuildModeListener;
-import us.zingalicio.handlefish.events.ChatListener;
 import us.zingalicio.handlefish.events.JoinListener;
 import us.zingalicio.handlefish.persistence.HomeData;
 import us.zingalicio.handlefish.persistence.WarpData;
@@ -40,7 +38,6 @@ public final class Handlefish extends ZingPlugin
 {	
 	private HandleBan handleBan;
 	private HandleBiome handleBiome;
-	private HandleChat handleChat;
 	private HandleGive handleGive;
 	private HandleHandle handleHandle;
 	private HandleHead handleHead;
@@ -58,7 +55,6 @@ public final class Handlefish extends ZingPlugin
 	private HandleWeather handleWeather;
 	private File helpFile;
 	private final YamlConfiguration help;
-	private ChatListener chatListener;
 	private JoinListener joinListener;
 	private BuildModeListener buildModeListener;
 	
@@ -96,7 +92,6 @@ public final class Handlefish extends ZingPlugin
 	{
 		this.handleBan = new HandleBan(this);
 		this.handleBiome = new HandleBiome(this);
-		this.handleChat = new HandleChat(this);
 		this.handleMovement = new HandleMovement(this);
 		this.handleGive = new HandleGive(this);
 		this.handleHandle = new HandleHandle(this);
@@ -120,11 +115,6 @@ public final class Handlefish extends ZingPlugin
 		getCommand("ipban").setExecutor(handleBan);
 		getCommand("ipunban").setExecutor(handleBan);
 		getCommand("biome").setExecutor(handleBiome);
-		getCommand("message").setExecutor(handleChat);
-		getCommand("reply").setExecutor(handleChat);
-		getCommand("broadcast").setExecutor(handleChat);
-		getCommand("say").setExecutor(handleChat);
-		getCommand("sayas").setExecutor(handleChat);
 		getCommand("item").setExecutor(handleGive);
 		getCommand("give").setExecutor(handleGive);
 		getCommand("more").setExecutor(handleGive);
@@ -182,10 +172,8 @@ public final class Handlefish extends ZingPlugin
 	
 	private void registerListeners()
 	{
-		chatListener = new ChatListener(this);
 		joinListener = new JoinListener(this);
 		buildModeListener = new BuildModeListener(this);
-		getServer().getPluginManager().registerEvents(chatListener, this);
 		getServer().getPluginManager().registerEvents(joinListener, this);
 		getServer().getPluginManager().registerEvents(buildModeListener, this);
 	}

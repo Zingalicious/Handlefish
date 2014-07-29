@@ -11,13 +11,6 @@ commands:
   ipban:
   ipunban:
   biome:
-  message:
-    aliases: msg
-  reply:
-    aliases: r
-  broadcast:
-  say:
-  sayas:
   buildmode:
     aliases: [build, bm]
   fly:

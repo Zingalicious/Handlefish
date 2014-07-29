@@ -13,7 +13,6 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.commands.HandleMovement;
 import us.zingalicio.handlefish.flight.BuildMode;
-import us.zingalicio.zinglib.util.ChatUtil;
 
 public final class JoinListener implements Listener
 {
@@ -29,18 +28,6 @@ public final class JoinListener implements Listener
 		Player player = e.getPlayer();
 		PermissionUser user = PermissionsEx.getUser(player);
 		World world = e.getPlayer().getWorld();
-		if(!user.getOption("displayname").equals(""))
-		{
-			player.setDisplayName(user.getOption("displayname"));
-		}
-		if(!user.getOption("joinmessage").equals(""))
-		{
-			e.setJoinMessage(ChatUtil.formatMessage(e.getPlayer(), user.getOption("displayname")));
-		}
-		else
-		{
-			user.setOption("joinmessage", "&6%player &6has entered the fringe.");
-		}
 		if(user.getOptionBoolean("flight", world.getName(), false))
 		{
 			HandleMovement.setFlight(plugin, null, player, true);

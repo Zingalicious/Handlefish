@@ -1,2 +1,0 @@
-chat:
-  format: "%prefix%player%suffix %message"

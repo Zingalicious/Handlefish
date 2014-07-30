@@ -71,7 +71,7 @@ public final class HandleMovement implements CommandExecutor
 		}
 		else
 		{
-			if(PermissionsUtil.checkPermission(sender, "movement.flight", false))
+			if(PermissionsUtil.checkPermission(sender, "handlefish.movement.flight", false))
 			{
 				user.setOption("flight", b + "", player.getWorld().getName());
 				player.setAllowFlight(b);
@@ -92,7 +92,7 @@ public final class HandleMovement implements CommandExecutor
 	public static void setWalkSpeed(Handlefish plugin, CommandSender sender, Player player, Float speed)
 	{
 		PermissionUser user = PermissionsEx.getUser(player);
-		if(PermissionsUtil.checkPermission(sender, "movement.walkspeed", false))
+		if(PermissionsUtil.checkPermission(sender, "handlefish.movement.walkspeed", false))
 		{
 			if(-1 <= speed && speed <= 1)
 			{
@@ -127,7 +127,7 @@ public final class HandleMovement implements CommandExecutor
 			player.setWalkSpeed(DEFAULT_WALK_SPEED);
 			return;
 		}
-		if(PermissionsUtil.checkPermission(sender, "movement.walkspeed", false))
+		if(PermissionsUtil.checkPermission(sender, "handlefish.movement.walkspeed", false))
 		{
 			if(sender == player)
 			{
@@ -144,7 +144,7 @@ public final class HandleMovement implements CommandExecutor
 	public static void setFlySpeed(Handlefish plugin, CommandSender sender, Player player, Float speed)
 	{
 		PermissionUser user = PermissionsEx.getUser(player);
-		if(PermissionsUtil.checkPermission(sender, "movement.flyspeed", false))
+		if(PermissionsUtil.checkPermission(sender, "handlefish.movement.flyspeed", false))
 		{
 			if(-1 <= speed && speed <= 1)
 			{
@@ -179,7 +179,7 @@ public final class HandleMovement implements CommandExecutor
 			player.setFlySpeed(DEFAULT_FLY_SPEED);
 			return;
 		}
-		if(PermissionsUtil.checkPermission(sender, "movement.flyspeed", false))
+		if(PermissionsUtil.checkPermission(sender, "handlefish.movement.flyspeed", false))
 		{
 			user.setOption("flyspeed", null, player.getWorld().getName());
 			player.setFlySpeed(DEFAULT_FLY_SPEED);
@@ -191,6 +191,48 @@ public final class HandleMovement implements CommandExecutor
 			{
 				MessageUtil.sendMessage(plugin, sender, "Reset the flight speed of " + player.getName() + ".");
 				MessageUtil.sendMessage(plugin, sender, "Flight speed reset by " + sender.getName() + ".");
+			}
+		}
+	}
+	
+	public static void setBuildMode(Handlefish plugin, CommandSender sender, Player player, boolean b)
+	{
+		PermissionUser user = PermissionsEx.getUser(player);
+		if(sender == null)
+		{
+			if(b)
+			{
+				user.setOption("buildmode.enabled", true + "", player.getWorld().getName());
+				BuildMode buildMode = new BuildMode((Player) sender, plugin);
+				BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+				int task = scheduler.scheduleSyncRepeatingTask(plugin, buildMode, 0, 1L);
+				buildMode.setId(task);
+				return;
+			}
+			else
+			{
+				user.setOption("buildmode.enabled", "false", player.getWorld().getName());
+			}
+		}
+		else
+		{
+			if(PermissionsUtil.checkPermission(sender, "handlefish.movement.flight", false))
+			{
+				user.setOption("buildmode.enabled", "true", ((Player) sender).getWorld().getName());
+				BuildMode buildMode = new BuildMode((Player) sender, plugin);
+				BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+				int task = scheduler.scheduleSyncRepeatingTask(plugin, buildMode, 0, 1L);
+				buildMode.setId(task);
+				if(sender == player)
+				{
+					MessageUtil.sendMessage(plugin, sender, "Buildmode toggled " + b + ".");
+				}
+				else
+				{
+					MessageUtil.sendMessage(plugin, sender, "Buildmode of " + player.getName() + " toggled " + b + ".");
+					MessageUtil.sendMessage(plugin, sender, "Buildmode toggled " + b + " by " + sender.getName() + ".");
+				}
+				return;
 			}
 		}
 	}

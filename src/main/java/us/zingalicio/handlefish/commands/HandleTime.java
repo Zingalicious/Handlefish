@@ -15,11 +15,33 @@ public final class HandleTime implements CommandExecutor
 		this.plugin = plugin;
 	}
 	
-	public boolean onCommand(CommandSender arg0, Command arg1, String arg2,
-			String[] arg3) 
+	public boolean onCommand(CommandSender sender, Command command, String label,
+			String[] args) 
 	{
-		// TODO Auto-generated method stub
-		return false;
+		boolean success;
+		switch(command.getName().toLowerCase())
+		{
+			case "time":
+				success = time(sender, args);
+				break;
+			case "ptime":
+				success = ptime(sender, args);
+				break;
+			default:
+				success = false;
+				break;
+		}
+		return success;
+	}
+	
+	private boolean time(CommandSender sender, String[] args)
+	{
+		return true;
+	}
+	
+	private boolean ptime(CommandSender sender, String[] args)
+	{
+		return true;
 	}
 
 }

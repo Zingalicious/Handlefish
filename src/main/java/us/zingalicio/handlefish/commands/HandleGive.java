@@ -11,6 +11,7 @@ import us.zingalicio.zinglib.util.ItemUtil;
 import us.zingalicio.zinglib.util.MessageUtil;
 import us.zingalicio.zinglib.util.NameUtil;
 import us.zingalicio.zinglib.util.NumberUtil;
+import us.zingalicio.zinglib.util.PermissionsUtil;
 
 public final class HandleGive implements CommandExecutor
 {
@@ -23,48 +24,72 @@ public final class HandleGive implements CommandExecutor
 	
 	public boolean onCommand(CommandSender sender, Command command, String label,
 			String[] args) {
-		if(command.getName().equalsIgnoreCase("item"))
+		
+		boolean success;
+		switch(command.getName().toLowerCase())
 		{
-			if(sender instanceof Player)
+			case "item":
+				success = item(sender, args);
+				break;
+			default:
+				success = false;
+				break;
+		}
+		return success;
+	}
+	
+	private boolean item(CommandSender sender, String[] args)
+	{	
+		if(args.length == 0)
+		{
+			return false;
+		}
+		if(sender instanceof Player)
+		{
+			if(args.length == 1)
 			{
-				if(args.length == 1)
-				{
-					if(sender.hasPermission("give"))
-					{
-						ItemStack item = ItemUtil.getItem(plugin, args[0]);
-						if(item != null)
-						{
-							((Player) sender).getInventory().addItem(item);
-							MessageUtil.sendMessage(plugin, sender, "You've been given one " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + ".");
-						}
-						else
-						{
-							MessageUtil.sendError(plugin, sender, "Invalid item!");
-						}
-					}
-					return true;
-				}
-				if(args.length == 2)
+				if(PermissionsUtil.checkPermission(sender, "handlefish.give", false))
 				{
 					ItemStack item = ItemUtil.getItem(plugin, args[0]);
 					if(item != null)
 					{
-						if(NumberUtil.getInt(args[1]) != null)
-						{
-							int extra = ItemUtil.giveMany(item, (Player) sender, NumberUtil.getInt(args[1]));
-							MessageUtil.sendMessage(plugin, sender, "You've been given " + (Integer.parseInt(args[1]) - extra) + " " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + "(s).");
-						}
-						else
-						{
-							MessageUtil.sendError(plugin, sender, "Invalid amount!");
-						}
+						((Player) sender).getInventory().addItem(item);
+						MessageUtil.sendMessage(plugin, sender, "You've been given one " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + ".");
 					}
 					else
 					{
 						MessageUtil.sendError(plugin, sender, "Invalid item!");
 					}
 				}
+				return true;
 			}
+			if(args.length == 2)
+			{
+				ItemStack item = ItemUtil.getItem(plugin, args[0]);
+				if(item != null)
+				{
+					if(NumberUtil.getInt(args[1]) != null)
+					{
+						int extra = ItemUtil.giveMany(item, (Player) sender, NumberUtil.getInt(args[1]));
+						MessageUtil.sendMessage(plugin, sender, "You've been given " + (Integer.parseInt(args[1]) - extra) + " " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + "(s).");
+						return true;
+					}
+					else
+					{
+						MessageUtil.sendError(plugin, sender, "Invalid amount!");
+						return true;
+					}
+				}
+				else
+				{
+					MessageUtil.sendError(plugin, sender, "Invalid item!");
+					return true;
+				}
+			}
+		}
+		if(args.length == 1)
+		{
+			return false;
 		}
 		return false;
 	}

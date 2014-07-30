@@ -71,7 +71,7 @@ public final class Handlefish extends ZingPlugin
 	
 	@Override
 	public void onEnable()
-	{		
+	{
 		registerModules();
 		
 		registerCommands();
@@ -83,9 +83,8 @@ public final class Handlefish extends ZingPlugin
 	@Override
 	public void onDisable()
 	{
+		super.onDisable();
 		ConfigUtil.saveYaml(help, helpFile);
-		ConfigUtil.saveYaml(config, configFile);
-		ConfigUtil.saveYaml(materials, materialFile);
 	}
 	
 	private void registerModules()

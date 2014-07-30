@@ -34,7 +34,7 @@ public class HandleBiome implements CommandExecutor
 			Player evans = EvansUtil.getEvans();
 			if(evans != null)
 			{
-				MessageUtil.sendMessage(plugin, evans, "Evans someone just checked which Biome they are in and you suck.");
+				MessageUtil.sendMessage(plugin, evans, "yo evans someone just checked which Biome they are in and you suck.");
 			}
 			
 		}

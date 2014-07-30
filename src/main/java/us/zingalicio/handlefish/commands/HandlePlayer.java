@@ -281,19 +281,15 @@ public class HandlePlayer implements CommandExecutor
 	{
 		if(args != null)
 		{
-			if(!PermissionsUtil.checkPermission(sender, "handlefish.movement.flyspeed", false))
-			{
-				return;
-			}
 			if(args[0].equalsIgnoreCase("reset") || args[0].equalsIgnoreCase("clear") || args[0].equalsIgnoreCase("default"))
 			{
-				HandleMovement.resetFlySpeed(plugin, sender, ((Player) sender));
+				HandleMovement.resetFlySpeed(plugin, sender, sender);
 				return;
 			}
 			Float speed = NumberUtil.getFloat(args[0]);
 			if(speed != null)
 			{
-				HandleMovement.setFlySpeed(plugin, sender, ((Player) sender), speed);
+				HandleMovement.setFlySpeed(plugin, sender, sender, speed);
 				return;
 			}
 			else
@@ -311,10 +307,6 @@ public class HandlePlayer implements CommandExecutor
 	{
 		if(args != null)
 		{
-			if(!PermissionsUtil.checkPermission(sender, "handlefish.movement.walkspeed", false))
-			{
-				return;
-			}
 			if(args[0].equalsIgnoreCase("reset") || args[0].equalsIgnoreCase("clear") || args[0].equalsIgnoreCase("default"))
 			{
 				HandleMovement.resetWalkSpeed(plugin, sender, sender);

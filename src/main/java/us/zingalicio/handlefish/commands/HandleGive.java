@@ -31,6 +31,8 @@ public final class HandleGive implements CommandExecutor
 			case "item":
 				success = item(sender, args);
 				break;
+			case "give":
+				success = give(sender, args);
 			default:
 				success = false;
 				break;
@@ -46,9 +48,9 @@ public final class HandleGive implements CommandExecutor
 		}
 		if(sender instanceof Player)
 		{
-			if(args.length == 1)
+			if(PermissionsUtil.checkPermission(sender, "handlefish.give", false))
 			{
-				if(PermissionsUtil.checkPermission(sender, "handlefish.give", false))
+				if(args.length == 1)
 				{
 					ItemStack item = ItemUtil.getItem(plugin, args[0]);
 					if(item != null)
@@ -60,38 +62,37 @@ public final class HandleGive implements CommandExecutor
 					{
 						MessageUtil.sendError(plugin, sender, "Invalid item!");
 					}
+					return true;
 				}
-				return true;
-			}
-			if(args.length == 2)
-			{
-				ItemStack item = ItemUtil.getItem(plugin, args[0]);
-				if(item != null)
+				if(args.length == 2)
 				{
-					if(NumberUtil.getInt(args[1]) != null)
+					ItemStack item = ItemUtil.getItem(plugin, args[0]);
+					if(item != null)
 					{
-						int extra = ItemUtil.giveMany(item, (Player) sender, NumberUtil.getInt(args[1]));
-						MessageUtil.sendMessage(plugin, sender, "You've been given " + (Integer.parseInt(args[1]) - extra) + " " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + "(s).");
-						return true;
+						if(NumberUtil.getInt(args[1]) != null)
+						{
+							int extra = ItemUtil.giveMany(item, (Player) sender, NumberUtil.getInt(args[1]));
+							MessageUtil.sendMessage(plugin, sender, "You've been given " + (Integer.parseInt(args[1]) - extra) + " " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + "(s).");
+						}
+						else
+						{
+							MessageUtil.sendError(plugin, sender, "Invalid amount!");
+						}
 					}
 					else
 					{
-						MessageUtil.sendError(plugin, sender, "Invalid amount!");
-						return true;
+						MessageUtil.sendError(plugin, sender, "Invalid item!");
 					}
-				}
-				else
-				{
-					MessageUtil.sendError(plugin, sender, "Invalid item!");
 					return true;
 				}
 			}
 		}
-		if(args.length == 1)
-		{
-			return false;
-		}
-		return false;
+		MessageUtil.sendError(plugin, sender, "You fool!");
+		return true;
 	}
 
+	private boolean give(CommandSender sender, String[] args)
+	{
+		return false;
+	}
 }

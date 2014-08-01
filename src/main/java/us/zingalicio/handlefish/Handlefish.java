@@ -111,8 +111,6 @@ public final class Handlefish extends ZingPlugin
 	{
 		getCommand("ban").setExecutor(handleBan);
 		getCommand("unban").setExecutor(handleBan);
-		getCommand("ipban").setExecutor(handleBan);
-		getCommand("ipunban").setExecutor(handleBan);
 		getCommand("biome").setExecutor(handleBiome);
 		getCommand("item").setExecutor(handleGive);
 		getCommand("give").setExecutor(handleGive);

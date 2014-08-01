@@ -8,8 +8,6 @@ depend: [ZingLib, PermissionsEx]
 commands:
   ban:
   unban:
-  ipban:
-  ipunban:
   biome:
   buildmode:
     aliases: [build, bm]

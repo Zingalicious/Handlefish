@@ -6,9 +6,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.PluginManager;
 
+import us.zingalicio.handlefish.Constants;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.zinglib.util.ConfigUtil;
 import us.zingalicio.zinglib.util.MessageUtil;
+import us.zingalicio.zinglib.util.NameUtil;
 import us.zingalicio.zinglib.util.PermissionsUtil;
 
 public final class HandleHandle implements CommandExecutor
@@ -31,7 +33,8 @@ public final class HandleHandle implements CommandExecutor
 			switch(args[0])
 			{
 				case "reload":
-					return reload(sender, args);
+					 reload(sender);
+					return true;
 				case "version":
 					MessageUtil.sendMessage(plugin, sender, plugin.getDescription().getVersion());
 					return true;
@@ -40,17 +43,17 @@ public final class HandleHandle implements CommandExecutor
 		}
 		else if(command.getName().equalsIgnoreCase("ping"))
 		{
-			MessageUtil.sendMessage(plugin, sender, "Pong!");
+			MessageUtil.sendMessage(plugin, sender, "Don't tell anyone, but I heard a rumour that " + NameUtil.getSenderName(sender) + " was gonna be banned...");
 			return true;
 		}
 		return false;
 	}
 	
-	public boolean reload(CommandSender sender, String[] args)
+	public void reload(CommandSender sender)
 	{
 		try
 		{
-			if(PermissionsUtil.checkPermission(sender, "handlefish.reload", false))
+			if(PermissionsUtil.checkPermission(sender, Constants.PERMISSION_RELOAD, false))
 			{
 				ConfigUtil.loadYaml(plugin.getHelp(), plugin.getHelpFile());
 				ConfigUtil.loadYaml(plugin.getConfig(), plugin.getConfigFile());
@@ -61,12 +64,12 @@ public final class HandleHandle implements CommandExecutor
 				pluginManager.enablePlugin(plugin);
 				MessageUtil.sendMessage(plugin, sender, "Reloaded.");
 			}
-			return true;
+			return;
 		}
 		catch(Throwable t)
 		{
 			MessageUtil.sendError(plugin, sender, "Failed to reload.");
-			return false;
+			return;
 		}
 	}
 

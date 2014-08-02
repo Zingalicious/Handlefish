@@ -1,17 +1,18 @@
 package us.zingalicio.handlefish.commands;
 
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import us.zingalicio.handlefish.Constants;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.zinglib.util.EvansUtil;
 import us.zingalicio.zinglib.util.MessageUtil;
 import us.zingalicio.zinglib.util.NameUtil;
+import us.zingalicio.zinglib.util.PermissionsUtil;
 
 public class HandleBiome implements CommandExecutor
 {
@@ -27,14 +28,18 @@ public class HandleBiome implements CommandExecutor
 	{
 		if(sender instanceof Player)
 		{
+			if(!PermissionsUtil.checkPermission(sender, Constants.PERMISSION_CHECK_BIOME, false))
+			{
+				return true;
+			}
+			
 			Location loc = ((Player) sender).getLocation();
-			World w = ((Player) sender).getWorld();
-			Biome b = w.getBiome(loc.getBlockX(), loc.getBlockZ());
+			Biome b = ((Player) sender).getWorld().getBiome(loc.getBlockX(), loc.getBlockZ());
 			MessageUtil.sendMessage(plugin, sender, "You are in a " + NameUtil.format(b.name()) + " biome.");
 			Player evans = EvansUtil.getEvans();
 			if(evans != null)
 			{
-				MessageUtil.sendMessage(plugin, evans, "yo evans someone just checked which Biome they are in and you suck.");
+				MessageUtil.sendMessage(plugin, evans, "yo evans someone just checked which biome they are in and you suck.");
 			}
 			
 		}

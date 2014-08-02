@@ -35,25 +35,33 @@ public final class HandleMovement implements CommandExecutor
 			{
 				if(sender instanceof Player)
 				{
+					if(!PermissionsUtil.checkPermission(sender, "handlefish.movement.buildmode", false))
+					{
+						return true;
+					}
 					PermissionUser user = PermissionsEx.getUser((Player) sender);
 					if(user.getOptionBoolean("buildmode.enabled", ((Player) sender).getWorld().getName(), false))
 					{
-						user.setOption("buildmode.enabled", "false", ((Player) sender).getWorld().getName());
-						MessageUtil.sendMessage(plugin, sender, "Buildmode disabled.");
+						setBuildMode(plugin, sender, ((Player) sender), false);
 					}
 					else
 					{
-						user.setOption("buildmode.enabled", "true", ((Player) sender).getWorld().getName());
-						BuildMode build = new BuildMode((Player) sender, plugin);
-						BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-						int task = scheduler.scheduleSyncRepeatingTask(plugin, build, 0, 1L);
-						build.setId(task);
-						MessageUtil.sendMessage(plugin, sender, "Buildmode enabled.");
+						setBuildMode(plugin, sender, ((Player) sender), true);
 					}
 				}
 				else
 				{
-					return false;
+					MessageUtil.sendError(plugin, sender, "U R FOOL");
+					return true;
+				}
+			}
+			else
+			{
+				Player player = Bukkit.getPlayer(args[0]);
+				if(player == null)
+				{
+					MessageUtil.sendError(plugin, sender, "Ain't nobody with a name like that!");
+					return true;
 				}
 			}
 		}
@@ -81,8 +89,8 @@ public final class HandleMovement implements CommandExecutor
 				}
 				else
 				{
-					MessageUtil.sendMessage(plugin, sender, "Flight of " + player.getName() + " toggled " + b + ".");
-					MessageUtil.sendMessage(plugin, sender, "Flight toggled " + b + " by " + sender.getName() + ".");
+					MessageUtil.sendMessage(plugin, sender, "Flight of " + player.getDisplayName() + " toggled " + b + ".");
+					MessageUtil.sendMessage(plugin, player, "Flight toggled " + b + " by " + sender.getName() + ".");
 				}
 				return;
 			}
@@ -105,7 +113,7 @@ public final class HandleMovement implements CommandExecutor
 				else
 				{
 					MessageUtil.sendMessage(plugin, sender, "Set the walk speed of " + player.getName() + " to " + speed + ".");
-					MessageUtil.sendMessage(plugin, sender, "Walk speed set to " + speed + " by " + sender.getName() + ".");
+					MessageUtil.sendMessage(plugin, player, "Walk speed set to " + speed + " by " + sender.getName() + ".");
 				}
 				return;
 			}
@@ -136,7 +144,7 @@ public final class HandleMovement implements CommandExecutor
 			else
 			{
 				MessageUtil.sendMessage(plugin, sender, "Reset the walk speed of " + player.getName() + ".");
-				MessageUtil.sendMessage(plugin, sender, "Walk speed reset by " + sender.getName() + ".");
+				MessageUtil.sendMessage(plugin, player, "Walk speed reset by " + sender.getName() + ".");
 			}
 		}
 	}
@@ -157,7 +165,7 @@ public final class HandleMovement implements CommandExecutor
 				else
 				{
 					MessageUtil.sendMessage(plugin, sender, "Set the flight speed of " + player.getName() + " to " + speed + ".");
-					MessageUtil.sendMessage(plugin, sender, "Flight speed set to " + speed + " by " + sender.getName() + ".");
+					MessageUtil.sendMessage(plugin, player, "Flight speed set to " + speed + " by " + sender.getName() + ".");
 				}
 				return;
 			}
@@ -190,7 +198,7 @@ public final class HandleMovement implements CommandExecutor
 			else
 			{
 				MessageUtil.sendMessage(plugin, sender, "Reset the flight speed of " + player.getName() + ".");
-				MessageUtil.sendMessage(plugin, sender, "Flight speed reset by " + sender.getName() + ".");
+				MessageUtil.sendMessage(plugin, player, "Flight speed reset by " + sender.getName() + ".");
 			}
 		}
 	}
@@ -216,24 +224,29 @@ public final class HandleMovement implements CommandExecutor
 		}
 		else
 		{
-			if(PermissionsUtil.checkPermission(sender, "handlefish.movement.flight", false))
+			user.setOption("buildmode.enabled", "true", ((Player) sender).getWorld().getName());
+			BuildMode buildMode = new BuildMode((Player) sender, plugin);
+			BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+			int task = scheduler.scheduleSyncRepeatingTask(plugin, buildMode, 0, 1L);
+			buildMode.setId(task);
+			if(sender == player)
 			{
-				user.setOption("buildmode.enabled", "true", ((Player) sender).getWorld().getName());
-				BuildMode buildMode = new BuildMode((Player) sender, plugin);
-				BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-				int task = scheduler.scheduleSyncRepeatingTask(plugin, buildMode, 0, 1L);
-				buildMode.setId(task);
-				if(sender == player)
+				if(!PermissionsUtil.checkPermission(sender, "handlefish.movement.buildmode", false))
 				{
-					MessageUtil.sendMessage(plugin, sender, "Buildmode toggled " + b + ".");
+					return;
 				}
-				else
-				{
-					MessageUtil.sendMessage(plugin, sender, "Buildmode of " + player.getName() + " toggled " + b + ".");
-					MessageUtil.sendMessage(plugin, sender, "Buildmode toggled " + b + " by " + sender.getName() + ".");
-				}
-				return;
+				MessageUtil.sendMessage(plugin, sender, "Buildmode toggled " + b + ".");
 			}
+			else
+			{
+				if(!PermissionsUtil.checkPermission(sender, "handlefish.others.movement.buildmode", false))
+				{
+					return;
+				}
+				MessageUtil.sendMessage(plugin, sender, "Buildmode of " + player.getName() + " toggled " + b + ".");
+				MessageUtil.sendMessage(plugin, player, "Buildmode toggled " + b + " by " + sender.getName() + ".");
+			}
+			return;
 		}
 	}
 }

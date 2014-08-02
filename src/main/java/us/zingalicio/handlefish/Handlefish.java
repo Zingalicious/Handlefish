@@ -55,6 +55,8 @@ public final class Handlefish extends ZingPlugin
 	private HandleWeather handleWeather;
 	private File helpFile;
 	private final YamlConfiguration help;
+	private File banFile;
+	private final YamlConfiguration bans;
 	private JoinListener joinListener;
 	private BuildModeListener buildModeListener;
 	
@@ -65,8 +67,14 @@ public final class Handlefish extends ZingPlugin
 		helpFile = new File(getDataFolder(), "help.yml");
 		help = new YamlConfiguration();
 		
+		banFile = new File(getDataFolder(), "bans.yml");
+		bans = new YamlConfiguration();
+		
 		ConfigUtil.saveDefault(this, helpFile);
 		ConfigUtil.loadYaml(help, helpFile);
+		
+		ConfigUtil.saveDefault(this, banFile);
+		ConfigUtil.loadYaml(bans, banFile);
 	}
 	
 	@Override
@@ -210,23 +218,13 @@ public final class Handlefish extends ZingPlugin
 		return helpFile;
 	}
 	
-	public YamlConfiguration getConfig()
+	public YamlConfiguration getBans()
 	{
-		return config;
+		return bans;
 	}
 	
-	public File getConfigFile()
+	public File getBanFile()
 	{
-		return configFile;
-	}
-	
-	public YamlConfiguration getMaterials()
-	{
-		return materials;
-	}
-	
-	public File getMaterialFile()
-	{
-		return materialFile;
+		return banFile;
 	}
 }

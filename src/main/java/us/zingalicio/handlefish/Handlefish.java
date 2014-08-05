@@ -119,6 +119,7 @@ public final class Handlefish extends ZingPlugin
 	{
 		getCommand("ban").setExecutor(handleBan);
 		getCommand("unban").setExecutor(handleBan);
+		getCommand("kick").setExecutor(handleBan);
 		getCommand("biome").setExecutor(handleBiome);
 		getCommand("item").setExecutor(handleGive);
 		getCommand("give").setExecutor(handleGive);
@@ -142,7 +143,6 @@ public final class Handlefish extends ZingPlugin
 		getCommand("clear").setExecutor(handlePlayer);
 		getCommand("self").setExecutor(handlePlayer);
 		getCommand("other").setExecutor(handlePlayer);
-		getCommand("kick").setExecutor(handlePunish);
 		getCommand("rocket").setExecutor(handlePunish);
 		getCommand("freeze").setExecutor(handlePunish);
 		getCommand("unfreeze").setExecutor(handlePunish);

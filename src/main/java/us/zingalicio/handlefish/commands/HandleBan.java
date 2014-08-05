@@ -1,5 +1,7 @@
 package us.zingalicio.handlefish.commands;
 
+import java.util.Arrays;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,6 +13,7 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import us.zingalicio.handlefish.Constants;
 import us.zingalicio.handlefish.Handlefish;
+import us.zingalicio.zinglib.util.MessageUtil;
 import us.zingalicio.zinglib.util.PermissionsUtil;
 
 public final class HandleBan implements CommandExecutor
@@ -96,7 +99,41 @@ public final class HandleBan implements CommandExecutor
 		}
 		else if(command.getName().equalsIgnoreCase("kick"))
 		{
-			Bukkit.getPlayer(args[0]).kickPlayer("test");
+			if(args.length == 1)
+			{
+				Player p = Bukkit.getPlayer(args[0]);
+				if(p == null)
+				{
+					MessageUtil.sendError(plugin,sender, "Ain't nobody with a name like that!");
+					return true;
+				}
+				MessageUtil.sendMessage(plugin, sender, "Kicked " + p.getName() + " for no apparent reason.");
+				p.kickPlayer("You been kicked m8.");
+				return true;
+			}
+			else if(args.length > 1)
+			{
+				Player p = Bukkit.getPlayer(args[0]);
+				if(p == null)
+				{
+					MessageUtil.sendError(plugin,sender, "Ain't nobody with a name like that!");
+					return true;
+				}
+				String reason = "";
+				for(String s : Arrays.copyOfRange(args, 1, args.length))
+				{
+					reason = reason.concat(s).concat(" ");
+				}
+				reason = reason.trim();
+				
+				MessageUtil.sendMessage(plugin, sender, "Kicked " + p.getName() + " " + reason + ".");
+				p.kickPlayer("You been kicked " + reason + ".");
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		return false;
 	}

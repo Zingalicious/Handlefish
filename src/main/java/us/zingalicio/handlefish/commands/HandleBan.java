@@ -13,6 +13,7 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import us.zingalicio.handlefish.Constants;
 import us.zingalicio.handlefish.Handlefish;
+import us.zingalicio.zinglib.StoredMessages;
 import us.zingalicio.zinglib.util.MessageUtil;
 import us.zingalicio.zinglib.util.PermissionsUtil;
 
@@ -104,11 +105,13 @@ public final class HandleBan implements CommandExecutor
 				Player p = Bukkit.getPlayer(args[0]);
 				if(p == null)
 				{
-					MessageUtil.sendError(plugin,sender, "Ain't nobody with a name like that!");
+					MessageUtil.sendError(plugin, sender, StoredMessages.NO_PLAYER.selfMessage(plugin));
 					return true;
 				}
-				MessageUtil.sendMessage(plugin, sender, "Kicked " + p.getName() + " for no apparent reason.");
-				p.kickPlayer("You been kicked m8.");
+				String kickMessage = StoredMessages.KICKED.toMessage(plugin);
+				kickMessage = kickMessage.replace("%target", p.getName()).replace("%reason", "for no apparent reason");
+				MessageUtil.sendMessage(plugin, sender, kickMessage);
+				p.kickPlayer("You been kicked, m8.");
 				return true;
 			}
 			else if(args.length > 1)
@@ -116,7 +119,7 @@ public final class HandleBan implements CommandExecutor
 				Player p = Bukkit.getPlayer(args[0]);
 				if(p == null)
 				{
-					MessageUtil.sendError(plugin,sender, "Ain't nobody with a name like that!");
+					MessageUtil.sendError(plugin,sender, StoredMessages.NO_PLAYER.selfMessage(plugin));
 					return true;
 				}
 				String reason = "";
@@ -125,8 +128,10 @@ public final class HandleBan implements CommandExecutor
 					reason = reason.concat(s).concat(" ");
 				}
 				reason = reason.trim();
-				
-				MessageUtil.sendMessage(plugin, sender, "Kicked " + p.getName() + " " + reason + ".");
+
+				String kickMessage = StoredMessages.KICKED.toMessage(plugin);
+				kickMessage = kickMessage.replace("%target", p.getName()).replace("%reason", reason);
+				MessageUtil.sendMessage(plugin, sender, kickMessage);
 				p.kickPlayer("You been kicked " + reason + ".");
 				return true;
 			}

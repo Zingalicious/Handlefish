@@ -10,6 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import us.zingalicio.handlefish.Handlefish;
+import us.zingalicio.zinglib.StoredMessages;
 import us.zingalicio.zinglib.util.MessageUtil;
 import us.zingalicio.zinglib.util.NumberUtil;
 import us.zingalicio.zinglib.util.PermissionsUtil;
@@ -70,7 +71,7 @@ public final class HandleHelp implements CommandExecutor
 		}
 		else
 		{
-			MessageUtil.sendMessage(plugin, sender, "No such topic, friend.");
+			MessageUtil.sendMessage(plugin, sender, StoredMessages.NO_HELP.selfMessage(plugin));
 		}
 		return false;
 	}

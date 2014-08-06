@@ -109,7 +109,9 @@ public final class HandleBan implements CommandExecutor
 					return true;
 				}
 				String kickMessage = StoredMessages.KICKED.toMessage(plugin);
-				kickMessage = kickMessage.replace("%target", p.getName()).replace("%reason", "for no apparent reason");
+				kickMessage = kickMessage.
+						replace("%target", p.getName()).
+						replace("%reason", "for no apparent reason");
 				MessageUtil.sendMessage(plugin, sender, kickMessage);
 				p.kickPlayer("You been kicked, m8.");
 				return true;
@@ -130,7 +132,9 @@ public final class HandleBan implements CommandExecutor
 				reason = reason.trim();
 
 				String kickMessage = StoredMessages.KICKED.toMessage(plugin);
-				kickMessage = kickMessage.replace("%target", p.getName()).replace("%reason", reason);
+				kickMessage = kickMessage.
+						replace("%target", p.getName()).
+						replace("%reason", reason);
 				MessageUtil.sendMessage(plugin, sender, kickMessage);
 				p.kickPlayer("You been kicked " + reason + ".");
 				return true;

@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 
 import us.zingalicio.handlefish.Constants;
 import us.zingalicio.handlefish.Handlefish;
+import us.zingalicio.zinglib.StoredMessages;
 import us.zingalicio.zinglib.util.ItemUtil;
 import us.zingalicio.zinglib.util.MessageUtil;
 import us.zingalicio.zinglib.util.NameUtil;
@@ -24,9 +25,8 @@ public final class HandleGive implements CommandExecutor
 		this.plugin = plugin;
 	}
 	
-	public boolean onCommand(CommandSender sender, Command command, String label,
-			String[] args) {
-		
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) 
+	{	
 		Player recipient = null;
 		ItemStack item = null;
 		Integer amt = 1;
@@ -48,7 +48,7 @@ public final class HandleGive implements CommandExecutor
 				}
 				else
 				{
-					MessageUtil.sendError(plugin, sender, "You foolish console peasant!");
+					MessageUtil.sendError(plugin, sender, StoredMessages.NO_CONSOLE.selfMessage(plugin));
 					return true;
 				}
 				break;
@@ -84,7 +84,7 @@ public final class HandleGive implements CommandExecutor
 					}
 					else
 					{
-						MessageUtil.sendError(plugin, sender, "You foolish console peasant!");
+						MessageUtil.sendError(plugin, sender, StoredMessages.NO_CONSOLE.selfMessage(plugin));
 						return true;
 					}
 				}
@@ -101,17 +101,17 @@ public final class HandleGive implements CommandExecutor
 		}
 		if(recipient == null)
 		{
-			MessageUtil.sendError(plugin, sender, "Ain't nobody with a name like that!");
+			MessageUtil.sendError(plugin, sender, StoredMessages.NO_PLAYER.selfMessage(plugin));
 			return true;
 		}
 		if(item == null)
 		{
-			MessageUtil.sendError(plugin, sender, "Invalid item.");
+			MessageUtil.sendError(plugin, sender, StoredMessages.INVALID_ITEM.selfMessage(plugin));
 			return true;
 		}
 		if(amt == null || amt < -1 || amt == 0)
 		{
-			MessageUtil.sendError(plugin, sender, "Invalid amount.");
+			MessageUtil.sendError(plugin, sender, StoredMessages.INVALID_AMOUNT.selfMessage(plugin));
 			return true;
 		}
 		
@@ -149,13 +149,21 @@ public final class HandleGive implements CommandExecutor
 			//Different messages if giving to self/others.
 			if(self)
 			{
-				MessageUtil.sendMessage(plugin, recipient, "You've been given one " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + ".");
+				String message = StoredMessages.GIVEN_ITEM.selfMessage(plugin).
+						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()));
+				MessageUtil.sendMessage(plugin, recipient, message);
 				return;
 			}
 			else
 			{
-				MessageUtil.sendMessage(plugin, recipient, NameUtil.getSenderName(sender) + " has given you one " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + ".");
-				MessageUtil.sendMessage(plugin, sender, "You've given one " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + " to " + recipient.getDisplayName() + ".");
+				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(plugin).
+						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()).
+						replace("%target", recipient.getDisplayName()));
+				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(plugin).
+						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()).
+						replace("%sender", NameUtil.getSenderName(sender)));
+				MessageUtil.sendMessage(plugin, sender, toMessage);
+				MessageUtil.sendMessage(plugin, recipient, fromMessage);
 				return;
 			}
 		}
@@ -185,13 +193,24 @@ public final class HandleGive implements CommandExecutor
 			//Different messages if giving to self/others.
 			if(self)
 			{
-				MessageUtil.sendMessage(plugin, recipient, "You've been given infinite " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + ".");
+				String message = StoredMessages.GIVEN_ITEMS.selfMessage(plugin).
+						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()).
+						replace("%amount", "infinite"));
+				MessageUtil.sendMessage(plugin, recipient, message);
 				return;
 			}
 			else
 			{
-				MessageUtil.sendMessage(plugin, recipient, NameUtil.getSenderName(sender) + " has given you infinite " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + "(s).");
-				MessageUtil.sendMessage(plugin, sender, "You've given infinite " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + "(s) to " + recipient.getDisplayName() + ".");
+				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(plugin).
+						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()).
+						replace("%target", recipient.getDisplayName()).
+						replace("%amount", "infinite"));
+				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(plugin).
+						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()).
+						replace("%sender", NameUtil.getSenderName(sender)).
+						replace("%amount", "infinite"));
+				MessageUtil.sendMessage(plugin, sender, toMessage);
+				MessageUtil.sendMessage(plugin, recipient, fromMessage);
 				return;
 			}
 		}
@@ -200,24 +219,36 @@ public final class HandleGive implements CommandExecutor
 		else if(amt > 0)
 		{			
 			int extra = ItemUtil.giveMany(item, recipient, amt);
+			String amount = ((Integer)(amt - extra)).toString();
 			
 			//Different messages for blah blah
 			if(self)
 			{
 
-				MessageUtil.sendMessage(plugin, recipient, "You've been given " + (amt - extra) + " " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + "(s).");
+				String message = StoredMessages.GIVEN_ITEMS.selfMessage(plugin).
+						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()).
+						replace("%amount", amount));
+				MessageUtil.sendMessage(plugin, recipient, message);
 				return;
 			}
 			else
 			{
-				MessageUtil.sendMessage(plugin, recipient, NameUtil.getSenderName(sender) + " has given you " + (amt - extra) + " " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + "(s).");
-				MessageUtil.sendMessage(plugin, sender, "You've given " + (amt - extra) + " " + NameUtil.getFullName(plugin, item.getType(), item.getData()) + "(s) to " + recipient.getDisplayName() + ".");
+				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(plugin).
+						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()).
+						replace("%target", recipient.getDisplayName()).
+						replace("%amount", amount));
+				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(plugin).
+						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()).
+						replace("%sender", NameUtil.getSenderName(sender)).
+						replace("%amount", amount));
+				MessageUtil.sendMessage(plugin, sender, toMessage);
+				MessageUtil.sendMessage(plugin, recipient, fromMessage);
 				return;
 			}
 		}
 		else
 		{
-			MessageUtil.sendError(plugin, sender, "Invalid amount!");
+			MessageUtil.sendError(plugin, sender, StoredMessages.INVALID_AMOUNT.selfMessage(plugin));
 			return;
 		}
 	}

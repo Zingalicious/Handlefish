@@ -10,9 +10,12 @@ import org.bukkit.scheduler.BukkitScheduler;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
+import us.zingalicio.handlefish.Constants;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.flight.BuildMode;
+import us.zingalicio.zinglib.StoredMessages;
 import us.zingalicio.zinglib.util.MessageUtil;
+import us.zingalicio.zinglib.util.NameUtil;
 import us.zingalicio.zinglib.util.PermissionsUtil;
 
 public final class HandleMovement implements CommandExecutor
@@ -35,23 +38,21 @@ public final class HandleMovement implements CommandExecutor
 			{
 				if(sender instanceof Player)
 				{
-					if(!PermissionsUtil.checkPermission(sender, "handlefish.movement.buildmode", false))
-					{
-						return true;
-					}
 					PermissionUser user = PermissionsEx.getUser((Player) sender);
-					if(user.getOptionBoolean("buildmode.enabled", ((Player) sender).getWorld().getName(), false))
+					if(user.getOptionBoolean(Constants.OPTION_BUILD_MODE, ((Player) sender).getWorld().getName(), false))
 					{
 						setBuildMode(plugin, sender, ((Player) sender), false);
+						return true;
 					}
 					else
 					{
 						setBuildMode(plugin, sender, ((Player) sender), true);
+						return true;
 					}
 				}
 				else
 				{
-					MessageUtil.sendError(plugin, sender, "U R FOOL");
+					MessageUtil.sendError(plugin, sender, StoredMessages.NO_CONSOLE.selfMessage(plugin));
 					return true;
 				}
 			}
@@ -60,7 +61,18 @@ public final class HandleMovement implements CommandExecutor
 				Player player = Bukkit.getPlayer(args[0]);
 				if(player == null)
 				{
-					MessageUtil.sendError(plugin, sender, "Ain't nobody with a name like that!");
+					MessageUtil.sendError(plugin, sender, StoredMessages.NO_PLAYER.selfMessage(plugin));
+					return true;
+				}
+				PermissionUser user = PermissionsEx.getUser(player);
+				if(user.getOptionBoolean(Constants.OPTION_BUILD_MODE, player.getWorld().getName(), false))
+				{
+					setBuildMode(plugin, sender, player, false);
+					return true;
+				}
+				else
+				{
+					setBuildMode(plugin, sender, player, true);
 					return true;
 				}
 			}
@@ -71,181 +83,226 @@ public final class HandleMovement implements CommandExecutor
 	public static void setFlight(Handlefish plugin, CommandSender sender, Player player, boolean b)
 	{
 		PermissionUser user = PermissionsEx.getUser(player);
-		if(sender == null)
+		if(sender == player)
 		{
-			user.setOption("flight", b + "", player.getWorld().getName());
-			player.setAllowFlight(b);
-			return;
-		}
-		else
-		{
-			if(PermissionsUtil.checkPermission(sender, "handlefish.movement.flight", false))
+			if(PermissionsUtil.checkPermission(sender, Constants.PERMISSION_FLIGHT, false))
 			{
-				user.setOption("flight", b + "", player.getWorld().getName());
-				player.setAllowFlight(b);
-				if(sender == player)
-				{
-					MessageUtil.sendMessage(plugin, sender, "Flight toggled " + b + ".");
-				}
-				else
-				{
-					MessageUtil.sendMessage(plugin, sender, "Flight of " + player.getDisplayName() + " toggled " + b + ".");
-					MessageUtil.sendMessage(plugin, player, "Flight toggled " + b + " by " + sender.getName() + ".");
-				}
 				return;
 			}
+			String message;
+			if(b)
+			{
+				message = StoredMessages.SET_FLIGHT_ON.selfMessage(plugin);
+			}
+			else
+			{
+				message = StoredMessages.SET_FLIGHT_OFF.selfMessage(plugin);
+			}
+			MessageUtil.sendMessage(plugin, sender, message);
 		}
+		else if(sender != null)
+		{
+			if(PermissionsUtil.checkPermission(sender, Constants.PERMISSION_FLIGHT_OTHERS, false))
+			{
+				return;
+			}
+			String toMessage;
+			String fromMessage;
+			if(b)
+			{
+				toMessage = StoredMessages.SET_FLIGHT_ON.toMessage(plugin).replace("%target", player.getDisplayName());
+				fromMessage = StoredMessages.SET_FLIGHT_ON.fromMessage(plugin).replace("%sender", NameUtil.getSenderName(sender));
+			}
+			else
+			{
+				toMessage = StoredMessages.SET_FLIGHT_OFF.toMessage(plugin).replace("%target", player.getDisplayName());
+				fromMessage = StoredMessages.SET_FLIGHT_OFF.fromMessage(plugin).replace("%sender", NameUtil.getSenderName(sender));
+			}
+			MessageUtil.sendMessage(plugin, sender, toMessage);
+			MessageUtil.sendMessage(plugin, player, fromMessage);
+		}
+		user.setOption(Constants.OPTION_FLIGHT, b + "", player.getWorld().getName());
+		player.setAllowFlight(b);
+		return;
 	}
 	
 	public static void setWalkSpeed(Handlefish plugin, CommandSender sender, Player player, Float speed)
 	{
 		PermissionUser user = PermissionsEx.getUser(player);
-		if(PermissionsUtil.checkPermission(sender, "handlefish.movement.walkspeed", false))
+		if(-1 <= speed && speed <= 1)
 		{
-			if(-1 <= speed && speed <= 1)
+			if(sender == player)
 			{
-				user.setOption("walkspeed", Float.toString(speed), player.getWorld().getName());
-				player.setWalkSpeed(speed);
-				if(sender == player)
+				if(PermissionsUtil.checkPermission(sender, Constants.PERMISSION_WALK_SPEED, false))
 				{
-					MessageUtil.sendMessage(plugin, sender, "Walk speed set to " + speed + ".");
+					return;
 				}
-				else
-				{
-					MessageUtil.sendMessage(plugin, sender, "Set the walk speed of " + player.getName() + " to " + speed + ".");
-					MessageUtil.sendMessage(plugin, player, "Walk speed set to " + speed + " by " + sender.getName() + ".");
-				}
-				return;
+				String message = StoredMessages.SET_WALK_SPEED.selfMessage(plugin).
+						replace("%speed", speed.toString());
+				MessageUtil.sendMessage(plugin, sender, message);
 			}
-			else
+			else if(sender != null)
 			{
-				MessageUtil.sendError(plugin, sender, "Invalid value.  Valid values are -1 to 1.");
-				return;
+				if(PermissionsUtil.checkPermission(sender, Constants.PERMISSION_WALK_SPEED_OTHERS, false))
+				{
+					return;
+				}
+				String toMessage = StoredMessages.SET_WALK_SPEED.toMessage(plugin).
+						replace("%speed", speed.toString()).
+						replace("%target", player.getDisplayName());
+				String fromMessage = StoredMessages.SET_WALK_SPEED.fromMessage(plugin).
+						replace("%speed", speed.toString()).
+						replace("%sender", NameUtil.getSenderName(sender));
+				MessageUtil.sendMessage(plugin, sender, toMessage);
+				MessageUtil.sendMessage(plugin, player, fromMessage);
 			}
+			user.setOption(Constants.OPTION_WALK_SPEED, Float.toString(speed), player.getWorld().getName());
+			player.setWalkSpeed(speed);
+			return;
 		}
-		return;
+		else
+		{
+			MessageUtil.sendError(plugin, sender, "Invalid value.  Valid values are -1 to 1.");
+			return;
+		}
 	}
 	
 	public static void resetWalkSpeed(Handlefish plugin, CommandSender sender, Player player)
 	{
 		PermissionUser user = PermissionsEx.getUser(player);
-		if(sender == null)
+		if(sender == player)
 		{
-			user.setOption("walkspeed", null, player.getWorld().getName());
-			player.setWalkSpeed(DEFAULT_WALK_SPEED);
-			return;
+			String message = StoredMessages.SET_WALK_SPEED.selfMessage(plugin).
+					replace("%speed", "default");
+			MessageUtil.sendMessage(plugin, sender, message);
 		}
-		if(PermissionsUtil.checkPermission(sender, "handlefish.movement.walkspeed", false))
+		else if(sender != null)
 		{
-			if(sender == player)
-			{
-				MessageUtil.sendMessage(plugin, sender, "Walk speed reset.");
-			}
-			else
-			{
-				MessageUtil.sendMessage(plugin, sender, "Reset the walk speed of " + player.getName() + ".");
-				MessageUtil.sendMessage(plugin, player, "Walk speed reset by " + sender.getName() + ".");
-			}
+			String toMessage = StoredMessages.SET_WALK_SPEED.toMessage(plugin).
+					replace("%speed", "default").
+					replace("%target", player.getDisplayName());
+			String fromMessage = StoredMessages.SET_WALK_SPEED.fromMessage(plugin).
+					replace("%speed", "default").
+					replace("%sender", NameUtil.getSenderName(sender));
+			MessageUtil.sendMessage(plugin, sender, toMessage);
+			MessageUtil.sendMessage(plugin, player, fromMessage);
 		}
+		user.setOption(Constants.OPTION_WALK_SPEED, null, player.getWorld().getName());
+		player.setWalkSpeed(DEFAULT_WALK_SPEED);
 	}
 	
 	public static void setFlySpeed(Handlefish plugin, CommandSender sender, Player player, Float speed)
 	{
 		PermissionUser user = PermissionsEx.getUser(player);
-		if(PermissionsUtil.checkPermission(sender, "handlefish.movement.flyspeed", false))
+		
+		if(-1 <= speed && speed <= 1)
 		{
-			if(-1 <= speed && speed <= 1)
+			if(sender == player)
 			{
-				user.setOption("flyspeed", Float.toString(speed), player.getWorld().getName());
-				player.setFlySpeed(speed);
-				if(sender == player)
+				if(PermissionsUtil.checkPermission(sender, Constants.PERMISSION_FLIGHT_SPEED, false))
 				{
-					MessageUtil.sendMessage(plugin, sender, "Flight speed set to " + speed + ".");
+					return;
 				}
-				else
-				{
-					MessageUtil.sendMessage(plugin, sender, "Set the flight speed of " + player.getName() + " to " + speed + ".");
-					MessageUtil.sendMessage(plugin, player, "Flight speed set to " + speed + " by " + sender.getName() + ".");
-				}
-				return;
+				String message = StoredMessages.SET_FLIGHT_SPEED.selfMessage(plugin).
+						replace("%speed", speed.toString());
+				MessageUtil.sendMessage(plugin, sender, message);
 			}
-			else
+			else if(sender != null)
 			{
-				MessageUtil.sendError(plugin, sender, "Invalid value.  Valid values are -1 to 1.");
-				return;
+				if(PermissionsUtil.checkPermission(sender, Constants.PERMISSION_FLIGHT_SPEED_OTHERS, false))
+				{
+					return;
+				}
+				String toMessage = StoredMessages.SET_FLIGHT_SPEED.toMessage(plugin).
+						replace("%speed", speed.toString()).
+						replace("%target", player.getDisplayName());
+				String fromMessage = StoredMessages.SET_FLIGHT_SPEED.fromMessage(plugin).
+						replace("%speed", speed.toString()).
+						replace("%sender", NameUtil.getSenderName(sender));
+				MessageUtil.sendMessage(plugin, sender, toMessage);
+				MessageUtil.sendMessage(plugin, player, fromMessage);
 			}
+			user.setOption(Constants.OPTION_FLIGHT_SPEED, Float.toString(speed), player.getWorld().getName());
+			player.setFlySpeed(speed);
+			return;
 		}
-		return;
+		else
+		{
+			MessageUtil.sendError(plugin, sender, "Invalid value.  Valid values are -1 to 1.");
+			return;
+		}
 	}
 	
 	public static void resetFlySpeed(Handlefish plugin, CommandSender sender, Player player)
 	{
 		PermissionUser user = PermissionsEx.getUser(player);
-		if(sender == null)
+		if(sender == player)
 		{
-			user.setOption("flyspeed", null, player.getWorld().getName());
-			player.setFlySpeed(DEFAULT_FLY_SPEED);
-			return;
+			if(PermissionsUtil.checkPermission(sender, Constants.PERMISSION_FLIGHT_SPEED, false))
+			{
+				return;
+			}
+			String message = StoredMessages.SET_FLIGHT_SPEED.selfMessage(plugin).
+					replace("%speed", "default");
+			MessageUtil.sendMessage(plugin, sender, message);
 		}
-		if(PermissionsUtil.checkPermission(sender, "handlefish.movement.flyspeed", false))
+		else if(sender != null)
 		{
-			user.setOption("flyspeed", null, player.getWorld().getName());
-			player.setFlySpeed(DEFAULT_FLY_SPEED);
-			if(sender == player)
+			if(PermissionsUtil.checkPermission(sender, Constants.PERMISSION_FLIGHT_SPEED_OTHERS, false))
 			{
-				MessageUtil.sendMessage(plugin, sender, "Flight speed reset.");
+				return;
 			}
-			else
-			{
-				MessageUtil.sendMessage(plugin, sender, "Reset the flight speed of " + player.getName() + ".");
-				MessageUtil.sendMessage(plugin, player, "Flight speed reset by " + sender.getName() + ".");
-			}
+			String toMessage = StoredMessages.SET_FLIGHT_SPEED.toMessage(plugin).
+					replace("%speed", "default").
+					replace("%target", player.getDisplayName());
+			String fromMessage = StoredMessages.SET_FLIGHT_SPEED.fromMessage(plugin).
+					replace("%speed", "default").
+					replace("%sender", NameUtil.getSenderName(sender));
+			MessageUtil.sendMessage(plugin, sender, toMessage);
+			MessageUtil.sendMessage(plugin, player, fromMessage);
 		}
+		user.setOption(Constants.OPTION_FLIGHT_SPEED, null, player.getWorld().getName());
+		player.setFlySpeed(DEFAULT_FLY_SPEED);
 	}
 	
 	public static void setBuildMode(Handlefish plugin, CommandSender sender, Player player, boolean b)
 	{
 		PermissionUser user = PermissionsEx.getUser(player);
-		if(sender == null)
+		if(sender == player)
 		{
-			if(b)
+			if(!PermissionsUtil.checkPermission(sender, Constants.PERMISSION_BUILD_MODE, false))
 			{
-				user.setOption("buildmode.enabled", true + "", player.getWorld().getName());
-				BuildMode buildMode = new BuildMode((Player) sender, plugin);
-				BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-				int task = scheduler.scheduleSyncRepeatingTask(plugin, buildMode, 0, 1L);
-				buildMode.setId(task);
 				return;
 			}
-			else
+			MessageUtil.sendMessage(plugin, sender, StoredMessages.SET_BUILD_MODE.selfMessage(plugin).replace("%state", b + ""));
+		}
+		else if(sender != null)
+		{
+			if(!PermissionsUtil.checkPermission(sender, Constants.PERMISSION_BUILD_MODE_OTHERS, false))
 			{
-				user.setOption("buildmode.enabled", "false", player.getWorld().getName());
+				return;
 			}
+			String toMessage = StoredMessages.SET_BUILD_MODE.toMessage(plugin).
+					replace("%target", player.getDisplayName()).
+					replace("%state", b + "");
+			String fromMessage = StoredMessages.SET_BUILD_MODE.toMessage(plugin).
+					replace("%sender", NameUtil.getSenderName(sender)).
+					replace("%state", b + "");
+			MessageUtil.sendMessage(plugin, sender, toMessage);
+			MessageUtil.sendMessage(plugin, player, fromMessage);
+		}
+		
+		if(b)
+		{
+			user.setOption(Constants.OPTION_BUILD_MODE, "true", ((Player) sender).getWorld().getName());
+			BuildMode buildMode = new BuildMode((Player) sender, plugin);
+			BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+			buildMode.setId(scheduler.scheduleSyncRepeatingTask(plugin, buildMode, 0, 1L));
+			return;
 		}
 		else
 		{
-			user.setOption("buildmode.enabled", "true", ((Player) sender).getWorld().getName());
-			BuildMode buildMode = new BuildMode((Player) sender, plugin);
-			BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
-			int task = scheduler.scheduleSyncRepeatingTask(plugin, buildMode, 0, 1L);
-			buildMode.setId(task);
-			if(sender == player)
-			{
-				if(!PermissionsUtil.checkPermission(sender, "handlefish.movement.buildmode", false))
-				{
-					return;
-				}
-				MessageUtil.sendMessage(plugin, sender, "Buildmode toggled " + b + ".");
-			}
-			else
-			{
-				if(!PermissionsUtil.checkPermission(sender, "handlefish.others.movement.buildmode", false))
-				{
-					return;
-				}
-				MessageUtil.sendMessage(plugin, sender, "Buildmode of " + player.getName() + " toggled " + b + ".");
-				MessageUtil.sendMessage(plugin, player, "Buildmode toggled " + b + " by " + sender.getName() + ".");
-			}
+			user.setOption(Constants.OPTION_BUILD_MODE, "false", player.getWorld().getName());
 			return;
 		}
 	}

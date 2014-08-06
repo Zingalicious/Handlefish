@@ -71,4 +71,5 @@ public class Constants
 	public static final String OPTION_TIME = "handlefish.24hr";
 	public static final String OPTION_GOD = "handlefish.godmode";
 	public static final String OPTION_BAN_OVERRIDE = "handlefish.unbannable";
+	public static final String OPTION_DISPLAY_NAME = "displayname";
 }

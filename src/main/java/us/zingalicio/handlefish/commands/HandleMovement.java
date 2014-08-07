@@ -77,6 +77,51 @@ public final class HandleMovement implements CommandExecutor
 				}
 			}
 		}
+		if(command.getName().equalsIgnoreCase("fly"))
+		{
+			if(args.length == 0)
+			{
+				if(sender instanceof Player)
+				{
+					PermissionUser user = PermissionsEx.getUser((Player) sender);
+					if(user.getOptionBoolean(Constants.OPTION_FLIGHT, ((Player) sender).getWorld().getName(), false))
+					{
+						setFlight(plugin, sender, ((Player) sender), false);
+						return true;
+					}
+					else
+					{
+						setFlight(plugin, sender, ((Player) sender), true);
+						return true;
+					}
+				}
+				else
+				{
+					MessageUtil.sendError(plugin, sender, StoredMessages.NO_CONSOLE.selfMessage(plugin));
+					return true;
+				}
+			}
+			else
+			{
+				Player player = Bukkit.getPlayer(args[0]);
+				if(player == null)
+				{
+					MessageUtil.sendError(plugin, sender, StoredMessages.NO_PLAYER.selfMessage(plugin));
+					return true;
+				}
+				PermissionUser user = PermissionsEx.getUser(player);
+				if(user.getOptionBoolean(Constants.OPTION_FLIGHT, player.getWorld().getName(), false))
+				{
+					setFlight(plugin, sender, player, false);
+					return true;
+				}
+				else
+				{
+					setFlight(plugin, sender, player, true);
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 

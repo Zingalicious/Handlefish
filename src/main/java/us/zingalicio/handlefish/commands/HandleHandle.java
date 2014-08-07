@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 
 import us.zingalicio.handlefish.Constants;
@@ -42,7 +43,7 @@ public final class HandleHandle implements CommandExecutor
 					MessageUtil.sendMessage(plugin, sender, message);
 					return true;
 				case "debug":
-					ItemUtil.saveItem(plugin, item, name)
+					ItemUtil.saveItem(plugin, ((Player) sender).getItemInHand(), args[1]);
 				default: return false;
 			}
 		}

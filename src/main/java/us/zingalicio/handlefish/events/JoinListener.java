@@ -5,11 +5,13 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitScheduler;
 
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
+import us.zingalicio.handlefish.Constants;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.commands.HandleMovement;
 import us.zingalicio.handlefish.flight.BuildMode;
@@ -22,6 +24,14 @@ public final class JoinListener implements Listener
 	{
 		this.plugin = plugin;
 	}
+	@EventHandler
+	public void onSwitch(PlayerGameModeChangeEvent e)
+	{
+		Player p = e.getPlayer();
+		PermissionUser user = PermissionsEx.getUser(p);
+		p.setAllowFlight(user.getOptionBoolean(Constants.OPTION_FLIGHT, p.getWorld().getName(), false));
+	}
+	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e)
 	{

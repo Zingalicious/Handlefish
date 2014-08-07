@@ -45,15 +45,20 @@ public final class HandleHandle implements CommandExecutor
 					MessageUtil.sendMessage(plugin, sender, message);
 					return true;
 				case "create":
-					ItemUtil.saveItem(plugin, ((Player) sender).getItemInHand(), args[1]);
+					Byte b = ItemUtil.saveItem(plugin, ((Player) sender).getItemInHand(), args[1]);
+					return b == 0;
 				case "delete":
 					ItemUtil.deleteItem(plugin, args[1]);
-				try {
+				try 
+				{
 					plugin.getItems().save(plugin.getItemFile());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
+				} 
+				catch (IOException e) 
+				{
 					e.printStackTrace();
+					return true;
 				}
+				return true;
 				default: return false;
 			}
 		}

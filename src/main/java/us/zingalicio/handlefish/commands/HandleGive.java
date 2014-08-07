@@ -144,22 +144,32 @@ public final class HandleGive implements CommandExecutor
 		{	
 			recipient.getInventory().addItem(item);
 			
+			String name;
+			if(item.getItemMeta().hasDisplayName())
+			{
+				name = item.getItemMeta().getDisplayName();
+			}
+			else
+			{
+				name = NameUtil.getFullName(plugin, item.getType(), item.getData());
+			}
+			
 			//Different messages if giving to self/others.
 			if(self)
 			{
 				String message = StoredMessages.GIVEN_ITEM.selfMessage(plugin).
-						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()));
+						replace("%item", name);
 				MessageUtil.sendMessage(plugin, recipient, message);
 				return;
 			}
 			else
 			{
 				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(plugin).
-						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()).
-						replace("%target", recipient.getDisplayName()));
+						replace("%item", name).
+						replace("%target", recipient.getDisplayName());
 				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(plugin).
-						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()).
-						replace("%sender", NameUtil.getSenderName(sender)));
+						replace("%item", name).
+						replace("%sender", NameUtil.getSenderName(sender));
 				MessageUtil.sendMessage(plugin, sender, toMessage);
 				MessageUtil.sendMessage(plugin, recipient, fromMessage);
 				return;
@@ -188,25 +198,35 @@ public final class HandleGive implements CommandExecutor
 			item.setAmount(-1);
 			recipient.getInventory().addItem(item);
 			
+			String name;
+			if(item.getItemMeta().hasDisplayName())
+			{
+				name = item.getItemMeta().getDisplayName();
+			}
+			else
+			{
+				name = NameUtil.getFullName(plugin, item.getType(), item.getData());
+			}
+			
 			//Different messages if giving to self/others.
 			if(self)
 			{
 				String message = StoredMessages.GIVEN_ITEMS.selfMessage(plugin).
-						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()).
-						replace("%amount", "infinite"));
+						replace("%item", name).
+						replace("%amount", "infinite");
 				MessageUtil.sendMessage(plugin, recipient, message);
 				return;
 			}
 			else
 			{
 				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(plugin).
-						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()).
+						replace("%item", name).
 						replace("%target", recipient.getDisplayName()).
-						replace("%amount", "infinite"));
+						replace("%amount", "infinite");
 				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(plugin).
-						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()).
+						replace("%item", name).
 						replace("%sender", NameUtil.getSenderName(sender)).
-						replace("%amount", "infinite"));
+						replace("%amount", "infinite");
 				MessageUtil.sendMessage(plugin, sender, toMessage);
 				MessageUtil.sendMessage(plugin, recipient, fromMessage);
 				return;
@@ -219,26 +239,36 @@ public final class HandleGive implements CommandExecutor
 			int extra = ItemUtil.giveMany(item, recipient, amt);
 			String amount = ((Integer)(amt - extra)).toString();
 			
+			String name;
+			if(item.getItemMeta().hasDisplayName())
+			{
+				name = item.getItemMeta().getDisplayName();
+			}
+			else
+			{
+				name = NameUtil.getFullName(plugin, item.getType(), item.getData());
+			}
+			
 			//Different messages for blah blah
 			if(self)
 			{
 
 				String message = StoredMessages.GIVEN_ITEMS.selfMessage(plugin).
-						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()).
-						replace("%amount", amount));
+						replace("%item", name).
+						replace("%amount", amount);
 				MessageUtil.sendMessage(plugin, recipient, message);
 				return;
 			}
 			else
 			{
 				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(plugin).
-						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()).
+						replace("%item", name).
 						replace("%target", recipient.getDisplayName()).
-						replace("%amount", amount));
+						replace("%amount", amount);
 				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(plugin).
-						replace("%item", NameUtil.getFullName(plugin, item.getType(), item.getData()).
+						replace("%item", name).
 						replace("%sender", NameUtil.getSenderName(sender)).
-						replace("%amount", amount));
+						replace("%amount", amount);
 				MessageUtil.sendMessage(plugin, sender, toMessage);
 				MessageUtil.sendMessage(plugin, recipient, fromMessage);
 				return;

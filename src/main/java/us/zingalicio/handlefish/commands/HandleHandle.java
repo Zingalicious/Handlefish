@@ -10,6 +10,7 @@ import us.zingalicio.handlefish.Constants;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.zinglib.StoredMessages;
 import us.zingalicio.zinglib.util.ConfigUtil;
+import us.zingalicio.zinglib.util.ItemUtil;
 import us.zingalicio.zinglib.util.MessageUtil;
 import us.zingalicio.zinglib.util.PermissionsUtil;
 
@@ -40,6 +41,8 @@ public final class HandleHandle implements CommandExecutor
 							replace("%version", plugin.getDescription().getVersion());
 					MessageUtil.sendMessage(plugin, sender, message);
 					return true;
+				case "debug":
+					ItemUtil.saveItem(plugin, item, name)
 				default: return false;
 			}
 		}
@@ -59,8 +62,6 @@ public final class HandleHandle implements CommandExecutor
 			{
 				ConfigUtil.loadYaml(plugin.getHelp(), plugin.getHelpFile());
 				ConfigUtil.loadYaml(plugin.getConfig(), plugin.getConfigFile());
-				ConfigUtil.loadYaml(plugin.getItems(), plugin.getItemFile());
-				ConfigUtil.loadYaml(plugin.getMaterials(), plugin.getMaterialFile());
 				PluginManager pluginManager = Bukkit.getPluginManager();
 				pluginManager.disablePlugin(plugin);
 				pluginManager.enablePlugin(plugin);

@@ -314,7 +314,7 @@ public class HandlePlayer implements CommandExecutor
 		}
 		else
 		{
-			String message = StoredMessages.SET_FLIGHT_SPEED.selfMessage(plugin).
+			String message = StoredMessages.CHECK_FLIGHT_SPEED.selfMessage(plugin).
 					replace("%speed", Float.toString(sender.getFlySpeed()));
 			MessageUtil.sendMessage(plugin, sender, message);
 		}
@@ -342,7 +342,7 @@ public class HandlePlayer implements CommandExecutor
 		}
 		else
 		{
-			String message = StoredMessages.SET_WALK_SPEED.selfMessage(plugin).
+			String message = StoredMessages.CHECK_WALK_SPEED.selfMessage(plugin).
 					replace("%speed", Float.toString(sender.getFlySpeed()));
 			MessageUtil.sendMessage(plugin, sender, message);
 		}

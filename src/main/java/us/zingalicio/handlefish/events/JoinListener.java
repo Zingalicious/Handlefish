@@ -38,19 +38,19 @@ public final class JoinListener implements Listener
 		Player player = e.getPlayer();
 		PermissionUser user = PermissionsEx.getUser(player);
 		World world = e.getPlayer().getWorld();
-		if(user.getOptionBoolean("flight", world.getName(), false))
+		if(user.getOptionBoolean(Constants.OPTION_FLIGHT, world.getName(), false))
 		{
 			HandleMovement.setFlight(plugin, null, player, true);
 		}
-		if(user.getOptionBoolean("god", world.getName(), false))
+		if(user.getOptionBoolean(Constants.OPTION_GOD, world.getName(), false))
 		{
 			//TODO Implement godmode
 		}
-		if(!user.getOption("walkspeed", world.getName()).equals(""))
+		if(!user.getOption(Constants.OPTION_WALK_SPEED, world.getName()).equals(""))
 		{
 			try
 			{
-				player.setFlySpeed(Float.parseFloat(user.getOption("walkspeed", world.getName())));
+				player.setFlySpeed(Float.parseFloat(user.getOption(Constants.OPTION_WALK_SPEED, world.getName())));
 			}
 			catch(IllegalArgumentException ex)
 			{}
@@ -59,11 +59,11 @@ public final class JoinListener implements Listener
 		{
 			HandleMovement.resetWalkSpeed(plugin, null, player);
 		}
-		if(!user.getOption("flyspeed", world.getName()).equals(""))
+		if(!user.getOption(Constants.OPTION_FLIGHT_SPEED, world.getName()).equals(""))
 		{
 			try
 			{
-				player.setFlySpeed(Float.parseFloat(user.getOption("flyspeed", world.getName())));
+				player.setFlySpeed(Float.parseFloat(user.getOption(Constants.OPTION_FLIGHT_SPEED, world.getName())));
 			}
 			catch(IllegalArgumentException ex)
 			{}
@@ -72,7 +72,7 @@ public final class JoinListener implements Listener
 		{
 			HandleMovement.resetFlySpeed(plugin,  null, player);
 		}
-		if(user.getOptionBoolean("buildmode.enabled", world.getName(), false))
+		if(user.getOptionBoolean(Constants.OPTION_BUILD_MODE, world.getName(), false))
 		{
 			BuildMode build = new BuildMode(player, plugin);
 			BukkitScheduler scheduler = Bukkit.getServer().getScheduler();

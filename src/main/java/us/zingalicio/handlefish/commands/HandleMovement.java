@@ -79,21 +79,13 @@ public final class HandleMovement implements CommandExecutor
 		}
 		if(command.getName().equalsIgnoreCase("fly"))
 		{
+			Player player;
+			Boolean b = null;
 			if(args.length == 0)
 			{
 				if(sender instanceof Player)
 				{
-					PermissionUser user = PermissionsEx.getUser((Player) sender);
-					if(user.getOptionBoolean(Constants.OPTION_FLIGHT, ((Player) sender).getWorld().getName(), false))
-					{
-						setFlight(plugin, sender, ((Player) sender), false);
-						return true;
-					}
-					else
-					{
-						setFlight(plugin, sender, ((Player) sender), true);
-						return true;
-					}
+					player = (Player) sender;
 				}
 				else
 				{
@@ -103,23 +95,34 @@ public final class HandleMovement implements CommandExecutor
 			}
 			else
 			{
-				Player player = Bukkit.getPlayer(args[0]);
-				if(player == null)
-				{
-					MessageUtil.sendError(plugin, sender, StoredMessages.NO_PLAYER.selfMessage(plugin));
-					return true;
-				}
-				PermissionUser user = PermissionsEx.getUser(player);
-				if(user.getOptionBoolean(Constants.OPTION_FLIGHT, player.getWorld().getName(), false))
-				{
-					setFlight(plugin, sender, player, false);
-					return true;
-				}
-				else
-				{
-					setFlight(plugin, sender, player, true);
-					return true;
-				}
+				player = Bukkit.getPlayer(args[0]);
+			}
+			
+			if(args.length > 1 && (args[1].equalsIgnoreCase("true") || args[1].equalsIgnoreCase("on")))
+			{
+				b = true;
+			}
+			else if(args.length > 1 && (args[1].equalsIgnoreCase("false") || args[1].equalsIgnoreCase("off")))
+			{
+				b = false;
+			}
+			
+			if(b != null)
+			{
+				setFlight(plugin, sender, player, b);
+				return true;
+			}
+			
+			PermissionUser user = PermissionsEx.getUser((Player) sender);
+			if(user.getOptionBoolean(Constants.OPTION_FLIGHT, player.getWorld().getName(), false))
+			{
+				setFlight(plugin, sender, player, false);
+				return true;
+			}
+			else
+			{
+				setFlight(plugin, sender, player, true);
+				return true;
 			}
 		}
 		return false;

@@ -1,5 +1,7 @@
 package us.zingalicio.handlefish.commands;
 
+import java.io.IOException;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -42,8 +44,16 @@ public final class HandleHandle implements CommandExecutor
 							replace("%version", plugin.getDescription().getVersion());
 					MessageUtil.sendMessage(plugin, sender, message);
 					return true;
-				case "debug":
+				case "create":
 					ItemUtil.saveItem(plugin, ((Player) sender).getItemInHand(), args[1]);
+				case "delete":
+					ItemUtil.deleteItem(plugin, args[1]);
+				try {
+					plugin.getItems().save(plugin.getItemFile());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				default: return false;
 			}
 		}

@@ -37,6 +37,10 @@ public final class HandleGive implements CommandExecutor
 				if(sender instanceof Player)
 				{
 					recipient = ((Player) sender);
+					if(args.length == 0)
+					{
+						return false;
+					}
 					if(args.length > 0)
 					{
 						item = ItemUtil.getItem(plugin, args[0]);
@@ -54,18 +58,12 @@ public final class HandleGive implements CommandExecutor
 				break;
 			case "give":
 				//Take first arg and pass as a Player, then pass all other args
-				if(args.length == 0)
+				if(args.length == 0 | args.length == 1)
 				{
 					return false;
 				}
-				if(args.length > 0)
-				{
-					recipient = Bukkit.getPlayer(args[0]);
-				}
-				if(args.length > 1)
-				{
-					item = ItemUtil.getItem(plugin, args[1]);
-				}
+				recipient = Bukkit.getPlayer(args[0]);
+				item = ItemUtil.getItem(plugin, args[1]);
 				if(args.length > 2)
 				{
 					if(args[2].equalsIgnoreCase("i") || args[2].equalsIgnoreCase("inf") || args[2].equalsIgnoreCase("infinite"))

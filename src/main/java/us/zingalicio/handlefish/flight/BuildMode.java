@@ -11,6 +11,7 @@ import org.bukkit.util.Vector;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 import us.zingalicio.handlefish.Handlefish;
+import us.zingalicio.handlefish.Keys;
 
 public class BuildMode extends BukkitRunnable
 {
@@ -46,9 +47,9 @@ public class BuildMode extends BukkitRunnable
 		PermissionUser user = PermissionsEx.getUser(player);
 		World world = player.getWorld();
 		Location newPos = player.getLocation();
-		if(user.getOptionBoolean("buildmode.enabled", world.getName(), false))
+		if(user.getOptionBoolean(Keys.OPTION_BUILD_MODE, world.getName(), false))
 		{
-			this.downDelay = user.getOptionInteger("buildmode.descentdelay", world.getName(), 10);
+			this.downDelay = user.getOptionInteger(Keys.OPTION_BUILD_MODE_DELAY, world.getName(), 10);
 			if(player.isFlying())
 			{
 				Vector v = player.getVelocity();

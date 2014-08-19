@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 
-import us.zingalicio.handlefish.Constants;
+import us.zingalicio.handlefish.Keys;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.zinglib.StoredMessages;
 import us.zingalicio.zinglib.util.ConfigUtil;
@@ -45,9 +45,17 @@ public final class HandleHandle implements CommandExecutor
 					MessageUtil.sendMessage(plugin, sender, message);
 					return true;
 				case "create":
+					if(!sender.isOp())
+					{
+						return false;
+					}
 					Byte b = ItemUtil.saveItem(plugin, ((Player) sender).getItemInHand(), args[1]);
 					return b == 0;
 				case "delete":
+					if(!sender.isOp())
+					{
+						return false;
+					}
 					ItemUtil.deleteItem(plugin, args[1]);
 				try 
 				{
@@ -74,7 +82,7 @@ public final class HandleHandle implements CommandExecutor
 	{
 		try
 		{
-			if(PermissionsUtil.checkPermission(sender, Constants.PERMISSION_RELOAD, false))
+			if(PermissionsUtil.checkPermission(sender, Keys.PERMISSION_RELOAD, false))
 			{
 				ConfigUtil.loadYaml(plugin.getHelp(), plugin.getHelpFile());
 				ConfigUtil.loadYaml(plugin.getConfig(), plugin.getConfigFile());

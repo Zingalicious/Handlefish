@@ -16,6 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import us.zingalicio.handlefish.Handlefish;
+import us.zingalicio.handlefish.Keys;
 import us.zingalicio.zinglib.util.SoundUtil;
 
 public final class BuildModeListener implements Listener
@@ -32,7 +33,7 @@ public final class BuildModeListener implements Listener
 	public void onPlayerInteractEvent(PlayerInteractEvent e)
 	{
 		Player player = e.getPlayer();
-		if(PermissionsEx.getUser(player).getOptionBoolean("buildmode.enabled", player.getWorld().getName(), false))
+		if(PermissionsEx.getUser(player).getOptionBoolean(Keys.OPTION_BUILD_MODE, player.getWorld().getName(), false))
 		{
 			if(e.getAction() == Action.RIGHT_CLICK_AIR)
 			{

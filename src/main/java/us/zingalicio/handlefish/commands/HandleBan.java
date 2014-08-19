@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
-import us.zingalicio.handlefish.Constants;
+import us.zingalicio.handlefish.Keys;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.zinglib.StoredMessages;
 import us.zingalicio.zinglib.util.MessageUtil;
@@ -149,7 +149,7 @@ public final class HandleBan implements CommandExecutor
 	
 	private void ban(CommandSender sender, String victim, String duration, String reason, boolean exact)
 	{
-		if(!PermissionsUtil.checkPermission(sender, Constants.PERMISSION_BAN, false))
+		if(!PermissionsUtil.checkPermission(sender, Keys.PERMISSION_BAN, false))
 		{
 			return;
 		}
@@ -171,9 +171,9 @@ public final class HandleBan implements CommandExecutor
 			}
 		}
 		
-		if(PermissionsEx.getUser(victim).getOptionBoolean(Constants.OPTION_BAN_OVERRIDE, null, false))
+		if(PermissionsEx.getUser(victim).getOptionBoolean(Keys.OPTION_BAN_OVERRIDE, null, false))
 		{
-			if(!PermissionsUtil.checkPermission(sender, Constants.PERMISSION_BAN_OVERRIDE, false))
+			if(!PermissionsUtil.checkPermission(sender, Keys.PERMISSION_BAN_OVERRIDE, false))
 			{
 				return;
 			}

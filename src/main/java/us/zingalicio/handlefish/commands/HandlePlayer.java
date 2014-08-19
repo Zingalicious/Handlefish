@@ -3,7 +3,9 @@ package us.zingalicio.handlefish.commands;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -14,12 +16,13 @@ import org.bukkit.entity.Player;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
-import us.zingalicio.handlefish.Constants;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.zinglib.StoredMessages;
 import us.zingalicio.zinglib.util.MessageUtil;
 import us.zingalicio.zinglib.util.NumberUtil;
 import us.zingalicio.zinglib.util.PermissionsUtil;
+
+import static us.zingalicio.handlefish.Keys.*;
 
 public class HandlePlayer implements CommandExecutor
 {
@@ -28,6 +31,7 @@ public class HandlePlayer implements CommandExecutor
 	private static final String SET_PREFIX = ".set.prefix";
 	private static final String SET_SUFFIX = ".set.suffix";
 	private static final String SET_DISPLAY_NAME = ".set.displayname";
+	private static final String SET_JOIN_MESSAGE = ".set.joinmessage";
 	
 	public HandlePlayer(Handlefish plugin)
 	{
@@ -68,27 +72,72 @@ public class HandlePlayer implements CommandExecutor
 					}
 				}
 				
-				String[] argz = (args.length > 1 ? Arrays.copyOfRange(args, 1, args.length) : null);
-				
+				String[] argz;
+				if(args.length > 1)
+				{
+					argz = Arrays.copyOfRange(args, 1, args.length);
+				}
+				else
+				{
+					argz = null;
+				}
 				switch(args[0].toLowerCase())
 				{
 				case "suffix":
-					suffix((Player) sender, argz, user);
+					if(argz == null)
+					{
+						setOption((Player) sender, null, user, CHAT_PLUGIN_PREFIX + SET_SUFFIX, "suffix", StoredMessages.CHECKED_SUFFIX);
+					}
+					else
+					{
+						setOption((Player) sender, argz, user, CHAT_PLUGIN_PREFIX + SET_SUFFIX, "suffix", StoredMessages.SET_SUFFIX);
+					}
 					break;
 				case "prefix":
-					prefix((Player) sender, argz, user);
-					break;
-				case "clearsuffix":	
-					clearSuffix((Player) sender, user);
-					break;
-				case "clearprefix":
-					clearPrefix((Player) sender, user);
+					if(argz == null)
+					{
+						setOption((Player) sender, null, user, CHAT_PLUGIN_PREFIX + SET_PREFIX, "prefix", StoredMessages.CHECKED_PREFIX);
+					}
+					else
+					{
+						setOption((Player) sender, argz, user, CHAT_PLUGIN_PREFIX + SET_PREFIX, "prefix", StoredMessages.SET_PREFIX);
+					}
 					break;
 				case "displayname": case "dispname":
-					displayName((Player) sender, argz, user);
+					if(argz == null)
+					{
+						setOption((Player) sender, null, user, CHAT_PLUGIN_PREFIX + SET_DISPLAY_NAME, "OPTION_DISPLAY_NAME", StoredMessages.CHECKED_DISPLAY_NAME);
+					}
+					else
+					{
+						setOption((Player) sender, argz, user, CHAT_PLUGIN_PREFIX + SET_DISPLAY_NAME, OPTION_DISPLAY_NAME, StoredMessages.SET_DISPLAY_NAME);
+					}
+					break;
+				case "joinmessage":
+					if(argz == null)
+					{
+						setOption((Player) sender, null, user, CHAT_PLUGIN_PREFIX + SET_JOIN_MESSAGE, "OPTION_JOIN_MESSAGE", StoredMessages.CHECKED_JOIN_MESSAGE);
+					}
+					else
+					{
+						setOption((Player) sender, argz, user, CHAT_PLUGIN_PREFIX + SET_JOIN_MESSAGE, OPTION_JOIN_MESSAGE, StoredMessages.SET_JOIN_MESSAGE);
+					}
+					break;
+				case "clearsuffix":	
+					args[0] = null;
+					setOption((Player) sender, args, user, CHAT_PLUGIN_PREFIX + SET_SUFFIX, "suffix", StoredMessages.CLEARED_SUFFIX);
+					break;
+				case "clearprefix":
+					args[0] = null;
+					setOption((Player) sender, args, user, CHAT_PLUGIN_PREFIX + SET_PREFIX, "prefix", StoredMessages.CLEARED_PREFIX);
 					break;
 				case "cleardisplayname":
-					clearDisplayName((Player) sender, user);
+					args[0] = null;
+					setOption((Player) sender, args, user, CHAT_PLUGIN_PREFIX + SET_DISPLAY_NAME, OPTION_DISPLAY_NAME, StoredMessages.CLEARED_DISPLAY_NAME);
+					break;
+				case "clearjoinmessage":
+					args[0] = null;
+					setOption((Player) sender, args, user, CHAT_PLUGIN_PREFIX + SET_JOIN_MESSAGE, OPTION_JOIN_MESSAGE, StoredMessages.CLEARED_JOIN_MESSAGE);
 					break;
 				case "flight": case "fly":
 					flight((Player) sender, argz, user);
@@ -121,125 +170,63 @@ public class HandlePlayer implements CommandExecutor
 		}
 	}
 	
-	private void suffix(Player sender, String[] args, PermissionUser user)
+	private void setOption(Player sender, String[] args, PermissionUser user, String permission, String option, StoredMessages message)
 	{
 		if(args != null)
 		{
-			if(!PermissionsUtil.checkPermission(sender, CHAT_PLUGIN_PREFIX + SET_SUFFIX, false))
+			Bukkit.getLogger().log(Level.INFO, args.toString() + "" + args[0]);
+			if(!PermissionsUtil.checkPermission(sender, permission, false))
 			{
 				return;
 			}
-			String suffix = "";
-			for(String a : args)
+			String s = "";
+			if(args[0] == null)
 			{
-				suffix = suffix.concat(a + " ");
+				s = null;
 			}
-			suffix = suffix.trim();
-			user.setSuffix(suffix, null);
-			String message = StoredMessages.SET_SUFFIX.selfMessage(plugin).
-					replace("%suffix", ChatColor.RESET + suffix + ChatColor.YELLOW);
-			MessageUtil.sendMessage(plugin, sender, message);
+			else
+			{
+				for(String a : args)
+				{
+					s = s.concat(a + " ");
+				}
+				s = s.trim();
+			}
+			if(option.equalsIgnoreCase("prefix"))
+			{
+				user.setPrefix(s, null);
+			}
+			else if(option.equalsIgnoreCase("suffix"))
+			{
+				user.setSuffix(s, null);
+			}
+			else
+			{
+				user.setOption(option, s);
+			}
+			String m = message.selfMessage(plugin).replace("%new", s);
+			MessageUtil.sendMessage(plugin, sender, m);
 			return;
 		}
 		else
 		{
-			String suffix = user.getSuffix();
-			String message = StoredMessages.SET_SUFFIX.selfMessage(plugin).
-					replace("%suffix", ChatColor.RESET + suffix + ChatColor.YELLOW);
-			MessageUtil.sendMessage(plugin, sender, message);
-			return;
-		}
-	}
-	
-	private void prefix(Player sender, String[] args, PermissionUser user)
-	{
-		if(args != null)
-		{
-			if(!PermissionsUtil.checkPermission(sender, CHAT_PLUGIN_PREFIX + SET_PREFIX, false))
+			String q;
+			if(option.equalsIgnoreCase("prefix"))
 			{
-				return;
+				q = user.getPrefix();
 			}
-			String prefix = "";
-			for(String a : args)
+			else if(option.equalsIgnoreCase("suffix"))
 			{
-				prefix = prefix.concat(a + " ");
+				q = user.getSuffix();
 			}
-			prefix = prefix.trim();
-			user.setSuffix(prefix, null);
-			String message = StoredMessages.SET_PREFIX.selfMessage(plugin).
-					replace("%prefix", ChatColor.RESET + prefix + ChatColor.YELLOW);
-			MessageUtil.sendMessage(plugin, sender, message);
-			return;
-		}
-		else
-		{
-			String prefix = user.getPrefix();
-			String message = StoredMessages.SET_PREFIX.selfMessage(plugin).
-					replace("%prefix", ChatColor.RESET + prefix + ChatColor.YELLOW);
-			MessageUtil.sendMessage(plugin, sender, message);
-			return;
-		}
-	}
-	
-	private void clearSuffix(Player sender, PermissionUser user)
-	{
-		if(!PermissionsUtil.checkPermission(sender, CHAT_PLUGIN_PREFIX + SET_SUFFIX, false))
-		{
-			return;
-		}
-		user.setSuffix(null, null);
-		MessageUtil.sendMessage(plugin, sender, StoredMessages.CLEAR_SUFFIX.selfMessage(plugin));
-		return;
-	}
-	
-	private void clearPrefix(Player sender, PermissionUser user)
-	{
-		if(!PermissionsUtil.checkPermission(sender, CHAT_PLUGIN_PREFIX + SET_PREFIX, false))
-		{
-			return;
-		}
-		user.setPrefix(null, null);
-		MessageUtil.sendMessage(plugin, sender, StoredMessages.CLEAR_PREFIX.selfMessage(plugin));
-		return;
-	}
-
-	private void displayName(Player sender, String[] args, PermissionUser user)
-	{
-		if(args != null)
-		{
-			if(!PermissionsUtil.checkPermission(sender, CHAT_PLUGIN_PREFIX + SET_DISPLAY_NAME, false))
+			else
 			{
-				return;
+				q = user.getOption(option, sender.getWorld().getName());
 			}
-			String displayName = "";
-			for(String a : args)
-			{
-				displayName = displayName.concat(a);
-			}
-			displayName = displayName.trim();
-			user.setOption(Constants.OPTION_DISPLAY_NAME, displayName);
-			String message = StoredMessages.SET_DISPLAY_NAME.selfMessage(plugin).replace("%displayname", displayName);
-			MessageUtil.sendMessage(plugin, sender, message);
+			String m = message.selfMessage(plugin).replace("%current", q);
+			MessageUtil.sendMessage(plugin, sender, m);
 			return;
 		}
-		else
-		{
-			String displayName = ((Player) sender).getDisplayName();
-			String message = StoredMessages.SET_DISPLAY_NAME.selfMessage(plugin).replace("%displayname", displayName);
-			MessageUtil.sendMessage(plugin, sender, message);
-			return;
-		}
-	}
-
-	private void clearDisplayName(Player sender, PermissionUser user)
-	{
-		if(!PermissionsUtil.checkPermission(sender, CHAT_PLUGIN_PREFIX + SET_DISPLAY_NAME, false))
-		{
-			return;
-		}
-		user.setOption(Constants.OPTION_DISPLAY_NAME, null);
-		MessageUtil.sendMessage(plugin, sender, StoredMessages.CLEAR_DISPLAY_NAME.selfMessage(plugin));
-		return;
 	}
 	
 	private void flight(Player sender, String[] args, PermissionUser user)
@@ -271,7 +258,7 @@ public class HandlePlayer implements CommandExecutor
 	{
 		if(args == null)
 		{
-			if(user.getOptionBoolean(Constants.OPTION_BUILD_MODE, sender.getWorld().getName(), false))
+			if(user.getOptionBoolean(OPTION_BUILD_MODE, sender.getWorld().getName(), false))
 			{
 				HandleMovement.setBuildMode(plugin, sender, sender, false);
 				return;
@@ -314,7 +301,7 @@ public class HandlePlayer implements CommandExecutor
 		}
 		else
 		{
-			String message = StoredMessages.CHECK_FLIGHT_SPEED.selfMessage(plugin).
+			String message = StoredMessages.CHECKED_FLIGHT_SPEED.selfMessage(plugin).
 					replace("%speed", Float.toString(sender.getFlySpeed()));
 			MessageUtil.sendMessage(plugin, sender, message);
 		}
@@ -342,7 +329,7 @@ public class HandlePlayer implements CommandExecutor
 		}
 		else
 		{
-			String message = StoredMessages.CHECK_WALK_SPEED.selfMessage(plugin).
+			String message = StoredMessages.CHECKED_WALK_SPEED.selfMessage(plugin).
 					replace("%speed", Float.toString(sender.getFlySpeed()));
 			MessageUtil.sendMessage(plugin, sender, message);
 		}

@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import us.zingalicio.handlefish.Constants;
+import us.zingalicio.handlefish.Keys;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.zinglib.StoredMessages;
 import us.zingalicio.zinglib.util.ItemUtil;
@@ -124,7 +124,7 @@ public final class HandleGive implements CommandExecutor
 		boolean self;
 		if(recipient == sender)
 		{
-			if(!PermissionsUtil.checkPermission(sender, Constants.PERMISSION_GIVE, false))
+			if(!PermissionsUtil.checkPermission(sender, Keys.PERMISSION_GIVE, false))
 			{
 				return;
 			}
@@ -132,7 +132,7 @@ public final class HandleGive implements CommandExecutor
 		}
 		else
 		{
-			if(!PermissionsUtil.checkPermission(sender, Constants.PERMISSION_GIVE_OTHERS, false))
+			if(!PermissionsUtil.checkPermission(sender, Keys.PERMISSION_GIVE_OTHERS, false))
 			{
 				return;
 			}
@@ -182,14 +182,14 @@ public final class HandleGive implements CommandExecutor
 			//Check infinite give permissions
 			if(self)
 			{
-				if(!PermissionsUtil.checkPermission(sender, Constants.PERMISSION_GIVE_INFINITE, false))
+				if(!PermissionsUtil.checkPermission(sender, Keys.PERMISSION_GIVE_INFINITE, false))
 				{
 					return;
 				}
 			}
 			else
 			{
-				if(!PermissionsUtil.checkPermission(sender, Constants.PERMISSION_GIVE_OTHERS_INFINITE, false))
+				if(!PermissionsUtil.checkPermission(sender, Keys.PERMISSION_GIVE_OTHERS_INFINITE, false))
 				{
 					return;
 				}

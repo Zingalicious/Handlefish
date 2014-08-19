@@ -8,7 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import us.zingalicio.handlefish.Constants;
+import us.zingalicio.handlefish.Keys;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.zinglib.StoredMessages;
 import us.zingalicio.zinglib.util.EvansUtil;
@@ -28,7 +28,7 @@ public class HandleBiome implements CommandExecutor
 	public boolean onCommand(CommandSender sender, Command command, String arg2,
 			String[] args) 
 	{
-		if(!PermissionsUtil.checkPermission(sender, Constants.PERMISSION_CHECK_BIOME, false))
+		if(!PermissionsUtil.checkPermission(sender, Keys.PERMISSION_CHECK_BIOME, false))
 		{
 			return true;
 		}
@@ -39,7 +39,7 @@ public class HandleBiome implements CommandExecutor
 				
 				Location loc = ((Player) sender).getLocation();
 				Biome b = ((Player) sender).getWorld().getBiome(loc.getBlockX(), loc.getBlockZ());
-				String biomeMessage = StoredMessages.BIOME.selfMessage(plugin).
+				String biomeMessage = StoredMessages.CHECKED_BIOME.selfMessage(plugin).
 						replace("%biome", NameUtil.format(b.name()));
 				MessageUtil.sendMessage(plugin, sender, biomeMessage);
 				{
@@ -63,7 +63,7 @@ public class HandleBiome implements CommandExecutor
 			if(target != null)
 			{
 				Biome b = target.getWorld().getBiome(target.getLocation().getBlockX(), target.getLocation().getBlockZ());
-				String biomeMessage = StoredMessages.BIOME.toMessage(plugin).
+				String biomeMessage = StoredMessages.CHECKED_BIOME.toMessage(plugin).
 						replace("%biome", NameUtil.format(b.name()).
 						replace("%target", target.getDisplayName()));
 				MessageUtil.sendMessage(plugin, sender, biomeMessage);

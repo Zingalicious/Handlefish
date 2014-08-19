@@ -11,7 +11,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
-import us.zingalicio.handlefish.Constants;
+import us.zingalicio.handlefish.Keys;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.commands.HandleMovement;
 import us.zingalicio.handlefish.flight.BuildMode;
@@ -29,7 +29,7 @@ public final class JoinListener implements Listener
 	{
 		Player p = e.getPlayer();
 		PermissionUser user = PermissionsEx.getUser(p);
-		p.setAllowFlight(user.getOptionBoolean(Constants.OPTION_FLIGHT, p.getWorld().getName(), false));
+		p.setAllowFlight(user.getOptionBoolean(Keys.OPTION_FLIGHT, p.getWorld().getName(), false));
 	}
 	
 	@EventHandler
@@ -38,19 +38,19 @@ public final class JoinListener implements Listener
 		Player player = e.getPlayer();
 		PermissionUser user = PermissionsEx.getUser(player);
 		World world = e.getPlayer().getWorld();
-		if(user.getOptionBoolean(Constants.OPTION_FLIGHT, world.getName(), false))
+		if(user.getOptionBoolean(Keys.OPTION_FLIGHT, world.getName(), false))
 		{
 			HandleMovement.setFlight(plugin, null, player, true);
 		}
-		if(user.getOptionBoolean(Constants.OPTION_GOD, world.getName(), false))
+		if(user.getOptionBoolean(Keys.OPTION_GOD, world.getName(), false))
 		{
 			//TODO Implement godmode
 		}
-		if(!user.getOption(Constants.OPTION_WALK_SPEED, world.getName()).equals(""))
+		if(!user.getOption(Keys.OPTION_WALK_SPEED, world.getName()).equals(""))
 		{
 			try
 			{
-				player.setFlySpeed(Float.parseFloat(user.getOption(Constants.OPTION_WALK_SPEED, world.getName())));
+				player.setFlySpeed(Float.parseFloat(user.getOption(Keys.OPTION_WALK_SPEED, world.getName())));
 			}
 			catch(IllegalArgumentException ex)
 			{}
@@ -59,11 +59,11 @@ public final class JoinListener implements Listener
 		{
 			HandleMovement.resetWalkSpeed(plugin, null, player);
 		}
-		if(!user.getOption(Constants.OPTION_FLIGHT_SPEED, world.getName()).equals(""))
+		if(!user.getOption(Keys.OPTION_FLIGHT_SPEED, world.getName()).equals(""))
 		{
 			try
 			{
-				player.setFlySpeed(Float.parseFloat(user.getOption(Constants.OPTION_FLIGHT_SPEED, world.getName())));
+				player.setFlySpeed(Float.parseFloat(user.getOption(Keys.OPTION_FLIGHT_SPEED, world.getName())));
 			}
 			catch(IllegalArgumentException ex)
 			{}
@@ -72,7 +72,7 @@ public final class JoinListener implements Listener
 		{
 			HandleMovement.resetFlySpeed(plugin,  null, player);
 		}
-		if(user.getOptionBoolean(Constants.OPTION_BUILD_MODE, world.getName(), false))
+		if(user.getOptionBoolean(Keys.OPTION_BUILD_MODE, world.getName(), false))
 		{
 			BuildMode build = new BuildMode(player, plugin);
 			BukkitScheduler scheduler = Bukkit.getServer().getScheduler();

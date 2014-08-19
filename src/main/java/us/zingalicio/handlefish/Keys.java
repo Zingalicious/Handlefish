@@ -1,6 +1,6 @@
 package us.zingalicio.handlefish;
 
-public class Constants 
+public class Keys 
 {
 	public static final String PERMISSION_BAN = "handlefish.ban";
 	public static final String PERMISSION_UNBAN = "handlefish.unban";
@@ -65,6 +65,7 @@ public class Constants
 	
 	public static final String OPTION_BUILD_MODE = "handlefish.movement.buildmode";
 	public static final String OPTION_BUILD_MODE_REACH = "handlefish.movement.reach";
+	public static final String OPTION_BUILD_MODE_DELAY = "handlefish.movement.delay";
 	public static final String OPTION_FLIGHT = "handlefish.movement.flight";
 	public static final String OPTION_FLIGHT_SPEED = "handlefish.movement.flyspeed";
 	public static final String OPTION_WALK_SPEED = "handlefish.movement.walkspeed";
@@ -72,4 +73,5 @@ public class Constants
 	public static final String OPTION_GOD = "handlefish.godmode";
 	public static final String OPTION_BAN_OVERRIDE = "handlefish.unbannable";
 	public static final String OPTION_DISPLAY_NAME = "displayname";
+	public static final String OPTION_JOIN_MESSAGE = "joinmessage";
 }

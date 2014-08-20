@@ -1,6 +1,7 @@
 package us.zingalicio.handlefish.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,12 +10,12 @@ import org.bukkit.inventory.ItemStack;
 
 import us.zingalicio.handlefish.Keys;
 import us.zingalicio.handlefish.Handlefish;
-import us.zingalicio.zinglib.StoredMessages;
-import us.zingalicio.zinglib.util.ItemUtil;
-import us.zingalicio.zinglib.util.MessageUtil;
-import us.zingalicio.zinglib.util.NameUtil;
-import us.zingalicio.zinglib.util.NumberUtil;
-import us.zingalicio.zinglib.util.PermissionsUtil;
+import us.zingalicio.cordstone.StoredMessages;
+import us.zingalicio.cordstone.util.ItemUtil;
+import us.zingalicio.cordstone.util.MessageUtil;
+import us.zingalicio.cordstone.util.NameUtil;
+import us.zingalicio.cordstone.util.NumberUtil;
+import us.zingalicio.cordstone.util.PermissionsUtil;
 
 public final class HandleGive implements CommandExecutor
 {
@@ -158,18 +159,16 @@ public final class HandleGive implements CommandExecutor
 			if(self)
 			{
 				String message = StoredMessages.GIVEN_ITEM.selfMessage(plugin).
-						replace("%item", name);
+						replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW);
 				MessageUtil.sendMessage(plugin, recipient, message);
 				return;
 			}
 			else
 			{
-				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(plugin).
-						replace("%item", name).
-						replace("%target", recipient.getDisplayName());
-				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(plugin).
-						replace("%item", name).
-						replace("%sender", NameUtil.getSenderName(sender));
+				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(plugin, recipient)
+						.replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW);
+				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(plugin, sender)
+						.replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW);
 				MessageUtil.sendMessage(plugin, sender, toMessage);
 				MessageUtil.sendMessage(plugin, recipient, fromMessage);
 				return;
@@ -212,21 +211,19 @@ public final class HandleGive implements CommandExecutor
 			if(self)
 			{
 				String message = StoredMessages.GIVEN_ITEMS.selfMessage(plugin).
-						replace("%item", name).
+						replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW).
 						replace("%amount", "infinite");
 				MessageUtil.sendMessage(plugin, recipient, message);
 				return;
 			}
 			else
 			{
-				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(plugin).
-						replace("%item", name).
-						replace("%target", recipient.getDisplayName()).
-						replace("%amount", "infinite");
-				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(plugin).
-						replace("%item", name).
-						replace("%sender", NameUtil.getSenderName(sender)).
-						replace("%amount", "infinite");
+				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(plugin, recipient)
+						.replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW)
+						.replace("%amount", "infinite");
+				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(plugin, sender)
+						.replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW)
+						.replace("%amount", "infinite");
 				MessageUtil.sendMessage(plugin, sender, toMessage);
 				MessageUtil.sendMessage(plugin, recipient, fromMessage);
 				return;
@@ -254,21 +251,19 @@ public final class HandleGive implements CommandExecutor
 			{
 
 				String message = StoredMessages.GIVEN_ITEMS.selfMessage(plugin).
-						replace("%item", name).
+						replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW).
 						replace("%amount", amount);
 				MessageUtil.sendMessage(plugin, recipient, message);
 				return;
 			}
 			else
 			{
-				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(plugin).
-						replace("%item", name).
-						replace("%target", recipient.getDisplayName()).
-						replace("%amount", amount);
-				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(plugin).
-						replace("%item", name).
-						replace("%sender", NameUtil.getSenderName(sender)).
-						replace("%amount", amount);
+				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(plugin, recipient)
+						.replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW)
+						.replace("%amount", amount);
+				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(plugin, sender)
+						.replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW)
+						.replace("%amount", amount);
 				MessageUtil.sendMessage(plugin, sender, toMessage);
 				MessageUtil.sendMessage(plugin, recipient, fromMessage);
 				return;

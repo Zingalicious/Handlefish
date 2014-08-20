@@ -12,11 +12,10 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.flight.BuildMode;
-import us.zingalicio.zinglib.StoredMessages;
-import us.zingalicio.zinglib.util.MessageUtil;
-import us.zingalicio.zinglib.util.NameUtil;
-import us.zingalicio.zinglib.util.NumberUtil;
-import us.zingalicio.zinglib.util.PermissionsUtil;
+import us.zingalicio.cordstone.StoredMessages;
+import us.zingalicio.cordstone.util.MessageUtil;
+import us.zingalicio.cordstone.util.NumberUtil;
+import us.zingalicio.cordstone.util.PermissionsUtil;
 
 import static us.zingalicio.handlefish.Keys.*;
 
@@ -127,10 +126,10 @@ public final class HandleMovement implements CommandExecutor
 				return true;
 			}
 		}
-		else if(command.getName().equalsIgnoreCase("flyspeed") || command.getName().equalsIgnoreCase("walkspeed"))
+		else if(command.getName().equalsIgnoreCase("speed"))
 		{
 			Player p = null;
-			Boolean fly = command.getName().equalsIgnoreCase("flyspeed");
+			Boolean fly = (label.equalsIgnoreCase("flyspeed") || label.equalsIgnoreCase("flightspeed"));
 			Float f;
 			Byte operation; //-1 = console error, 0 = check, 1 = reset, 2 = set.
 			if(fly)
@@ -245,16 +244,14 @@ public final class HandleMovement implements CommandExecutor
 				}
 				else
 				{
-					MessageUtil.sendMessage(plugin, sender, s.toMessage(plugin)
-							.replace("%speed", Float.toString(p.getFlySpeed())
-							.replace("%target", p.getDisplayName())));
-					MessageUtil.sendMessage(plugin, sender, s.fromMessage(plugin)
-							.replace("%speed", Float.toString(p.getFlySpeed())
-							.replace("%sender", NameUtil.getSenderName(sender))));
+					MessageUtil.sendMessage(plugin, sender, s.toMessage(plugin, p)
+							.replace("%speed", Float.toString(p.getFlySpeed())));
+					MessageUtil.sendMessage(plugin, sender, s.fromMessage(plugin, sender)
+							.replace("%speed", Float.toString(p.getFlySpeed())));
 					return true;
 				}
 			}
-			else if(f == null || (f >= -1 && f <= 1))
+			else if(f == null || f < -1 || f > 1)
 			{
 				MessageUtil.sendError(plugin, sender, StoredMessages.INVALID_AMOUNT.selfMessage(plugin));
 				return true;
@@ -323,22 +320,17 @@ public final class HandleMovement implements CommandExecutor
 			String fromMessage;
 			if(b)
 			{
-				toMessage = StoredMessages.SET_FLIGHT_ON.toMessage(plugin)
-						.replace("%target", player.getDisplayName());
-				fromMessage = StoredMessages.SET_FLIGHT_ON.fromMessage(plugin)
-						.replace("%sender", NameUtil.getSenderName(sender));
+				toMessage = StoredMessages.SET_FLIGHT_ON.toMessage(plugin, player);
+				fromMessage = StoredMessages.SET_FLIGHT_ON.fromMessage(plugin, sender);
 			}
 			else
 			{
-				toMessage = StoredMessages.SET_FLIGHT_OFF.toMessage(plugin)
-						.replace("%target", player.getDisplayName());
-				fromMessage = StoredMessages.SET_FLIGHT_OFF.fromMessage(plugin)
-						.replace("%sender", NameUtil.getSenderName(sender));
+				toMessage = StoredMessages.SET_FLIGHT_OFF.toMessage(plugin, player);
+				fromMessage = StoredMessages.SET_FLIGHT_OFF.fromMessage(plugin, sender);
 			}
 			MessageUtil.sendMessage(plugin, sender, toMessage);
 			MessageUtil.sendMessage(plugin, player, fromMessage);
 		}
-		MessageUtil.sendMessage(plugin, sender, "3");
 		user.setOption(OPTION_FLIGHT, b + "", player.getWorld().getName());
 		player.setAllowFlight(b);
 		return;
@@ -365,12 +357,10 @@ public final class HandleMovement implements CommandExecutor
 				{
 					return;
 				}
-				String toMessage = StoredMessages.SET_WALK_SPEED.toMessage(plugin)
-						.replace("%speed", speed.toString())
-						.replace("%target", player.getDisplayName());
-				String fromMessage = StoredMessages.SET_WALK_SPEED.fromMessage(plugin)
-						.replace("%speed", speed.toString())
-						.replace("%sender", NameUtil.getSenderName(sender));
+				String toMessage = StoredMessages.SET_WALK_SPEED.toMessage(plugin, player)
+						.replace("%speed", speed.toString());
+				String fromMessage = StoredMessages.SET_WALK_SPEED.fromMessage(plugin, sender)
+						.replace("%speed", speed.toString());
 				MessageUtil.sendMessage(plugin, sender, toMessage);
 				MessageUtil.sendMessage(plugin, player, fromMessage);
 			}
@@ -390,18 +380,13 @@ public final class HandleMovement implements CommandExecutor
 		PermissionUser user = PermissionsEx.getUser(player);
 		if(sender == player)
 		{
-			String message = StoredMessages.SET_WALK_SPEED.selfMessage(plugin)
-					.replace("%speed", "default");
+			String message = StoredMessages.CLEARED_WALK_SPEED.selfMessage(plugin);
 			MessageUtil.sendMessage(plugin, sender, message);
 		}
 		else if(sender != null)
 		{
-			String toMessage = StoredMessages.SET_WALK_SPEED.toMessage(plugin)
-					.replace("%speed", "default")
-					.replace("%target", player.getDisplayName());
-			String fromMessage = StoredMessages.SET_WALK_SPEED.fromMessage(plugin)
-					.replace("%speed", "default")
-					.replace("%sender", NameUtil.getSenderName(sender));
+			String toMessage = StoredMessages.CLEARED_WALK_SPEED.toMessage(plugin, player);
+			String fromMessage = StoredMessages.CLEARED_WALK_SPEED.fromMessage(plugin, sender);
 			MessageUtil.sendMessage(plugin, sender, toMessage);
 			MessageUtil.sendMessage(plugin, player, fromMessage);
 		}
@@ -431,12 +416,10 @@ public final class HandleMovement implements CommandExecutor
 				{
 					return;
 				}
-				String toMessage = StoredMessages.SET_FLIGHT_SPEED.toMessage(plugin)
-						.replace("%speed", speed.toString())
-						.replace("%target", player.getDisplayName());
-				String fromMessage = StoredMessages.SET_FLIGHT_SPEED.fromMessage(plugin)
-						.replace("%speed", speed.toString())
-						.replace("%sender", NameUtil.getSenderName(sender));
+				String toMessage = StoredMessages.SET_FLIGHT_SPEED.toMessage(plugin, player)
+						.replace("%speed", speed.toString());
+				String fromMessage = StoredMessages.SET_FLIGHT_SPEED.fromMessage(plugin, sender)
+						.replace("%speed", speed.toString());
 				MessageUtil.sendMessage(plugin, sender, toMessage);
 				MessageUtil.sendMessage(plugin, player, fromMessage);
 			}
@@ -460,8 +443,7 @@ public final class HandleMovement implements CommandExecutor
 			{
 				return;
 			}
-			String message = StoredMessages.SET_FLIGHT_SPEED.selfMessage(plugin).
-					replace("%speed", "default");
+			String message = StoredMessages.CLEARED_FLIGHT_SPEED.selfMessage(plugin);
 			MessageUtil.sendMessage(plugin, sender, message);
 		}
 		else if(sender != null)
@@ -470,12 +452,8 @@ public final class HandleMovement implements CommandExecutor
 			{
 				return;
 			}
-			String toMessage = StoredMessages.SET_FLIGHT_SPEED.toMessage(plugin)
-					.replace("%speed", "default")
-					.replace("%target", player.getDisplayName());
-			String fromMessage = StoredMessages.SET_FLIGHT_SPEED.fromMessage(plugin)
-					.replace("%speed", "default")
-					.replace("%sender", NameUtil.getSenderName(sender));
+			String toMessage = StoredMessages.CLEARED_FLIGHT_SPEED.toMessage(plugin, player);
+			String fromMessage = StoredMessages.CLEARED_FLIGHT_SPEED.fromMessage(plugin, sender);
 			MessageUtil.sendMessage(plugin, sender, toMessage);
 			MessageUtil.sendMessage(plugin, player, fromMessage);
 		}
@@ -500,11 +478,9 @@ public final class HandleMovement implements CommandExecutor
 			{
 				return;
 			}
-			String toMessage = StoredMessages.SET_BUILD_MODE.toMessage(plugin)
-					.replace("%target", player.getDisplayName())
+			String toMessage = StoredMessages.SET_BUILD_MODE.toMessage(plugin, player)
 					.replace("%state", b + "");
-			String fromMessage = StoredMessages.SET_BUILD_MODE.toMessage(plugin)
-					.replace("%sender", NameUtil.getSenderName(sender))
+			String fromMessage = StoredMessages.SET_BUILD_MODE.fromMessage(plugin, sender)
 					.replace("%state", b + "");
 			MessageUtil.sendMessage(plugin, sender, toMessage);
 			MessageUtil.sendMessage(plugin, player, fromMessage);

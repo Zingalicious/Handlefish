@@ -1,6 +1,7 @@
 package us.zingalicio.handlefish.commands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.Biome;
 import org.bukkit.command.Command;
@@ -10,11 +11,11 @@ import org.bukkit.entity.Player;
 
 import us.zingalicio.handlefish.Keys;
 import us.zingalicio.handlefish.Handlefish;
-import us.zingalicio.zinglib.StoredMessages;
-import us.zingalicio.zinglib.util.EvansUtil;
-import us.zingalicio.zinglib.util.MessageUtil;
-import us.zingalicio.zinglib.util.NameUtil;
-import us.zingalicio.zinglib.util.PermissionsUtil;
+import us.zingalicio.cordstone.StoredMessages;
+import us.zingalicio.cordstone.util.EvansUtil;
+import us.zingalicio.cordstone.util.MessageUtil;
+import us.zingalicio.cordstone.util.NameUtil;
+import us.zingalicio.cordstone.util.PermissionsUtil;
 
 public class HandleBiome implements CommandExecutor
 {
@@ -40,7 +41,7 @@ public class HandleBiome implements CommandExecutor
 				Location loc = ((Player) sender).getLocation();
 				Biome b = ((Player) sender).getWorld().getBiome(loc.getBlockX(), loc.getBlockZ());
 				String biomeMessage = StoredMessages.CHECKED_BIOME.selfMessage(plugin).
-						replace("%biome", NameUtil.format(b.name()));
+						replace("%biome", ChatColor.WHITE + NameUtil.format(b.name()) + ChatColor.YELLOW);
 				MessageUtil.sendMessage(plugin, sender, biomeMessage);
 				{
 									Player evans = EvansUtil.getEvans();
@@ -63,9 +64,8 @@ public class HandleBiome implements CommandExecutor
 			if(target != null)
 			{
 				Biome b = target.getWorld().getBiome(target.getLocation().getBlockX(), target.getLocation().getBlockZ());
-				String biomeMessage = StoredMessages.CHECKED_BIOME.toMessage(plugin).
-						replace("%biome", NameUtil.format(b.name()).
-						replace("%target", target.getDisplayName()));
+				String biomeMessage = StoredMessages.CHECKED_BIOME.toMessage(plugin, target)
+						.replace("%biome", ChatColor.WHITE + NameUtil.format(b.name()) + ChatColor.YELLOW);
 				MessageUtil.sendMessage(plugin, sender, biomeMessage);
 				return true;
 			}

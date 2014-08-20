@@ -31,8 +31,8 @@ import us.zingalicio.handlefish.events.BuildModeListener;
 import us.zingalicio.handlefish.events.JoinListener;
 import us.zingalicio.handlefish.persistence.HomeData;
 import us.zingalicio.handlefish.persistence.WarpData;
-import us.zingalicio.zinglib.plugin.ZingPlugin;
-import us.zingalicio.zinglib.util.ConfigUtil;
+import us.zingalicio.cordstone.ZingPlugin;
+import us.zingalicio.cordstone.util.ConfigUtil;
 
 public final class Handlefish extends ZingPlugin
 {	

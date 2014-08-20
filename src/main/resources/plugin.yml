@@ -4,7 +4,7 @@ version: ${project.version}
 description: ${project.description}
 author: zingten11
 database: true
-depend: [ZingLib, PermissionsEx]
+depend: [Cordstone, PermissionsEx]
 commands:
   ban:
   unban:
@@ -14,6 +14,7 @@ commands:
   fly:
     aliases: flight
   speed:
+    aliases: [flyspeed, flightspeed, walkspeed]
   item:
     aliases: i
   give:

@@ -11,11 +11,11 @@ import org.bukkit.plugin.PluginManager;
 
 import us.zingalicio.handlefish.Keys;
 import us.zingalicio.handlefish.Handlefish;
-import us.zingalicio.zinglib.StoredMessages;
-import us.zingalicio.zinglib.util.ConfigUtil;
-import us.zingalicio.zinglib.util.ItemUtil;
-import us.zingalicio.zinglib.util.MessageUtil;
-import us.zingalicio.zinglib.util.PermissionsUtil;
+import us.zingalicio.cordstone.StoredMessages;
+import us.zingalicio.cordstone.util.ConfigUtil;
+import us.zingalicio.cordstone.util.ItemUtil;
+import us.zingalicio.cordstone.util.MessageUtil;
+import us.zingalicio.cordstone.util.PermissionsUtil;
 
 public final class HandleHandle implements CommandExecutor
 {

@@ -17,7 +17,7 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.Keys;
-import us.zingalicio.zinglib.util.SoundUtil;
+import us.zingalicio.cordstone.util.SoundUtil;
 
 public final class BuildModeListener implements Listener
 {

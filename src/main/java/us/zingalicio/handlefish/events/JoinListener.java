@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitScheduler;
 
 import ru.tehkode.permissions.PermissionUser;
@@ -27,17 +28,25 @@ public final class JoinListener implements Listener
 	@EventHandler
 	public void onSwitch(PlayerGameModeChangeEvent e)
 	{
-		Player p = e.getPlayer();
-		PermissionUser user = PermissionsEx.getUser(p);
-		p.setAllowFlight(user.getOptionBoolean(Keys.OPTION_FLIGHT, p.getWorld().getName(), false));
+		final Player p = e.getPlayer();
+		final PermissionUser user = PermissionsEx.getUser(p);
+		BukkitRunnable task = (new BukkitRunnable()
+		{
+			@Override
+			public void run()
+			{
+				p.setAllowFlight(user.getOptionBoolean(Keys.OPTION_FLIGHT, p.getWorld().getName(), false));
+			}
+		});
+		task.runTaskLater(this.plugin, 1);
 	}
 	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e)
 	{
-		Player player = e.getPlayer();
-		PermissionUser user = PermissionsEx.getUser(player);
-		World world = e.getPlayer().getWorld();
+		final Player player = e.getPlayer();
+		final PermissionUser user = PermissionsEx.getUser(player);
+		final World world = e.getPlayer().getWorld();
 		if(user.getOptionBoolean(Keys.OPTION_FLIGHT, world.getName(), false))
 		{
 			HandleMovement.setFlight(plugin, null, player, true);

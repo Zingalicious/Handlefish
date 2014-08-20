@@ -13,9 +13,9 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import us.zingalicio.handlefish.Keys;
 import us.zingalicio.handlefish.Handlefish;
-import us.zingalicio.zinglib.StoredMessages;
-import us.zingalicio.zinglib.util.MessageUtil;
-import us.zingalicio.zinglib.util.PermissionsUtil;
+import us.zingalicio.cordstone.StoredMessages;
+import us.zingalicio.cordstone.util.MessageUtil;
+import us.zingalicio.cordstone.util.PermissionsUtil;
 
 public final class HandleBan implements CommandExecutor
 {
@@ -108,10 +108,8 @@ public final class HandleBan implements CommandExecutor
 					MessageUtil.sendError(plugin, sender, StoredMessages.NO_PLAYER.selfMessage(plugin));
 					return true;
 				}
-				String kickMessage = StoredMessages.KICKED.toMessage(plugin);
-				kickMessage = kickMessage.
-						replace("%target", p.getName()).
-						replace("%reason", "for no apparent reason");
+				String kickMessage = StoredMessages.KICKED.toMessage(plugin, p)
+						.replace("%reason", "for no apparent reason");
 				MessageUtil.sendMessage(plugin, sender, kickMessage);
 				p.kickPlayer("You been kicked, m8.");
 				return true;
@@ -131,10 +129,8 @@ public final class HandleBan implements CommandExecutor
 				}
 				reason = reason.trim();
 
-				String kickMessage = StoredMessages.KICKED.toMessage(plugin);
-				kickMessage = kickMessage.
-						replace("%target", p.getName()).
-						replace("%reason", reason);
+				String kickMessage = StoredMessages.KICKED.toMessage(plugin, p)
+						.replace("%reason", reason);
 				MessageUtil.sendMessage(plugin, sender, kickMessage);
 				p.kickPlayer("You been kicked " + reason + ".");
 				return true;

@@ -17,10 +17,10 @@ import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import us.zingalicio.handlefish.Handlefish;
-import us.zingalicio.zinglib.StoredMessages;
-import us.zingalicio.zinglib.util.MessageUtil;
-import us.zingalicio.zinglib.util.NumberUtil;
-import us.zingalicio.zinglib.util.PermissionsUtil;
+import us.zingalicio.cordstone.StoredMessages;
+import us.zingalicio.cordstone.util.MessageUtil;
+import us.zingalicio.cordstone.util.NumberUtil;
+import us.zingalicio.cordstone.util.PermissionsUtil;
 
 import static us.zingalicio.handlefish.Keys.*;
 

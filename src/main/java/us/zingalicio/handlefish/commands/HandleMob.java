@@ -4,11 +4,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
+import us.zingalicio.cordstone.ZingPlugin;
 import us.zingalicio.handlefish.Handlefish;
 
 public final class HandleMob implements CommandExecutor
 {
-	Handlefish plugin;
+	ZingPlugin plugin;
 	
 	public HandleMob(Handlefish plugin)
 	{

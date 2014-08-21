@@ -40,8 +40,8 @@ public final class HandleHandle implements CommandExecutor
 					 reload(sender);
 					return true;
 				case "version":
-					String message = StoredMessages.VERSION.selfMessage(plugin).
-							replace("%version", plugin.getDescription().getVersion());
+					String message = StoredMessages.VERSION.selfMessage()
+					.replace("%version", plugin.getDescription().getVersion());
 					MessageUtil.sendMessage(plugin, sender, message);
 					return true;
 				case "create":
@@ -49,14 +49,14 @@ public final class HandleHandle implements CommandExecutor
 					{
 						return false;
 					}
-					Byte b = ItemUtil.saveItem(plugin, ((Player) sender).getItemInHand(), args[1]);
+					Byte b = ItemUtil.saveItem(((Player) sender).getItemInHand(), args[1]);
 					return b == 0;
 				case "delete":
 					if(!sender.isOp())
 					{
 						return false;
 					}
-					ItemUtil.deleteItem(plugin, args[1]);
+					ItemUtil.deleteItem(args[1]);
 				try 
 				{
 					plugin.getItems().save(plugin.getItemFile());
@@ -72,7 +72,7 @@ public final class HandleHandle implements CommandExecutor
 		}
 		else if(command.getName().equalsIgnoreCase("ping"))
 		{
-			MessageUtil.sendMessage(plugin, sender, StoredMessages.PING.selfMessage(plugin));
+			MessageUtil.sendMessage(plugin, sender, StoredMessages.PING.selfMessage());
 			return true;
 		}
 		return false;
@@ -89,13 +89,13 @@ public final class HandleHandle implements CommandExecutor
 				PluginManager pluginManager = Bukkit.getPluginManager();
 				pluginManager.disablePlugin(plugin);
 				pluginManager.enablePlugin(plugin);
-				MessageUtil.sendMessage(plugin, sender, StoredMessages.RELOADED.selfMessage(plugin));
+				MessageUtil.sendMessage(plugin, sender, StoredMessages.RELOADED.selfMessage());
 			}
 			return;
 		}
 		catch(Throwable t)
 		{
-			MessageUtil.sendError(plugin, sender, StoredMessages.GENERAL_FAILURE.selfMessage(plugin));
+			MessageUtil.sendError(plugin, sender, StoredMessages.GENERAL_FAILURE.selfMessage());
 			return;
 		}
 	}

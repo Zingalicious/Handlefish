@@ -71,7 +71,7 @@ public final class HandleHelp implements CommandExecutor
 		}
 		else
 		{
-			MessageUtil.sendMessage(plugin, sender, StoredMessages.NO_HELP.selfMessage(plugin));
+			MessageUtil.sendMessage(plugin, sender, StoredMessages.NO_HELP.selfMessage());
 		}
 		return false;
 	}

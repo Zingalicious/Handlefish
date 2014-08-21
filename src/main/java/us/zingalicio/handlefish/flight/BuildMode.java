@@ -10,13 +10,14 @@ import org.bukkit.util.Vector;
 
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
+import us.zingalicio.cordstone.ZingPlugin;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.Keys;
 
 public class BuildMode extends BukkitRunnable
 {
 	Player player;
-	Handlefish plugin;
+	ZingPlugin plugin;
 	BukkitScheduler scheduler;
 	Location oldPos;
 	Boolean oldDirection = null;
@@ -24,10 +25,10 @@ public class BuildMode extends BukkitRunnable
 	short sneakTicks;
 	Boolean startup = true;
 	int id;
-	public BuildMode(Player player, Handlefish plugin)
+	public BuildMode(Player player)
 	{
 		this.player = player;
-		this.plugin = plugin;
+		this.plugin = Handlefish.getInstance();
 		this.scheduler = Bukkit.getServer().getScheduler();
 		if(startup)
 		{

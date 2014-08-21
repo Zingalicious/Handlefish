@@ -5,9 +5,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitScheduler;
 
 import ru.tehkode.permissions.PermissionUser;
@@ -24,21 +22,6 @@ public final class JoinListener implements Listener
 	public JoinListener(Handlefish plugin)
 	{
 		this.plugin = plugin;
-	}
-	@EventHandler
-	public void onSwitch(PlayerGameModeChangeEvent e)
-	{
-		final Player p = e.getPlayer();
-		final PermissionUser user = PermissionsEx.getUser(p);
-		BukkitRunnable task = (new BukkitRunnable()
-		{
-			@Override
-			public void run()
-			{
-				p.setAllowFlight(user.getOptionBoolean(Keys.OPTION_FLIGHT, p.getWorld().getName(), false));
-			}
-		});
-		task.runTaskLater(this.plugin, 1);
 	}
 	
 	@EventHandler
@@ -83,7 +66,7 @@ public final class JoinListener implements Listener
 		}
 		if(user.getOptionBoolean(Keys.OPTION_BUILD_MODE, world.getName(), false))
 		{
-			BuildMode build = new BuildMode(player, plugin);
+			BuildMode build = new BuildMode(player);
 			BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
 			int task = scheduler.scheduleSyncRepeatingTask(plugin, build, 0, 1L);
 			build.setId(task);

@@ -29,6 +29,7 @@ import us.zingalicio.handlefish.commands.HandleWarp;
 import us.zingalicio.handlefish.commands.HandleWeather;
 import us.zingalicio.handlefish.events.BuildModeListener;
 import us.zingalicio.handlefish.events.JoinListener;
+import us.zingalicio.handlefish.events.SwitchListener;
 import us.zingalicio.handlefish.persistence.HomeData;
 import us.zingalicio.handlefish.persistence.WarpData;
 import us.zingalicio.cordstone.ZingPlugin;
@@ -59,6 +60,7 @@ public final class Handlefish extends ZingPlugin
 	private final YamlConfiguration bans;
 	private JoinListener joinListener;
 	private BuildModeListener buildModeListener;
+	private SwitchListener switchListener;
 	
 	public Handlefish()
 	{
@@ -179,8 +181,10 @@ public final class Handlefish extends ZingPlugin
 	{
 		joinListener = new JoinListener(this);
 		buildModeListener = new BuildModeListener(this);
+		switchListener = new SwitchListener(this);
 		getServer().getPluginManager().registerEvents(joinListener, this);
 		getServer().getPluginManager().registerEvents(buildModeListener, this);
+		getServer().getPluginManager().registerEvents(switchListener, this);
 	}
 	
 	private void setupDatabase()

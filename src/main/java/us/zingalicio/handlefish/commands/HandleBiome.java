@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import us.zingalicio.handlefish.Keys;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.cordstone.StoredMessages;
+import us.zingalicio.cordstone.ZingPlugin;
 import us.zingalicio.cordstone.util.EvansUtil;
 import us.zingalicio.cordstone.util.MessageUtil;
 import us.zingalicio.cordstone.util.NameUtil;
@@ -19,7 +20,7 @@ import us.zingalicio.cordstone.util.PermissionsUtil;
 
 public class HandleBiome implements CommandExecutor
 {
-	Handlefish plugin;
+	ZingPlugin plugin;
 	
 	public HandleBiome(Handlefish plugin)
 	{
@@ -40,8 +41,8 @@ public class HandleBiome implements CommandExecutor
 				
 				Location loc = ((Player) sender).getLocation();
 				Biome b = ((Player) sender).getWorld().getBiome(loc.getBlockX(), loc.getBlockZ());
-				String biomeMessage = StoredMessages.CHECKED_BIOME.selfMessage(plugin).
-						replace("%biome", ChatColor.WHITE + NameUtil.format(b.name()) + ChatColor.YELLOW);
+				String biomeMessage = StoredMessages.CHECKED_BIOME.selfMessage()
+						.replace("%biome", ChatColor.WHITE + NameUtil.format(b.name()) + ChatColor.YELLOW);
 				MessageUtil.sendMessage(plugin, sender, biomeMessage);
 				{
 									Player evans = EvansUtil.getEvans();
@@ -64,14 +65,14 @@ public class HandleBiome implements CommandExecutor
 			if(target != null)
 			{
 				Biome b = target.getWorld().getBiome(target.getLocation().getBlockX(), target.getLocation().getBlockZ());
-				String biomeMessage = StoredMessages.CHECKED_BIOME.toMessage(plugin, target)
+				String biomeMessage = StoredMessages.CHECKED_BIOME.toMessage(target)
 						.replace("%biome", ChatColor.WHITE + NameUtil.format(b.name()) + ChatColor.YELLOW);
 				MessageUtil.sendMessage(plugin, sender, biomeMessage);
 				return true;
 			}
 			else
 			{
-				MessageUtil.sendMessage(plugin, sender, StoredMessages.NO_PLAYER.selfMessage(plugin));
+				MessageUtil.sendMessage(plugin, sender, StoredMessages.NO_PLAYER.selfMessage());
 				return true;
 			}
 		}

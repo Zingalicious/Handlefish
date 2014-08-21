@@ -105,10 +105,10 @@ public final class HandleBan implements CommandExecutor
 				Player p = Bukkit.getPlayer(args[0]);
 				if(p == null)
 				{
-					MessageUtil.sendError(plugin, sender, StoredMessages.NO_PLAYER.selfMessage(plugin));
+					MessageUtil.sendError(plugin, sender, StoredMessages.NO_PLAYER.selfMessage());
 					return true;
 				}
-				String kickMessage = StoredMessages.KICKED.toMessage(plugin, p)
+				String kickMessage = StoredMessages.KICKED.toMessage(p)
 						.replace("%reason", "for no apparent reason");
 				MessageUtil.sendMessage(plugin, sender, kickMessage);
 				p.kickPlayer("You been kicked, m8.");
@@ -119,7 +119,7 @@ public final class HandleBan implements CommandExecutor
 				Player p = Bukkit.getPlayer(args[0]);
 				if(p == null)
 				{
-					MessageUtil.sendError(plugin,sender, StoredMessages.NO_PLAYER.selfMessage(plugin));
+					MessageUtil.sendError(plugin,sender, StoredMessages.NO_PLAYER.selfMessage());
 					return true;
 				}
 				String reason = "";
@@ -129,7 +129,7 @@ public final class HandleBan implements CommandExecutor
 				}
 				reason = reason.trim();
 
-				String kickMessage = StoredMessages.KICKED.toMessage(plugin, p)
+				String kickMessage = StoredMessages.KICKED.toMessage(p)
 						.replace("%reason", reason);
 				MessageUtil.sendMessage(plugin, sender, kickMessage);
 				p.kickPlayer("You been kicked " + reason + ".");

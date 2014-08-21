@@ -156,7 +156,7 @@ public class HandlePlayer implements CommandExecutor
 				}
 				return true;
 			}
-			MessageUtil.sendError(plugin, sender, StoredMessages.NO_CONSOLE.selfMessage(plugin));
+			MessageUtil.sendError(plugin, sender, StoredMessages.NO_CONSOLE.selfMessage());
 			return false;
 		}
 		else if(command.getName().equalsIgnoreCase("yeah"))
@@ -204,7 +204,8 @@ public class HandlePlayer implements CommandExecutor
 			{
 				user.setOption(option, s);
 			}
-			String m = message.selfMessage(plugin).replace("%new", s);
+			String m = message.selfMessage()
+					.replace("%new", s);
 			MessageUtil.sendMessage(plugin, sender, m);
 			return;
 		}
@@ -223,7 +224,8 @@ public class HandlePlayer implements CommandExecutor
 			{
 				q = user.getOption(option, sender.getWorld().getName());
 			}
-			String m = message.selfMessage(plugin).replace("%current", q);
+			String m = message.selfMessage()
+					.replace("%current", q);
 			MessageUtil.sendMessage(plugin, sender, m);
 			return;
 		}
@@ -301,8 +303,8 @@ public class HandlePlayer implements CommandExecutor
 		}
 		else
 		{
-			String message = StoredMessages.CHECKED_FLIGHT_SPEED.selfMessage(plugin).
-					replace("%speed", Float.toString(sender.getFlySpeed()));
+			String message = StoredMessages.CHECKED_FLIGHT_SPEED.selfMessage()
+					.replace("%speed", Float.toString(sender.getFlySpeed()));
 			MessageUtil.sendMessage(plugin, sender, message);
 		}
 	}
@@ -329,8 +331,8 @@ public class HandlePlayer implements CommandExecutor
 		}
 		else
 		{
-			String message = StoredMessages.CHECKED_WALK_SPEED.selfMessage(plugin).
-					replace("%speed", Float.toString(sender.getFlySpeed()));
+			String message = StoredMessages.CHECKED_WALK_SPEED.selfMessage()
+					.replace("%speed", Float.toString(sender.getFlySpeed()));
 			MessageUtil.sendMessage(plugin, sender, message);
 		}
 	}

@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import us.zingalicio.handlefish.Keys;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.cordstone.StoredMessages;
+import us.zingalicio.cordstone.ZingPlugin;
 import us.zingalicio.cordstone.util.ItemUtil;
 import us.zingalicio.cordstone.util.MessageUtil;
 import us.zingalicio.cordstone.util.NameUtil;
@@ -19,7 +20,7 @@ import us.zingalicio.cordstone.util.PermissionsUtil;
 
 public final class HandleGive implements CommandExecutor
 {
-	Handlefish plugin;
+	ZingPlugin plugin;
 	
 	public HandleGive(Handlefish plugin)
 	{
@@ -44,7 +45,7 @@ public final class HandleGive implements CommandExecutor
 					}
 					if(args.length > 0)
 					{
-						item = ItemUtil.getItem(plugin, args[0]);
+						item = ItemUtil.getItem(args[0]);
 					}
 					if(args.length > 1)
 					{
@@ -53,7 +54,7 @@ public final class HandleGive implements CommandExecutor
 				}
 				else
 				{
-					MessageUtil.sendError(plugin, sender, StoredMessages.NO_CONSOLE.selfMessage(plugin));
+					MessageUtil.sendError(plugin, sender, StoredMessages.NO_CONSOLE.selfMessage());
 					return true;
 				}
 				break;
@@ -64,7 +65,7 @@ public final class HandleGive implements CommandExecutor
 					return false;
 				}
 				recipient = Bukkit.getPlayer(args[0]);
-				item = ItemUtil.getItem(plugin, args[1]);
+				item = ItemUtil.getItem(args[1]);
 				if(args.length > 2)
 				{
 					if(args[2].equalsIgnoreCase("i") || args[2].equalsIgnoreCase("inf") || args[2].equalsIgnoreCase("infinite"))
@@ -83,7 +84,7 @@ public final class HandleGive implements CommandExecutor
 					}
 					else
 					{
-						MessageUtil.sendError(plugin, sender, StoredMessages.NO_CONSOLE.selfMessage(plugin));
+						MessageUtil.sendError(plugin, sender, StoredMessages.NO_CONSOLE.selfMessage());
 						return true;
 					}
 				}
@@ -100,17 +101,17 @@ public final class HandleGive implements CommandExecutor
 		}
 		if(recipient == null)
 		{
-			MessageUtil.sendError(plugin, sender, StoredMessages.NO_PLAYER.selfMessage(plugin));
+			MessageUtil.sendError(plugin, sender, StoredMessages.NO_PLAYER.selfMessage());
 			return true;
 		}
 		if(item == null)
 		{
-			MessageUtil.sendError(plugin, sender, StoredMessages.INVALID_ITEM.selfMessage(plugin));
+			MessageUtil.sendError(plugin, sender, StoredMessages.INVALID_ITEM.selfMessage());
 			return true;
 		}
 		if(amt == null || amt < -1 || amt == 0)
 		{
-			MessageUtil.sendError(plugin, sender, StoredMessages.INVALID_AMOUNT.selfMessage(plugin));
+			MessageUtil.sendError(plugin, sender, StoredMessages.INVALID_AMOUNT.selfMessage());
 			return true;
 		}
 		
@@ -152,22 +153,22 @@ public final class HandleGive implements CommandExecutor
 			}
 			else
 			{
-				name = NameUtil.getFullName(plugin, item.getType(), item.getData());
+				name = NameUtil.getFullName(item.getType(), item.getData());
 			}
 			
 			//Different messages if giving to self/others.
 			if(self)
 			{
-				String message = StoredMessages.GIVEN_ITEM.selfMessage(plugin).
-						replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW);
+				String message = StoredMessages.GIVEN_ITEM.selfMessage()
+						.replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW);
 				MessageUtil.sendMessage(plugin, recipient, message);
 				return;
 			}
 			else
 			{
-				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(plugin, recipient)
+				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(recipient)
 						.replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW);
-				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(plugin, sender)
+				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(sender)
 						.replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW);
 				MessageUtil.sendMessage(plugin, sender, toMessage);
 				MessageUtil.sendMessage(plugin, recipient, fromMessage);
@@ -204,24 +205,24 @@ public final class HandleGive implements CommandExecutor
 			}
 			else
 			{
-				name = NameUtil.getFullName(plugin, item.getType(), item.getData());
+				name = NameUtil.getFullName(item.getType(), item.getData());
 			}
 			
 			//Different messages if giving to self/others.
 			if(self)
 			{
-				String message = StoredMessages.GIVEN_ITEMS.selfMessage(plugin).
-						replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW).
-						replace("%amount", "infinite");
+				String message = StoredMessages.GIVEN_ITEMS.selfMessage()
+						.replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW)
+						.replace("%amount", "infinite");
 				MessageUtil.sendMessage(plugin, recipient, message);
 				return;
 			}
 			else
 			{
-				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(plugin, recipient)
+				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(recipient)
 						.replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW)
 						.replace("%amount", "infinite");
-				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(plugin, sender)
+				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(sender)
 						.replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW)
 						.replace("%amount", "infinite");
 				MessageUtil.sendMessage(plugin, sender, toMessage);
@@ -243,25 +244,25 @@ public final class HandleGive implements CommandExecutor
 			}
 			else
 			{
-				name = NameUtil.getFullName(plugin, item.getType(), item.getData());
+				name = NameUtil.getFullName(item.getType(), item.getData());
 			}
 			
 			//Different messages for blah blah
 			if(self)
 			{
 
-				String message = StoredMessages.GIVEN_ITEMS.selfMessage(plugin).
-						replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW).
-						replace("%amount", amount);
+				String message = StoredMessages.GIVEN_ITEMS.selfMessage()
+						.replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW)
+						.replace("%amount", amount);
 				MessageUtil.sendMessage(plugin, recipient, message);
 				return;
 			}
 			else
 			{
-				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(plugin, recipient)
+				String toMessage = StoredMessages.GIVEN_ITEM.toMessage(recipient)
 						.replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW)
 						.replace("%amount", amount);
-				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(plugin, sender)
+				String fromMessage = StoredMessages.GIVEN_ITEM.fromMessage(sender)
 						.replace("%item", ChatColor.WHITE + name + ChatColor.YELLOW)
 						.replace("%amount", amount);
 				MessageUtil.sendMessage(plugin, sender, toMessage);
@@ -271,7 +272,7 @@ public final class HandleGive implements CommandExecutor
 		}
 		else
 		{
-			MessageUtil.sendError(plugin, sender, StoredMessages.INVALID_AMOUNT.selfMessage(plugin));
+			MessageUtil.sendError(plugin, sender, StoredMessages.INVALID_AMOUNT.selfMessage());
 			return;
 		}
 	}

@@ -47,7 +47,7 @@ public final class BuildModeListener implements Listener
 						b.getRelative(bF).setType(item.getType());
 						b.getRelative(bF).setData(item.getData().getData());
 						item.setAmount(item.getAmount() - 1);
-						player.playSound(b.getLocation(), SoundUtil.getSound(item.getType(), plugin), 1F, 1F);
+						player.playSound(b.getLocation(), SoundUtil.getSound(item.getType()), 1F, 1F);
 					}
 					PlayerInteractEvent newEvent = new PlayerInteractEvent(player, Action.RIGHT_CLICK_BLOCK, item, b, bF);
 					Bukkit.getServer().getPluginManager().callEvent(newEvent);
@@ -62,7 +62,7 @@ public final class BuildModeListener implements Listener
 						b.getRelative(bF).setType(item.getType());
 						b.getRelative(bF).setData(item.getData().getData());
 						item.setAmount(item.getAmount() - 1);
-						player.playSound(b.getLocation(), SoundUtil.getSound(item.getType(), plugin), 1F, 1F);
+						player.playSound(b.getLocation(), SoundUtil.getSound(item.getType()), 1F, 1F);
 						PlayerInteractEvent newEvent = new PlayerInteractEvent(player, Action.RIGHT_CLICK_BLOCK, item, b, bF);
 						Bukkit.getServer().getPluginManager().callEvent(newEvent);
 					}

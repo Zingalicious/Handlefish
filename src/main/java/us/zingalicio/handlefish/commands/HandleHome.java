@@ -4,11 +4,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
+import us.zingalicio.cordstone.ZingPlugin;
 import us.zingalicio.handlefish.Handlefish;
 
 public final class HandleHome implements CommandExecutor
 {
-	Handlefish plugin;
+	ZingPlugin plugin;
 	
 	public HandleHome(Handlefish plugin)
 	{

@@ -153,7 +153,7 @@ public final class HandleGive implements CommandExecutor
 			}
 			else
 			{
-				name = NameUtil.getFullName(item.getType(), item.getData());
+				name = NameUtil.getItemName(item.getType(), item.getData());
 			}
 			
 			//Different messages if giving to self/others.
@@ -205,7 +205,7 @@ public final class HandleGive implements CommandExecutor
 			}
 			else
 			{
-				name = NameUtil.getFullName(item.getType(), item.getData());
+				name = NameUtil.getItemName(item.getType(), item.getData());
 			}
 			
 			//Different messages if giving to self/others.
@@ -244,7 +244,7 @@ public final class HandleGive implements CommandExecutor
 			}
 			else
 			{
-				name = NameUtil.getFullName(item.getType(), item.getData());
+				name = NameUtil.getItemName(item.getType(), item.getData());
 			}
 			
 			//Different messages for blah blah

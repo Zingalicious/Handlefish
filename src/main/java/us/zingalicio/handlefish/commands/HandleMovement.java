@@ -115,8 +115,7 @@ public final class HandleMovement implements CommandExecutor
 				return true;
 			}
 			
-			PermissionUser user = PermissionsEx.getUser(player);
-			if(user.getOptionBoolean(OPTION_FLIGHT, player.getWorld().getName(), false))
+			if(player.getAllowFlight())
 			{
 				setFlight(plugin, sender, player, false);
 				return true;

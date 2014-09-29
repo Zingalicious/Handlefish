@@ -27,6 +27,7 @@ public final class HandleGive implements CommandExecutor
 		this.plugin = plugin;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) 
 	{	
 		Player recipient = null;

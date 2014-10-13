@@ -9,7 +9,6 @@ import org.bukkit.scheduler.BukkitScheduler;
 
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
-
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.handlefish.flight.BuildMode;
 import us.zingalicio.cordstone.StoredMessages;
@@ -17,7 +16,6 @@ import us.zingalicio.cordstone.ZingPlugin;
 import us.zingalicio.cordstone.util.MessageUtil;
 import us.zingalicio.cordstone.util.NumberUtil;
 import us.zingalicio.cordstone.util.PermissionsUtil;
-
 import static us.zingalicio.handlefish.Keys.*;
 
 public final class HandleMovement implements CommandExecutor
@@ -31,6 +29,7 @@ public final class HandleMovement implements CommandExecutor
 		this.plugin = plugin;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command command, String label,
 			String[] args) 
 	{

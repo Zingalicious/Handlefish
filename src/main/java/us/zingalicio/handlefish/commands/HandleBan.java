@@ -10,7 +10,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import ru.tehkode.permissions.bukkit.PermissionsEx;
-
 import us.zingalicio.handlefish.Keys;
 import us.zingalicio.handlefish.Handlefish;
 import us.zingalicio.cordstone.StoredMessages;
@@ -28,6 +27,7 @@ public final class HandleBan implements CommandExecutor
 		this.bans = plugin.getBans();
 	}
 	
+	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command command, String label,
 			String[] args) 
 	{
@@ -143,6 +143,7 @@ public final class HandleBan implements CommandExecutor
 		return false;
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void ban(CommandSender sender, String victim, String duration, String reason, boolean exact)
 	{
 		if(!PermissionsUtil.checkPermission(sender, Keys.PERMISSION_BAN, false))
